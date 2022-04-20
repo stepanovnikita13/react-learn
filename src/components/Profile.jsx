@@ -1,7 +1,9 @@
+import s from './Profile.module.css'
+
 const Profile = () => {
 	return (
 		<div className='content'>
-			<div className='profile-img'>
+			<div className={s.profileBg}>
 				<img src='https://digitaldefynd.com/wp-content/uploads/2020/07/Best-Abstract-Art-course-tutorial-class-certification-training-online-scaled.jpg' alt='background' />
 			</div>
 			<div>
@@ -12,14 +14,16 @@ const Profile = () => {
 				<div>
 					New post
 				</div>
-				<div>
-					post1
-				</div>
-				<div>
-					post 2
-				</div>
-				<div>
-					post 2
+				<div className='posts'>
+					<div className='item'>
+						post1
+					</div>
+					<div className='item'>
+						post 2
+					</div>
+					<div className='item'>
+						post 3
+					</div>
 				</div>
 			</div>
 		</div>

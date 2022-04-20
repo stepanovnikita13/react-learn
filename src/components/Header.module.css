@@ -1,0 +1,8 @@
+.header {
+	grid-area: A;
+	padding: 10px;
+}
+
+.header img {
+	height: 100%;
+}
