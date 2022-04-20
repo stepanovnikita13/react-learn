@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.app__grid {
+	width: 1200px;
+	margin: 0 auto;
+
+	display: grid;
+	grid-template-areas:
+		"A A"
+		"B C";
+	grid-template-rows: 60px auto;
+	grid-template-columns: 2fr 10fr;
+}
+
+.header {
+	grid-area: A;
+	padding: 10px;
+}
+
+.header img {
+	height: 100%;
+}
+
+.sidebar {
+	grid-area: B;
+}
+
+.content {
+	grid-area: C;
+}
+
+.profile-img img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
