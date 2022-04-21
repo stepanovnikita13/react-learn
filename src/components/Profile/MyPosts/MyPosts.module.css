@@ -1,3 +1,7 @@
-.item {
-	color: #262626;
+.postsBlock {
+	padding: 10px;
+}
+
+.postList {
+	padding-top: 20px;
 }

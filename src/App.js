@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import './css/null.css';
 
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -19,11 +18,11 @@ function App() {
 				<Navbar />
 				<div className='content'>
 					<Routes>
-						<Route path='/profile' element={<Profile />} />
-						<Route path='dialogs' element={<Dialogs />} />
-						<Route path='music' element={<Music />} />
-						<Route path='news' element={<News />} />
-						<Route path='settings' element={<Settings />} />
+						<Route path='/profile/*' element={<Profile />} />
+						<Route path='dialogs/*' element={<Dialogs />} />
+						<Route path='music/*' element={<Music />} />
+						<Route path='news/*' element={<News />} />
+						<Route path='settings/*' element={<Settings />} />
 					</Routes>
 				</div>
 			</div>
