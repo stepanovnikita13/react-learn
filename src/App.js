@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import './null.css'
+import './css/null.css';
 
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -25,7 +25,6 @@ function App() {
 						<Route path='news' element={<News />} />
 						<Route path='settings' element={<Settings />} />
 					</Routes>
-
 				</div>
 			</div>
 		</BrowserRouter>
