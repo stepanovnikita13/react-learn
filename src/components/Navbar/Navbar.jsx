@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css'
 
 const Navbar = () => {
@@ -5,29 +6,44 @@ const Navbar = () => {
 		<nav className={`${s.sidebar} sidebar`} >
 			<ul>
 				<li className={s.item}>
-					<a href='/profile'>
+					<NavLink
+						to='/profile'
+						className={navData => navData.isActive ? s.active : ''}
+					>
 						Profile
-					</a>
+					</NavLink>
 				</li>
 				<li className={s.item}>
-					<a href='/dialogs'>
+					<NavLink
+						to='/dialogs'
+						className={navData => navData.isActive ? s.active : ''}
+					>
 						Messages
-					</a>
+					</NavLink>
 				</li>
 				<li className={s.item}>
-					<a href='/music'>
+					<NavLink
+						to='/music'
+						className={navData => navData.isActive ? s.active : ''}
+					>
 						Music
-					</a>
+					</NavLink>
 				</li>
 				<li className={s.item}>
-					<a href='news'>
+					<NavLink
+						to='news'
+						className={navData => navData.isActive ? s.active : ''}
+					>
 						News
-					</a>
+					</NavLink>
 				</li>
 				<li className={s.item}>
-					<a href='settings'>
+					<NavLink
+						to='settings'
+						className={navData => navData.isActive ? s.active : ''}
+					>
 						Settings
-					</a>
+					</NavLink>
 				</li>
 			</ul>
 		</nav >
