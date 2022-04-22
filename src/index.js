@@ -5,10 +5,30 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let postsData = [
+	{ id: 0, text: 'Hi! How are you?', likesCount: 12 },
+	{ id: 0, text: "It's my first post", likesCount: 11 },
+	{ id: 0, text: 'Bye!', likesCount: 8 },
+]
+
+let dialogsData = [
+	{ id: 1, name: 'Nikita' },
+	{ id: 2, name: 'Stas' },
+	{ id: 3, name: 'German' },
+	{ id: 4, name: 'Turbo' },
+	{ id: 5, name: 'Djusha Metelkin' },
+]
+
+let msgData = [
+	{ id: 1, msg: 'Hi!' },
+	{ id: 1, msg: 'How are you?' },
+	{ id: 1, msg: 'Go to the bar!' },
+]
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<App />
+		<App postsData={postsData} dialogsData={dialogsData} msgData={msgData} />
 	</React.StrictMode>
 );
 
