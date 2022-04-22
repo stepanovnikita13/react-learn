@@ -4,8 +4,8 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 
 const Dialogs = (props) => {
-	let dialogList = props.state.dialogsData.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar} />)
-	let msgList = props.state.msgData.map(m => <Message text={m.text} />)
+	let dialogList = props.dialogsPage.dialogsData.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar} />)
+	let msgList = props.dialogsPage.msgData.map(m => <Message text={m.text} />)
 
 	let newMessageElement = React.useRef();
 
@@ -24,7 +24,7 @@ const Dialogs = (props) => {
 			<div className={s.chat}>
 				{msgList}
 				<div className={s.chatInput}>
-					<textarea ref={newMessageElement} className={s.input}></textarea>
+					<textarea ref={newMessageElement} className={s.input} />
 					<button onClick={sendMessage} className={s.sendBtn}>Send</button>
 				</div>
 			</div>

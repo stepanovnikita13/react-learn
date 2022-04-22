@@ -7,6 +7,7 @@ let state = {
 			{ id: 1, text: "It's my first post", likesCount: 11 },
 			{ id: 2, text: 'Bye!', likesCount: 8 },
 		],
+		currentPostText: '',
 	},
 	dialogsPage: {
 		msgData: [
@@ -24,26 +25,30 @@ let state = {
 	},
 }
 
-export let addPost = (postText) => {
-	let idValue = state.profilePage.postsData.length;
+export let addPost = () => {
 	let newPost = {
-		id: idValue,
-		text: postText,
-		likesCount: 5,
+		id: state.profilePage.postsData.length,
+		text: state.profilePage.currentPostText,
+		likesCount: 0,
 	}
 
 	state.profilePage.postsData.push(newPost);
+	state.profilePage.currentPostText = '';
 	renderEntireTree(state);
 }
 
 export let sendMessage = (messageText) => {
-	let idValue = state.dialogsPage.msgData.length;
 	let newMessage = {
-		id: idValue,
+		id: state.dialogsPage.msgData.length,
 		text: messageText,
 	}
 
 	state.dialogsPage.msgData.push(newMessage);
+	renderEntireTree(state);
+}
+
+export let updateCurrentPostText = (newText) => {
+	state.profilePage.currentPostText = newText;
 	renderEntireTree(state);
 }
 
