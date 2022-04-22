@@ -5,14 +5,15 @@ import Message from './Message/Message'
 
 const Dialogs = (props) => {
 	let dialogList = props.state.dialogsData.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar} />)
-	let msgList = props.state.msgData.map(m => <Message msg={m.msg} />)
+	let msgList = props.state.msgData.map(m => <Message text={m.text} />)
 
 	let newMessageElement = React.useRef();
 
 	let sendMessage = () => {
 		let text = newMessageElement.current.value;
 
-		alert(text);
+		props.sendMessage(text);
+		newMessageElement.current.value = '';
 	}
 
 	return (
