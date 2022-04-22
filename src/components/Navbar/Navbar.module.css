@@ -1,13 +1,12 @@
 .sidebar {
-	background-color: darkseagreen;
 	padding: 20px;
 }
 
 .item a {
 	font-size: 1.2rem;
-	color: white;
+	color: #262626;
 }
 
 .item a.active {
-	color: gold;
+	color: #6667AB;
 }

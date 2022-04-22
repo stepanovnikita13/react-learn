@@ -13,18 +13,28 @@ import Settings from './components/Settings/Settings';
 function App(props) {
 	return (
 		<BrowserRouter>
-			<div className="app__grid">
+			<div>
 				<Header />
-				<Navbar />
-				<div className='content'>
-					<Routes>
-						<Route path='/profile/*' element={<Profile postsData={props.postsData} />} />
-						<Route path='dialogs/*' element={<Dialogs dialogsData={props.dialogsData} msgData={props.msgData} />} />
-						<Route path='music/*' element={<Music />} />
-						<Route path='news/*' element={<News />} />
-						<Route path='settings/*' element={<Settings />} />
-					</Routes>
+				<div className='container main'>
+					<Navbar />
+					<div className='content'>
+						<Routes>
+							<Route path='/profile/*'
+								element={<Profile state={props.state.profilePage} />}
+							/>
+							<Route path='dialogs/*'
+								element={<Dialogs state={props.state.dialogsPage} />
+								}
+							/>
+							<Route path='music/*' element={<Music />} />
+							<Route path='news/*' element={<News />} />
+							<Route path='settings/*' element={<Settings />} />
+						</Routes>
+					</div>
 				</div>
+				<footer>
+					<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
+				</footer>
 			</div>
 		</BrowserRouter>
 	);

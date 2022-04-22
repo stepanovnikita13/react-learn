@@ -1,4 +1,4 @@
-import s from './../Dialogs.module.css'
+import s from './Message.module.css'
 
 const Message = (props) => (
 	<div className={s.item}>{props.msg}</div>

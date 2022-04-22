@@ -1,19 +1,6 @@
-.app__grid {
-	width: 1200px;
-	margin: 0 auto;
-
+.main {
 	display: grid;
-	grid-template-areas:
-		"A A"
-		"B C";
-	grid-template-rows: 60px auto;
-	grid-template-columns: 2fr 10fr;
+	grid-template-columns: 200px auto;
 }
 
-.sidebar {
-	grid-area: B;
-}
-
-.content {
-	grid-area: C;
-}
+.content {}
