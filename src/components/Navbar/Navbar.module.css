@@ -4,9 +4,8 @@
 
 .item a {
 	font-size: 1.2rem;
-	color: #262626;
 }
 
 .item a.active {
-	color: #6667AB;
+	color: var(--primary);
 }

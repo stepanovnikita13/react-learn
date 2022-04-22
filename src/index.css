@@ -6,7 +6,8 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	background-color: #ebebf2;
+	background-color: var(--bgColor);
+	color: var(--black);
 }
 
 code {
@@ -16,6 +17,14 @@ code {
 
 h3 {
 	font-size: 1.75rem;
+}
+
+textarea {
+	resize: none;
+}
+
+a {
+	color: var(--black);
 }
 
 .container {

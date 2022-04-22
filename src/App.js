@@ -33,7 +33,9 @@ function App(props) {
 					</div>
 				</div>
 				<footer>
-					<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
+					<div className='container'>
+						<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
+					</div>
 				</footer>
 			</div>
 		</BrowserRouter>

@@ -9,7 +9,7 @@
 }
 
 .item.active a {
-	/* color: #ABAA67; */
+	/* color: var(--secondary); */
 }
 
 .item img {
