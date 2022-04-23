@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD_POST'
+const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
+
 let store = {
 	_state: {
 		profilePage: {
@@ -57,16 +62,22 @@ let store = {
 			this._state.dialogsPage.currentText = '';
 			this._renderEntireTree(this);
 
-		} else if (action.type === "UPDATE-POST-TEXT") {
+		} else if (action.type === "UPDATE_POST_TEXT") {
 			this._state.profilePage.currentPostText = action.newText;
 			this._renderEntireTree(this);
 
-		} else if (action.type === "UPDATE-MESSAGE-TEXT") {
+		} else if (action.type === "UPDATE_MESSAGE_TEXT") {
 			this._state.dialogsPage.currentText = action.newText;
 			this._renderEntireTree(this);
 		}
 	}
 }
+
 window.store = store;
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const updatePostTextActionCreator = text => ({ type: UPDATE_POST_TEXT, newText: text })
+export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
+export const updateMessageTextActionCreator = text => ({ type: UPDATE_MESSAGE_TEXT, newText: text })
 
 export default store;
