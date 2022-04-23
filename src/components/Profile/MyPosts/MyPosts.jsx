@@ -3,9 +3,7 @@ import Post from './Post/Post';
 import React from 'react';
 
 const MyPosts = (props) => {
-
 	let postList = props.postsData.map(p => <Post msg={p.text} likesCount={p.likesCount} />)
-
 	let newPostElement = React.useRef();
 
 	let addPost = () => {

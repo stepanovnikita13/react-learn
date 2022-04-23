@@ -27,7 +27,11 @@ function App(props) {
 								/>}
 							/>
 							<Route path='dialogs/*'
-								element={<Dialogs dialogsPage={props.state.dialogsPage} sendMessage={props.sendMessage} />
+								element={<Dialogs
+									dialogsPage={props.state.dialogsPage}
+									sendMessage={props.sendMessage}
+									updateMessageText={props.updateMessageText}
+								/>
 								}
 							/>
 							<Route path='music/*' element={<Music />} />

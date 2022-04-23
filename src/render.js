@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { addPost, updateCurrentPostText } from './redux/state';
-import { sendMessage } from './redux/state';
+import { addPost, updateCurrentPostText, updateMessageText, sendMessage } from './redux/state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,6 +13,7 @@ export let renderEntireTree = (state) => {
 				addPost={addPost}
 				sendMessage={sendMessage}
 				updateCurrentPostText={updateCurrentPostText}
+				updateMessageText={updateMessageText}
 			/>
 		</React.StrictMode>
 	)

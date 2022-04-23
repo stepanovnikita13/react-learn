@@ -7,6 +7,7 @@ let state = {
 			{ id: 1, text: "It's my first post", likesCount: 11 },
 			{ id: 2, text: 'Bye!', likesCount: 8 },
 		],
+
 		currentPostText: '',
 	},
 	dialogsPage: {
@@ -15,6 +16,9 @@ let state = {
 			{ id: 1, text: 'Go to the bar!' },
 			{ id: 2, text: 'How are you?' },
 		],
+
+		currentText: '',
+
 		dialogsData: [
 			{ id: 0, name: 'Nikita', avatar: 'https://i.ibb.co/fCtqnSJ/ava07.jpg' },
 			{ id: 1, name: 'Stas', avatar: 'https://i.ibb.co/35Knd56/ava06.jpg' },
@@ -37,18 +41,24 @@ export let addPost = () => {
 	renderEntireTree(state);
 }
 
-export let sendMessage = (messageText) => {
+export let sendMessage = () => {
 	let newMessage = {
 		id: state.dialogsPage.msgData.length,
-		text: messageText,
+		text: state.dialogsPage.currentText,
 	}
 
 	state.dialogsPage.msgData.push(newMessage);
+	state.dialogsPage.currentText = '';
 	renderEntireTree(state);
 }
 
 export let updateCurrentPostText = (newText) => {
 	state.profilePage.currentPostText = newText;
+	renderEntireTree(state);
+}
+
+export let updateMessageText = (newText) => {
+	state.dialogsPage.currentText = newText;
 	renderEntireTree(state);
 }
 
