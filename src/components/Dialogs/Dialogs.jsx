@@ -5,9 +5,8 @@ import Message from './Message/Message'
 import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogs-reducer'
 
 const Dialogs = (props) => {
-	let dialogList = props.dialogsPage.dialogsData.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar} />)
+	let dialogList = props.dialogsPage.dialogsData.map(d => <DialogItem name={`${d.firstName} ${d.lastName}`} id={d.id} avatar={d.avatar} />)
 	let msgList = props.dialogsPage.msgData.map(m => <Message text={m.text} />)
-	//let newMessageElement = React.useRef();
 
 	let sendMessage = () => {
 		props.dispatch(sendMessageCreator())

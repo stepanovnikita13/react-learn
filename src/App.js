@@ -13,29 +13,31 @@ import Settings from './components/Settings/Settings';
 function App(props) {
 	return (
 		<BrowserRouter>
-			<div>
+			<div className='wrapper'>
 				<Header />
-				<div className='container main'>
-					<Navbar />
-					<div className='content'>
-						<Routes>
-							<Route path='profile/*'
-								element={<Profile
-									profilePage={props.state.profilePage}
-									dispatch={props.dispatch}
-								/>}
-							/>
-							<Route path='dialogs/*'
-								element={<Dialogs
-									dialogsPage={props.state.dialogsPage}
-									dispatch={props.dispatch}
+				<div className='main'>
+					<div className='container main__grid'>
+						<Navbar />
+						<div className='content'>
+							<Routes>
+								<Route path='profile/*'
+									element={<Profile
+										profilePage={props.state.profilePage}
+										dispatch={props.dispatch}
+									/>}
 								/>
-								}
-							/>
-							<Route path='music/*' element={<Music />} />
-							<Route path='news/*' element={<News />} />
-							<Route path='settings/*' element={<Settings />} />
-						</Routes>
+								<Route path='dialogs/*'
+									element={<Dialogs
+										dialogsPage={props.state.dialogsPage}
+										dispatch={props.dispatch}
+									/>
+									}
+								/>
+								<Route path='music/*' element={<Music />} />
+								<Route path='news/*' element={<News />} />
+								<Route path='settings/*' element={<Settings />} />
+							</Routes>
+						</div>
 					</div>
 				</div>
 				<footer>

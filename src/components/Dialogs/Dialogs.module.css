@@ -1,10 +1,16 @@
 .dialogs {
 	display: grid;
 	grid-template-columns: 4fr 8fr;
+	height: calc(100vh - var(--headerHeight));
 	padding: 20px;
 }
 
-.chat {}
+.chat {
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-end;
+	overflow: auto;
+}
 
 .chatInput {
 	display: flex;

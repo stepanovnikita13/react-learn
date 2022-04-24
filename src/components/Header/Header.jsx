@@ -1,9 +1,10 @@
 import s from './Header.module.css'
+import logo from '../../logo-s.png'
 
 const Header = () => (
 	<header className={s.header}>
 		<div className='container'>
-			<img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Zeronet_logo.png" alt="logo" />
+			<img src={logo} alt="logo" />
 		</div>
 	</header>
 )

@@ -1,6 +1,10 @@
 .main {
+	margin-top: var(--headerHeight);
+}
+
+.main__grid {
 	display: grid;
-	grid-template-columns: 200px auto;
+	grid-template-columns: 150px auto;
 }
 
 .content {}

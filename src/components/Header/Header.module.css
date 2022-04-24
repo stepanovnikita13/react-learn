@@ -1,9 +1,13 @@
 .header {
-	height: 60px;
-	padding: 10px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: var(--headerHeight);
+	padding: 10px 20px;
 	background-color: #fff;
 }
 
 .header img {
-	height: 100%;
+	height: inherit;
 }
