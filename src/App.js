@@ -9,6 +9,7 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 function App(props) {
 	return (
@@ -27,7 +28,7 @@ function App(props) {
 									/>}
 								/>
 								<Route path='dialogs/*'
-									element={<Dialogs
+									element={<DialogsContainer
 										dialogsPage={props.state.dialogsPage}
 										dispatch={props.dispatch}
 									/>
