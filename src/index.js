@@ -8,7 +8,7 @@ import './index.css';
 
 import App from './App';
 
-import store from './redux/store';
+import store from './redux/redux-store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,7 +24,10 @@ let renderEntireTree = (store) => {
 	)
 }
 
-renderEntireTree(store);
-store.subscribe(renderEntireTree);
+renderEntireTree(store)
+
+store.subscribe(() => {
+	renderEntireTree(store)
+});
 
 reportWebVitals();
