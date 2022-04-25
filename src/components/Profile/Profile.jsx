@@ -5,11 +5,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 const Profile = (props) => (
 	<div>
 		<ProfileInfo />
-		<MyPostsContainer
-			postsData={props.profilePage.postsData}
-			currentPostText={props.profilePage.currentPostText}
-			dispatch={props.dispatch}
-		/>
+		<MyPostsContainer />
 	</div>
 )
 

@@ -1,22 +1,19 @@
 import Dialogs from './Dialogs'
 import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogs-reducer'
+import { connect } from 'react-redux'
 
-const DialogsContainer = (props) => {
-	let sendMessage = () => {
-		props.dispatch(sendMessageCreator())
+let mapStateToProps = state => ({ dialogsPage: state.dialogsPage }) //Возвращает только данные
+
+let mapDispatchToProps = dispatch => { //Возвращает колбеки
+	return {
+		sendMessage: () => dispatch(sendMessageCreator()), //Возвращает action
+		updateMessageText: text => dispatch(updateMessageTextCreator(text)), //Возвращает action
 	}
-
-	let updateMessageText = (text) => {
-		props.dispatch(updateMessageTextCreator(text));
-	}
-
-	return (
-		<Dialogs
-			sendMessage={sendMessage}
-			updateMessageText={updateMessageText}
-			dialogsPage={props.dialogsPage}
-		/>
-	)
 }
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+//Первым вызовом принимает данные и создает контейнер.
+//Вторым вызовом, передает эти данные в компоненту и возвращает контейнерную компоненту
+//Нельзя в нее передавать store
 
 export default DialogsContainer;

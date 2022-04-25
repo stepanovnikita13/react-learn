@@ -1,11 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
 
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -13,25 +12,19 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 function App(props) {
 	return (
-		<BrowserRouter>
-			<div className='wrapper'>
-				<Header />
+		<div className='wrapper'>
+			<Header />
+			<div className='main_wrap' id='main_wrap'>
 				<div className='main'>
 					<div className='container main__grid'>
 						<Navbar />
 						<div className='content'>
 							<Routes>
 								<Route path='profile/*'
-									element={<Profile
-										profilePage={props.state.profilePage}
-										dispatch={props.dispatch}
-									/>}
+									element={<Profile />}
 								/>
 								<Route path='dialogs/*'
-									element={<DialogsContainer
-										dialogsPage={props.state.dialogsPage}
-										dispatch={props.dispatch}
-									/>
+									element={<DialogsContainer />
 									}
 								/>
 								<Route path='music/*' element={<Music />} />
@@ -41,14 +34,14 @@ function App(props) {
 						</div>
 					</div>
 				</div>
-				<footer>
-					<div className='container'>
-						<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
-					</div>
-				</footer>
 			</div>
-		</BrowserRouter>
-	);
+			<footer>
+				<div className='container'>
+					<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
+				</div>
+			</footer>
+		</div>
+	)
 }
 
 export default App;
