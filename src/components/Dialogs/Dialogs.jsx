@@ -3,8 +3,8 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 
 const Dialogs = (props) => {
-	let dialogList = props.dialogsPage.dialogsData.map(d => <DialogItem name={`${d.firstName} ${d.lastName}`} id={d.id} avatar={d.avatar} />)
-	let msgList = props.dialogsPage.msgData.map(m => <Message text={m.text} />)
+	let dialogList = props.dialogsPage.dialogsData.map(d => <DialogItem name={`${d.firstName} ${d.lastName}`} key={d.id} id={d.id} avatar={d.avatar} />)
+	let msgList = props.dialogsPage.msgData.map(m => <Message text={m.text} key={m.id} />)
 
 	let sendMessage = () => {
 		props.sendMessage()
