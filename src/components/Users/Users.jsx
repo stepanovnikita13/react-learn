@@ -4,8 +4,7 @@ import User from "./User/User";
 import s from './Users.module.css'
 
 class Users extends React.Component {
-	constructor(props) {
-		super(props)
+	componentDidMount() {
 		axios.get('https://social-network.samuraijs.com/api/1.0/users')
 			.then(res => this.props.setUsers(res.data.items))
 	}
