@@ -4,10 +4,6 @@
 	column-gap: 10px;
 }
 
-.item:not(:last-child) {
-	margin-bottom: 10px;
-}
-
 .item.active a {
 	/* color: var(--secondary); */
 }

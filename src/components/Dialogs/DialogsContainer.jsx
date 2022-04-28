@@ -2,7 +2,7 @@ import Dialogs from './Dialogs'
 import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogs-reducer'
 import { connect } from 'react-redux'
 
-let mapStateToProps = state => ({ dialogsPage: state.dialogsPage }) //Возвращает только данные
+let mapStateToProps = state => ({ dialogsPage: state.dialogsPage }) //Принимает state целиком. Возвращает только нужные данные
 
 let mapDispatchToProps = dispatch => { //Возвращает колбеки
 	return {

@@ -1,0 +1,7 @@
+.users {
+	padding: 20px;
+}
+
+.list>*:not(:last-child) {
+	margin-bottom: 15px;
+}

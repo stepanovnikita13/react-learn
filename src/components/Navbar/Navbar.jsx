@@ -30,7 +30,7 @@ const Navbar = () => (
 			</li>
 			<li className={s.item}>
 				<NavLink
-					to='news'
+					to='/news'
 					className={navData => navData.isActive ? s.active : ''}
 				>
 					News
@@ -38,10 +38,18 @@ const Navbar = () => (
 			</li>
 			<li className={s.item}>
 				<NavLink
-					to='settings'
+					to='/settings'
 					className={navData => navData.isActive ? s.active : ''}
 				>
 					Settings
+				</NavLink>
+			</li>
+			<li className={s.item}>
+				<NavLink
+					to='/users'
+					className={navData => navData.isActive ? s.active : ''}
+				>
+					Users
 				</NavLink>
 			</li>
 		</ul>

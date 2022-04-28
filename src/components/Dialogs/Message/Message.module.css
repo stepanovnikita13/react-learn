@@ -4,7 +4,3 @@
 	background-color: #fff;
 	border-radius: 6px;
 }
-
-.item:not(:last-child) {
-	margin-bottom: 10px;
-}

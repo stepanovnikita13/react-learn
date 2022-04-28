@@ -5,6 +5,11 @@
 	padding: 20px;
 }
 
+.dialogs .list>*:not(:last-child),
+.dialogs .chat>*:not(:last-child) {
+	margin-bottom: 10px;
+}
+
 .chat {
 	display: flex;
 	flex-flow: column;
