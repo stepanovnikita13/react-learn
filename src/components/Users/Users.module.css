@@ -5,3 +5,20 @@
 .list>*:not(:last-child) {
 	margin-bottom: 15px;
 }
+
+.pagination {
+	margin-bottom: 20px;
+}
+
+.pagination>* {
+	cursor: pointer;
+}
+
+.pagination>*:not(:last-child) {
+	margin-right: 5px
+}
+
+.selectedPage {
+	color: var(--primary);
+	font-weight: bold;
+}

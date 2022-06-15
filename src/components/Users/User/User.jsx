@@ -8,7 +8,7 @@ const User = (props) => {
 
 	return (
 		<div className={s.item}>
-			<img src={props.user.avatar ?? "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"} alt="" className={props.user.avatar ? '' : s.default} />
+			<img src={props.user.photos.small ?? "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"} alt="" className={props.user.avatar ? '' : s.default} />
 			<div className={s.info}>
 				<ul>
 					<li>
