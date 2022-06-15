@@ -1,14 +1,12 @@
 import Dialogs from './Dialogs'
-import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogs-reducer'
+import { sendMessage, updateMessageText } from '../../redux/dialogs-reducer'
 import { connect } from 'react-redux'
 
-let mapStateToProps = state => ({ dialogsPage: state.dialogsPage }) //Принимает state целиком. Возвращает только нужные данные
+let mapStateToProps = state => ({ dialogsPage: state.dialogsPage }) //Принимает state целиком. Возвращает только нужные нам данные
 
-let mapDispatchToProps = dispatch => { //Возвращает колбеки
-	return {
-		sendMessage: () => dispatch(sendMessageCreator()), //Возвращает action
-		updateMessageText: text => dispatch(updateMessageTextCreator(text)), //Возвращает action
-	}
+let mapDispatchToProps = {
+	sendMessage, //Возвращает action
+	updateMessageText //Возвращает action
 }
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
