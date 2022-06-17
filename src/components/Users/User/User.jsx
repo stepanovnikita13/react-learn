@@ -1,14 +1,30 @@
+import { NavLink } from 'react-router-dom';
+import { usersAPI } from '../../../API/api';
 import s from './User.module.css'
 
 const User = (props) => {
 	let toggleFollow = () => {
-		console.log(props.user.followed)
-		props.toggleFollow(props.user.id);
+		if (!props.user.followed) {
+			usersAPI.followUser(props.user.id).then(data => {
+				if (data.resultCode === 0) {
+					props.toggleFollow(props.user.id);
+				}
+			})
+		}
+		else {
+			usersAPI.unfollowUser(props.user.id).then(data => {
+				if (data.resultCode === 0) {
+					props.toggleFollow(props.user.id);
+				}
+			})
+		}
 	}
 
 	return (
 		<div className={s.item}>
-			<img src={props.user.photos.small ?? "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"} alt="" className={props.user.avatar ? '' : s.default} />
+			<NavLink to={'/profile/' + props.user.id}>
+				<img src={props.user.photos.small ?? "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"} alt="" className={props.user.avatar ? '' : s.default} />
+			</NavLink>
 			<div className={s.info}>
 				<ul>
 					<li>

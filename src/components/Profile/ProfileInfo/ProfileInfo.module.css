@@ -1,9 +1,28 @@
+.profileInfo {}
+
 .profileWp img {
 	width: 100%;
 	height: 200px;
 	object-fit: cover;
+	border-radius: var(--borderRadiusLarge);
 }
 
 .descrBlock {
-	padding: 10px;
+	padding: 0;
+}
+
+.avatar {
+	width: 110px;
+	height: 110px;
+	margin: -30px 0 0 15px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 6px solid var(--white);
+}
+
+.fullName {
+	font-size: 1.2em;
+	font-weight: bold;
+	display: inline-block;
+	margin: 10px;
 }

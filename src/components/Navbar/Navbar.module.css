@@ -1,5 +1,9 @@
 .sidebar {
-	padding: 20px;
+	padding: 15px;
+	background-color: var(--white);
+	border-radius: var(--borderRadiusLarge);
+	margin-top: 10px;
+	height: min-content;
 }
 
 .item a {

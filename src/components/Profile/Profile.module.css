@@ -1,0 +1,6 @@
+.wrapper>div {
+	padding: 15px;
+	background-color: var(--white);
+	border-radius: var(--borderRadiusLarge);
+	margin: 10px;
+}
