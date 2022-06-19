@@ -1,25 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../../API/api';
 import s from './User.module.css'
 
 const User = (props) => {
-	let toggleFollow = () => {
-		if (!props.user.followed) {
-			usersAPI.followUser(props.user.id).then(data => {
-				if (data.resultCode === 0) {
-					props.toggleFollow(props.user.id);
-				}
-			})
-		}
-		else {
-			usersAPI.unfollowUser(props.user.id).then(data => {
-				if (data.resultCode === 0) {
-					props.toggleFollow(props.user.id);
-				}
-			})
-		}
-	}
-
 	return (
 		<div className={s.item}>
 			<NavLink to={'/profile/' + props.user.id}>
@@ -39,7 +21,7 @@ const User = (props) => {
 				</ul>
 			</div>
 			<div className={s.btnWrap}>
-				<button onClick={toggleFollow} className={s.followBtn}>
+				<button onClick={() => { props.follow(props.isAuth, props.user.followed, props.user.id) }} className={s.followBtn} disabled={props.followInProgressUsers.some(id => id === props.user.id)}>
 					{props.user.followed ? 'unfollow' : 'follow'}
 				</button>
 			</div>

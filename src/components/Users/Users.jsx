@@ -2,7 +2,7 @@ import User from "./User/User";
 import s from './Users.module.css'
 
 const Users = (props) => {
-	let usersList = props.users.map(u => <User key={u.id} user={u} toggleFollow={props.toggleFollow} />)
+	let usersList = props.users.map(u => <User key={u.id} user={u} follow={props.follow} followInProgressUsers={props.followInProgressUsers} isAuth={props.isAuth} />)
 	//let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 	let pages = [];
 
@@ -15,7 +15,7 @@ const Users = (props) => {
 			<div className={s.pagination}>
 				{
 					pages.map(p => {
-						return <span className={p === props.currentPage && s.selectedPage}
+						return <span key={p} className={p === props.currentPage ? s.selectedPage : ''}
 							onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
 					})
 				}

@@ -1,3 +1,5 @@
+import { usersAPI } from "../API/api.js"
+
 const ADD_POST = 'ADD_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -20,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
 				text: state.currentPostText,
 				likesCount: 0,
 			};
-			return {      //Делаем копию state и возвращаем её т.к. функция не может его менять напрямую
+			return {
 				...state,
 				postsData: [...state.postsData, newPost],
 				currentPostText: ''
@@ -42,8 +44,16 @@ const profileReducer = (state = initialState, action) => {
 	}
 }
 
+const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 export const addPost = () => ({ type: ADD_POST })
 export const updatePostText = text => ({ type: UPDATE_POST_TEXT, newText: text })
-export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
+
+export const getUserProfile = userId => {
+	return dispatch => {
+		usersAPI.getProfile(userId).then(data => {
+			dispatch(setUserProfile(data))
+		})
+	}
+}
 
 export default profileReducer;

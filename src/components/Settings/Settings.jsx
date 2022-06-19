@@ -1,5 +1,3 @@
-import s from './Settings.module.css'
-
 const Settings = () => (
 	<div>
 		Settings

@@ -32,3 +32,8 @@
 	border-radius: 6px;
 	color: var(--white);
 }
+
+.followBtn:disabled {
+	cursor: progress;
+	background-color: var(--btnDisabled);
+}

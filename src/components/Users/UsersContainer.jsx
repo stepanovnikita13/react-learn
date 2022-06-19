@@ -1,30 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentPage, setTotalUsersCount, setUsers, toggleFollow, toggleIsFetching } from "../../redux/users-reducer";
+import { toggleFollowProgress, getUsers, follow } from "../../redux/users-reducer";
 
 import Users from "./Users"
 import GlobalSvgSelector from "../../assets/icons/global/globalSvgSelector";
-import { usersAPI } from "../../API/api";
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
-		this.props.toggleIsFetching(true)
-
-		usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-			this.props.toggleIsFetching(false)
-			this.props.setUsers(data.items)
-			this.props.setTotalUsersCount(data.totalCount)
-		})
+		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
 
 	onPageChanged = pageNumber => {
-		this.props.setCurrentPage(pageNumber)
-		this.props.toggleIsFetching(true)
-
-		usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-			this.props.toggleIsFetching(false)
-			this.props.setUsers(data.items)
-		})
+		this.props.getUsers(pageNumber, this.props.pageSize)
 	}
 
 	render() {
@@ -37,8 +24,10 @@ class UsersContainer extends React.Component {
 				totalUsersCount={this.props.totalUsersCount}
 				pageSize={this.props.pageSize}
 				currentPage={this.props.currentPage}
-				toggleFollow={this.props.toggleFollow}
+				follow={this.props.follow}
+				followInProgressUsers={this.props.followInProgressUsers}
 				onPageChanged={this.onPageChanged}
+				isAuth={this.props.isAuth}
 			/>
 		</>
 	}
@@ -50,16 +39,16 @@ let mapStateToProps = state => {
 		pageSize: state.usersPage.pageSize,
 		totalUsersCount: state.usersPage.totalUsersCount,
 		currentPage: state.usersPage.currentPage,
-		isFetching: state.usersPage.isFetching
+		isFetching: state.usersPage.isFetching,
+		followInProgressUsers: state.usersPage.followInProgressUsers,
+		isAuth: state.auth.isAuth
 	}
 }
 
 let mapDispatchToProps = {
-	toggleFollow,
-	setUsers,
-	setCurrentPage,
-	setTotalUsersCount,
-	toggleIsFetching
+	toggleFollowProgress,
+	getUsers,
+	follow,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
