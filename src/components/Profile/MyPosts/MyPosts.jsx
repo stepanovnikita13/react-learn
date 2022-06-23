@@ -2,7 +2,7 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-	let postList = props.postsData.map(p => <Post msg={p.text} likesCount={p.likesCount} key={p.id} />)
+	let postList = props.postsData.map(p => <Post msg={p.text} likesCount={p.likesCount} key={p.id} />).reverse()
 
 	let addPost = () => {
 		props.addPost()

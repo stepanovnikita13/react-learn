@@ -20,6 +20,10 @@
 	border: 6px solid var(--white);
 }
 
+.descr {
+	display: inline-block;
+}
+
 .fullName {
 	font-size: 1.2em;
 	font-weight: bold;

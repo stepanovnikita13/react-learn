@@ -1,5 +1,6 @@
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
 import s from './ProfileInfo.module.css'
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
@@ -19,7 +20,11 @@ const ProfileInfo = (props) => {
 			</div>
 			<div className={s.descrBlock}>
 				<img src={props.profile.photos.large} alt='' className={s.avatar} />
-				<span className={s.fullName}>{props.profile.fullName}</span>
+				<div className={s.descr}>
+					<span className={s.fullName}>{props.profile.fullName}</span>
+					<ProfileStatus status="Hello!" />
+				</div>
+
 			</div>
 		</div>
 	)

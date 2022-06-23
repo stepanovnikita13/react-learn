@@ -1,9 +1,15 @@
 :root {
 	--primary: #6667AB;
 	--secondary: #ABAA67;
+	--accent: #9496F7;
 	--white: #fff;
 	--black: #262626;
+	--gray100: #333;
+	--gray200: #555;
+	--gray300: #A6A7B9;
+	--gray400: #DFDFF7;
 	--bgColor: #ebebf2;
+
 	--btnDisabled: #484978;
 
 	--headerHeight: 50px;
