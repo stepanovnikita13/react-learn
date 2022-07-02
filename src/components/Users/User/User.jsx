@@ -15,16 +15,11 @@ const User = (props) => {
 					<li>
 						<span>{'user.city'}</span>
 					</li>
-					<li>
-						<span>{'props.user.status'}</span>
-					</li>
 				</ul>
 			</div>
-			<div className={s.btnWrap}>
-				<button onClick={() => { props.follow(props.isAuth, props.user.followed, props.user.id) }} className={s.followBtn} disabled={props.followInProgressUsers.some(id => id === props.user.id)}>
-					{props.user.followed ? 'unfollow' : 'follow'}
-				</button>
-			</div>
+			<button onClick={() => { props.follow(props.isAuth, props.user.followed, props.user.id) }} className={s.followBtn} disabled={props.followInProgressUsers.some(id => id === props.user.id)}>
+				{props.user.followed ? 'unfollow' : 'follow'}
+			</button>
 		</div>
 	)
 }

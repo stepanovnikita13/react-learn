@@ -1,19 +1,16 @@
 import Dialogs from './Dialogs'
-import { sendMessage, updateMessageText } from '../../redux/dialogs-reducer'
+import { sendMessage } from '../../redux/dialogs-reducer'
 import { connect } from 'react-redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
+import { selectDialogs, selectMessages } from '../../redux/dialogs-selectors'
 
 let mapStateToProps = state => ({
-	dialogsPage: state.dialogsPage
-}) //Принимает state целиком. Возвращает только нужные нам данные
-
-let mapDispatchToProps = {
-	sendMessage, //Возвращает action
-	updateMessageText //Возвращает action
-}
+	dialogs: selectDialogs(state),
+	messages: selectMessages(state)
+})
 
 export default compose(
-	connect(mapStateToProps, mapDispatchToProps),
+	connect(mapStateToProps, { sendMessage }),
 	withAuthRedirect
 )(Dialogs)

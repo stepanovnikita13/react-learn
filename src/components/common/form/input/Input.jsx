@@ -1,26 +1,27 @@
 import s from "./Input.module.css"
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
 
-const placeholder = {
-	user: 'Type Your Username',
-	password: 'Type Password'
-}
+export const Input = ({ field, form: { touched, errors }, ...props }) => {
+	let isError = touched[field.name] && errors[field.name]
 
-const Input = props => (
-	<div className={s.inputWrapper}>
-		<div className={s.icon}>
-			<GlobalSvgSelector type={props.type} color='#6667AB' />
+	return (
+		<div>
+			<div className={`${s.container} ${isError && s.error}`}>
+				<div className={`${s.icon} ${s.inputIcon}`}>
+					<GlobalSvgSelector type={props.type} />
+				</div>
+				{isError &&
+					<div className={`${s.icon} ${s.infoIcon}`}>
+						<GlobalSvgSelector type='info' />
+					</div>
+				}
+				<input
+					{...field}
+					{...props}
+					className={s.input}
+				/>
+			</div>
+			{isError && <div className="error">{errors[field.name]}</div>}
 		</div>
-		<input
-			type="text"
-			name="userName"
-			onChange={props.handleChange}
-			onBlur={props.handleBlur}
-			value={props.values.userName}
-			placeholder={placeholder[props.type]}
-			className={s.input}
-		/>
-	</div>
-)
-
-export default Input
+	)
+}

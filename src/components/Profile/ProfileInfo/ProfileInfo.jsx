@@ -12,7 +12,6 @@ const ProfileInfo = (props) => {
 			</i>
 		)
 	}
-
 	return (
 		<div className={s.profileInfo}>
 			<div className={s.profileWp}>
@@ -22,7 +21,7 @@ const ProfileInfo = (props) => {
 				<img src={props.profile.photos.large} alt='' className={s.avatar} />
 				<div className={s.descr}>
 					<span className={s.fullName}>{props.profile.fullName}</span>
-					<ProfileStatus status="Hello!" />
+					<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 				</div>
 
 			</div>

@@ -1,5 +1,14 @@
-.inputWrapper {
+.container {
 	position: relative;
+}
+
+.error .inputIcon svg path {
+	stroke: var(--error);
+	fill: var(--error);
+}
+
+.error input {
+	border-color: var(--error) !important;
 }
 
 .icon {
@@ -11,10 +20,19 @@
 	font-size: 1.7em;
 }
 
+.infoIcon {
+	right: 10px;
+	left: auto;
+}
+
+.infoIcon svg>* {
+	stroke: var(--error);
+}
+
 .input {
 	width: 100%;
 	border-radius: var(--borderRadius);
-	border: solid var(--gray300) 2px;
+	border: solid var(--gray400) 2px;
 	font-size: 1.2em;
 	line-height: 3em;
 	padding-left: 40px;
@@ -22,4 +40,13 @@
 
 .input::placeholder {
 	color: var(--gray300)
+}
+
+.input:hover {
+	border-color: var(--gray300);
+}
+
+.input:active,
+.input:focus {
+	border-color: var(--primary)
 }

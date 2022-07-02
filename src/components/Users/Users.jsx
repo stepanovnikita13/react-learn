@@ -3,26 +3,21 @@ import s from './Users.module.css'
 
 const Users = (props) => {
 	let usersList = props.users.map(u => <User key={u.id} user={u} follow={props.follow} followInProgressUsers={props.followInProgressUsers} isAuth={props.isAuth} />)
-	//let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-	let pages = [];
-
-	for (let i = 1; i <= 20; i++) {
-		pages.push(i)
-	}
 
 	return (
 		<div className={s.users}>
-			<div className={s.pagination}>
-				{
-					pages.map(p => {
-						return <span key={p} className={p === props.currentPage ? s.selectedPage : ''}
-							onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
-					})
-				}
-			</div>
 			<div className={s.list}>
 				{usersList}
 			</div>
+			<div className={s.pagination}>
+				{
+					props.pages(props.currentPage).map(p => {
+						return <span key={p} className={p === props.currentPage ? s.selectedPage : ''}
+							onClick={() => { props.onPageChanged(p) }}>{p}</span>
+					})
+				}
+			</div>
+
 		</div>
 	)
 }

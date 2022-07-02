@@ -1,36 +1,37 @@
 .item {
-	display: flex;
-	align-items: center;
-	column-gap: 30px;
-	width: 70%;
+	width: 170px;
+	background-color: var(--white);
+	border-radius: var(--borderRadiusLarge);
+	padding: 10px;
 }
 
 .item img {
-	width: 70px;
-	height: 70px;
+	display: block;
+	width: 85%;
+	height: auto;
 	border-radius: 50%;
 	background-color: var(--white);
 	object-fit: cover;
+	margin: 0 auto;
 }
 
 .item img.default {
-	border: 6px solid transparent;
+	border: 6px solid var(--gray400);
 }
 
 .info {
-	flex: 1;
-}
-
-.btnWrap {
-	align-self: flex-start;
+	padding-top: 10px;
 }
 
 .followBtn {
+	display: block;
 	padding: 8px 0;
-	width: 100px;
+	width: 100%;
 	background-color: var(--primary);
 	border-radius: 6px;
 	color: var(--white);
+
+	margin: 10px auto 0;
 }
 
 .followBtn:disabled {

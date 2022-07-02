@@ -4,7 +4,7 @@ import s from './Profile.module.css'
 
 const Profile = (props) => (
 	<div className={s.wrapper}>
-		<ProfileInfo profile={props.profile} />
+		<ProfileInfo {...props} />
 		<MyPostsContainer />
 	</div>
 )
