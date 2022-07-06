@@ -53,3 +53,7 @@ a {
 	margin-top: -55px;
 	margin-left: -55px;
 }
+
+.error {
+	color: var(--error) !important
+}

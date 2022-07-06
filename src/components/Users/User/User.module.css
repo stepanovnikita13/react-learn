@@ -9,14 +9,7 @@
 	display: block;
 	width: 85%;
 	height: auto;
-	border-radius: 50%;
-	background-color: var(--white);
-	object-fit: cover;
 	margin: 0 auto;
-}
-
-.item img.default {
-	border: 6px solid var(--gray400);
 }
 
 .info {

@@ -11,43 +11,57 @@ const instance = axios.create(
 )
 
 export const usersAPI = {
-	getUsers(pageNumber = 1, pageSize = 10) {
-		return instance.get(`users?page=${pageNumber}&count=${pageSize}`).then(res => res.data)
+	async getUsers(pageNumber = 1, pageSize = 10) {
+		const res = await instance.get(`users?page=${pageNumber}&count=${pageSize}`)
+		return res.data
 	},
 
-	followUser(userId) {
-		return instance.post(`follow/${userId}`).then(res => res.data)
+	async followUser(userId) {
+		const res = await instance.post(`follow/${userId}`)
+		return res.data
 	},
 
-	unfollowUser(userId) {
-		return instance.delete(`follow/${userId}`).then(res => res.data)
+	async unfollowUser(userId) {
+		const res = await instance.delete(`follow/${userId}`)
+		return res.data
 	}
 }
 
 export const profileAPI = {
-	getProfile(userId) {
-		return instance.get(`profile/${userId}`).then(res => res.data)
+	async getProfile(userId) {
+		const res = await instance.get(`profile/${userId}`)
+		return res.data
 	},
 
-	getStatus(userId) {
-		return instance.get(`profile/status/${userId}`).then(res => res.data)
+	async getStatus(userId) {
+		const res = await instance.get(`profile/status/${userId}`)
+		return res.data
 	},
 
-	updateStatus(status) {
-		return instance.put('profile/status', { status: status }).then(res => res.data)
+	async updateStatus(status) {
+		const res = await instance.put('profile/status', { status: status })
+		return res.data
 	}
 }
 
 export const authAPI = {
-	authMe() {
-		return instance.get(`auth/me`).then(res => res.data)
+	async authMe() {
+		const res = await instance.get(`auth/me`)
+		return res.data
 	},
 
-	login(email, password, rememberMe = false) {
-		return instance.post('/auth/login', { email, password, rememberMe }).then(res => res.data)
+	async login(email, password, rememberMe = false, captcha = null) {
+		const res = await instance.post('/auth/login', { email, password, rememberMe, captcha })
+		return res.data
 	},
 
-	logout() {
-		return instance.delete('/auth/login').then(res => res.data)
+	async logout() {
+		const res = await instance.delete('/auth/login')
+		return res.data
+	},
+
+	async getCaptchaUrl() {
+		const res = await instance.get('/security/get-captcha-url')
+		return res
 	}
 }

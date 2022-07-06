@@ -1,9 +1,10 @@
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
+import { Avatar } from '../../common/user/avatar'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 
-const ProfileInfo = (props) => {
-	if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+	if (!profile) {
 		return (
 			<i>
 				<div className='preloader'>
@@ -18,12 +19,11 @@ const ProfileInfo = (props) => {
 				<img src='https://digitaldefynd.com/wp-content/uploads/2020/07/Best-Abstract-Art-course-tutorial-class-certification-training-online-scaled.jpg' alt='background' />
 			</div>
 			<div className={s.descrBlock}>
-				<img src={props.profile.photos.large} alt='' className={s.avatar} />
+				<Avatar url={profile.photos.small} className={s.avatar} />
 				<div className={s.descr}>
-					<span className={s.fullName}>{props.profile.fullName}</span>
-					<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+					<span className={s.fullName}>{profile.fullName}</span>
+					<ProfileStatus status={status} updateStatus={updateStatus} />
 				</div>
-
 			</div>
 		</div>
 	)

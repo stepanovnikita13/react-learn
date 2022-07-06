@@ -15,26 +15,6 @@ class UsersContainer extends React.Component {
 		this.props.requestUsers(pageNumber, this.props.pageSize)
 	}
 
-	pages = currentPage => {
-		let pages = [1]
-		let totalPagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-		let totalPaginationCount = 20
-		let paginationCount = totalPaginationCount - 2
-		let minPage = 2
-
-		if (currentPage > totalPagesCount - paginationCount / 2) {
-			minPage = totalPagesCount - paginationCount
-		} else if (currentPage > totalPaginationCount / 2) {
-			minPage = currentPage - paginationCount / 2
-		}
-
-		for (let i = minPage; i < minPage + paginationCount; i++) {
-			pages.push(i)
-		}
-		pages.push(totalPagesCount)
-		return pages
-	}
-
 	render() {
 		return <>
 			<div className="preloader">
@@ -42,14 +22,13 @@ class UsersContainer extends React.Component {
 			</div>
 			<Users
 				users={this.props.users}
-				totalUsersCount={this.props.totalUsersCount}
-				pageSize={this.props.pageSize}
-				currentPage={this.props.currentPage}
+				isAuth={this.props.isAuth}
 				follow={this.props.follow}
 				followInProgressUsers={this.props.followInProgressUsers}
+				currentPage={this.props.currentPage}
 				onPageChanged={this.onPageChanged}
-				isAuth={this.props.isAuth}
-				pages={this.pages}
+				totalUsersCount={this.props.totalUsersCount}
+				pageSize={this.props.pageSize}
 			/>
 		</>
 	}

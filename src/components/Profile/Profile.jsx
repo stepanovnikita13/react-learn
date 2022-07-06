@@ -2,7 +2,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import s from './Profile.module.css'
 
-const Profile = (props) => (
+const Profile = props => (
 	<div className={s.wrapper}>
 		<ProfileInfo {...props} />
 		<MyPostsContainer />

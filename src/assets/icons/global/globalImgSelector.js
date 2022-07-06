@@ -1,0 +1,1 @@
+export const defaultUser = "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"

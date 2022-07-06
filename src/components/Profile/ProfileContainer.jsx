@@ -9,15 +9,17 @@ import { selectProfile, selectStatus } from '../../redux/profile-selectors';
 
 class ProfileContainer extends React.Component {
 	componentDidMount() {
-		let userId = this.props.router.params.userId || 23667
-		this.props.getUserProfile(userId)
-		this.props.getStatus(userId)
+		const { router, getUserProfile, getStatus } = this.props
+		let userId = router.params.userId || 23667
+		getUserProfile(userId)
+		getStatus(userId)
 	}
 
 	render() {
+		const { profile, status, updateStatus } = this.props
 		return (
 			<div>
-				<Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
+				<Profile profile={profile} status={status} updateStatus={updateStatus} />
 			</div>
 		)
 	}

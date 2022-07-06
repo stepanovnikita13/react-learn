@@ -1,24 +1,25 @@
 import { NavLink } from 'react-router-dom';
+import { Avatar } from '../../common/user/avatar';
 import s from './User.module.css'
 
-const User = (props) => {
+const User = ({ user, isAuth, followInProgressUsers, follow }) => {
+	const onHandleClick = () => {
+		follow(isAuth, user.followed, user.id)
+	}
+
+	const isDisabled = followInProgressUsers.some(id => id === user.id)
+
+
 	return (
 		<div className={s.item}>
-			<NavLink to={'/profile/' + props.user.id}>
-				<img src={props.user.photos.small ?? "https://i.ibb.co/WkhWRyT/1024px-User-avatar-svg.png"} alt="" className={props.user.avatar ? '' : s.default} />
+			<NavLink to={'/profile/' + user.id}>
+				<Avatar url={user.photos.small} />
 			</NavLink>
 			<div className={s.info}>
-				<ul>
-					<li>
-						<span>{props.user.name}</span>
-					</li>
-					<li>
-						<span>{'user.city'}</span>
-					</li>
-				</ul>
+				<span>{user.name}</span>
 			</div>
-			<button onClick={() => { props.follow(props.isAuth, props.user.followed, props.user.id) }} className={s.followBtn} disabled={props.followInProgressUsers.some(id => id === props.user.id)}>
-				{props.user.followed ? 'unfollow' : 'follow'}
+			<button onClick={onHandleClick} className={s.followBtn} disabled={isDisabled}>
+				{user.followed ? 'unfollow' : 'follow'}
 			</button>
 		</div>
 	)

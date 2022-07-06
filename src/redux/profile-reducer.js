@@ -1,8 +1,8 @@
 import { profileAPI } from "../API/api.js"
 
-const ADD_POST = 'ADD_POST'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const SET_STATUS = 'SET_STATUS'
+const ADD_POST = 'profile/ADD_POST'
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
+const SET_STATUS = 'profile/SET_STATUS'
 
 let initialState = {
 	postsData: [
@@ -45,24 +45,21 @@ const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 export const addPost = text => ({ type: ADD_POST, text })
 export const setStatus = status => ({ type: SET_STATUS, status })
 
-export const getUserProfile = userId => dispatch => {
-	profileAPI.getProfile(userId).then(data => {
-		dispatch(setUserProfile(data))
-	})
+export const getUserProfile = userId => async dispatch => {
+	const data = await profileAPI.getProfile(userId)
+	dispatch(setUserProfile(data))
 }
 
-export const getStatus = userId => dispatch => {
-	profileAPI.getStatus(userId).then(data => {
-		dispatch(setStatus(data))
-	})
+export const getStatus = userId => async dispatch => {
+	const data = await profileAPI.getStatus(userId)
+	dispatch(setStatus(data))
 }
 
-export const updateStatus = status => dispatch => {
+export const updateStatus = status => async dispatch => {
 	profileAPI.updateStatus(status).then(data => {
 		if (data.resultCode === 0) {
 			dispatch(setStatus(status))
 		}
-
 	})
 }
 

@@ -1,5 +1,5 @@
 export const required = value => {
-	return !value ? "Field is required!" : false
+	return !value ? "This field is required!" : false
 }
 
 export const maxLength = maxLength => value => {

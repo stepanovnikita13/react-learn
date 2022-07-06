@@ -2,15 +2,6 @@
 	position: relative;
 }
 
-.error .inputIcon svg path {
-	stroke: var(--error);
-	fill: var(--error);
-}
-
-.error input {
-	border-color: var(--error) !important;
-}
-
 .icon {
 	position: absolute;
 	top: 50%;
@@ -49,4 +40,30 @@
 .input:active,
 .input:focus {
 	border-color: var(--primary)
+}
+
+.error .inputIcon svg path {
+	stroke: var(--error);
+	fill: var(--error);
+}
+
+.error input,
+.error input:hover,
+.error input:active,
+.error input:focus {
+	border-color: var(--error);
+}
+
+.animate input {
+	animation: .2s cubic-bezier(.64, .19, .51, .67) 2 normal both errorPulse;
+}
+
+@keyframes errorPulse {
+	from {
+		border-color: var(--gray300);
+	}
+
+	to {
+		border-color: var(--error);
+	}
 }
