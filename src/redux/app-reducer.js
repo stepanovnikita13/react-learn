@@ -21,10 +21,9 @@ const app = (state = initialState, action) => {
 
 const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
-export const initializeApp = () => dispatch => {
-	dispatch(authUser()).then(() => {
-		dispatch(initializedSuccess())
-	})
+export const initializeApp = () => async dispatch => {
+	await dispatch(authUser())
+	dispatch(initializedSuccess())
 }
 
 export default app

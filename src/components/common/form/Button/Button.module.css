@@ -1,0 +1,16 @@
+.button {
+	border-radius: var(--borderRadius);
+	background-color: var(--primary);
+	color: var(--white);
+	font-size: 1em;
+	line-height: 3em;
+	width: 9em;
+}
+
+.button:disabled {
+	background-color: var(--btnDisabled);
+}
+
+.button.inProgress {
+	cursor: progress;
+}

@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from "redux"
+import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from "redux-thunk"
 import profile from './profile-reducer'
 import dialogs from './dialogs-reducer'
@@ -8,8 +8,11 @@ import app from "./app-reducer";
 
 let reducers = combineReducers({ profile, dialogs, users, auth, app })
 
-let store = createStore(reducers, applyMiddleware(thunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(
+	applyMiddleware(thunk)
+));
 
-window.store = store;
+window._store = store;
 
 export default store;

@@ -1,12 +1,13 @@
 import { Field, Form, Formik } from "formik"
 import { NavLink } from "react-router-dom"
 import { required } from "../../utilits/validators/validators"
+import { Button } from "../common/form/Button/Button"
 import { Input } from "../common/form/Input/Input"
 import s from "./LoginForm.module.css"
 
 const LoginForm = ({ login, error, captchaUrl }) => {
-	const loginSubmit = (values, { setSubmitting }) => {
-		login(values.email, values.password, values.rememberMe, values.captcha)
+	const loginSubmit = async (values, { setSubmitting }) => {
+		await login(values.email, values.password, values.rememberMe, values.captcha)
 		setSubmitting(false);
 	}
 
@@ -31,7 +32,8 @@ const LoginForm = ({ login, error, captchaUrl }) => {
 				onSubmit={loginSubmit}
 			>
 				{({
-					isSubmitting
+					isSubmitting,
+					errors
 				}) => (
 					<Form className={s.form}>
 						<div className={'error ' + s.error}>{error.message}</div>
@@ -51,7 +53,8 @@ const LoginForm = ({ login, error, captchaUrl }) => {
 							</div>
 						</>
 						}
-						<button type="submit" disabled={isSubmitting} className={`${s.button} ${s.submitButton}`} >Submit</button>
+						<Button type="submit" disabled={isSubmitting || !!Object.keys(errors).length} className={s.button} inProgress={isSubmitting}>Submit</Button>
+						{/* <button type="submit" disabled={isSubmitting} className={`${s.button} ${s.submitButton}`} >Submit</button> */}
 					</Form>
 				)}
 			</Formik>

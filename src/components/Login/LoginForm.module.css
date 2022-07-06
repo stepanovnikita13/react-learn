@@ -16,6 +16,7 @@
 	line-height: 3em;
 	color: var(--white);
 	border-radius: var(--borderRadius);
+	width: 100%;
 }
 
 .error {

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Button } from '../../common/form/Button/Button';
 import { Avatar } from '../../common/user/avatar';
 import s from './User.module.css'
 
@@ -18,9 +19,10 @@ const User = ({ user, isAuth, followInProgressUsers, follow }) => {
 			<div className={s.info}>
 				<span>{user.name}</span>
 			</div>
-			<button onClick={onHandleClick} className={s.followBtn} disabled={isDisabled}>
+			<Button onClick={onHandleClick} className={s.followBtn} disabled={isDisabled} inProgress={isDisabled}>{user.followed ? 'unfollow' : 'follow'}</Button>
+			{/* <button onClick={onHandleClick} className={s.followBtn} disabled={isDisabled}>
 				{user.followed ? 'unfollow' : 'follow'}
-			</button>
+			</button> */}
 		</div>
 	)
 }

@@ -10,9 +10,15 @@ export const withAuthRedirect = (Component) => {
 		}
 	}
 
+	RedirectComponent.displayName = `WithAuthRedirect(${getDisplayName(Component)})`
+
 	let mapStateToProps = (state) => ({
 		isAuth: state.auth.isAuth
 	})
+
+	function getDisplayName(Component) {
+		return Component.displayName || Component.name || 'Component'
+	}
 
 	return connect(mapStateToProps)(RedirectComponent)
 }
