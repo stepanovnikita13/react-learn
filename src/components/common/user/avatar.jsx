@@ -1,7 +1,15 @@
-import { defaultUser } from "../../../assets/icons/global/globalImgSelector"
-import s from './avatar.module.css'
+import { defaultUserImage } from "../../../assets/images/globalImgSelector"
+import s from './Avatar.module.css'
 
-export const Avatar = ({ url, className }) => {
-	const avatarUrl = url ?? defaultUser
-	return <img src={avatarUrl} alt="" className={`${s.avatar} ${className}`} />
+export const Avatar = ({ url, className, children, ...props }) => {
+	const avatarUrl = url ?? defaultUserImage
+	return (
+		<div className={`${s.avatar} ${className}`}>
+			<img src={avatarUrl} alt="" />
+			<div className={s.children}>
+				{children}
+			</div>
+
+		</div>
+	)
 }

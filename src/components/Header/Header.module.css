@@ -6,6 +6,7 @@
 	height: var(--headerHeight);
 	padding: 10px 20px;
 	background-color: #fff;
+	z-index: var(--zIndexHeader);
 }
 
 .inner {

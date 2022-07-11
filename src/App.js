@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { connect } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { initializeApp } from './redux/app-reducer'
@@ -7,14 +7,14 @@ import './App.css';
 
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
-import News from './components/News/News'
-import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import LoginContainer from './components/Login/LoginContainer'
-import GlobalSvgSelector from './assets/icons/global/globalSvgSelector'
+
+import Preloader from './components/common/Preloader'
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 
 class App extends React.Component {
 	componentDidMount() {
@@ -22,31 +22,27 @@ class App extends React.Component {
 	}
 
 	render() {
-		if (!this.props.initialized) return (
-			<div className="preloader">
-				<GlobalSvgSelector type={'preloader'} />
-			</div>
-		)
+		if (!this.props.initialized) return <Preloader />
 
 		return (
-			<div className='wrapper'>
+			<div id='app' className='wrapper'>
 				<Header />
 				<div className='main_wrap' id='main_wrap'>
 					<div className='main'>
 						<div className='container main__grid'>
 							<Navbar />
 							<div className='content'>
-								<Routes>
-									<Route path='/' element={<Navigate to={this.props.isAuth ? 'profile' : 'login'} replace={true} />} />
-									<Route path='login' element={<LoginContainer />} />
-									<Route path='profile' element={<ProfileContainer />} />
-									<Route path='profile/:userId' element={<ProfileContainer />} />
-									<Route path='dialogs/*' element={<DialogsContainer />} />
-									<Route path='music/*' element={<Music />} />
-									<Route path='news/*' element={<News />} />
-									<Route path='settings/*' element={<Settings />} />
-									<Route path={'users/'} element={<UsersContainer />} />
-								</Routes>
+								<Suspense fallback={<Preloader />}>
+									<Routes>
+										<Route path='/' element={<Navigate to={this.props.isAuth ? 'profile' : 'login'} replace={true} />} />
+										<Route path='login' element={<LoginContainer />} />
+										<Route path='profile' element={<ProfileContainer />} />
+										<Route path='profile/:userId' element={<ProfileContainer />} />
+										<Route path='dialogs/*' element={<DialogsContainer />} />
+										<Route path={'users/'} element={<UsersContainer />} />
+										<Route path='settings/*' element={<Settings />} />
+									</Routes>
+								</Suspense>
 							</div>
 						</div>
 					</div>

@@ -6,6 +6,16 @@
 	height: min-content;
 }
 
+.item:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.item>* {
+	display: flex;
+	align-items: center;
+	column-gap: 7px
+}
+
 .item a {
 	font-size: 1.2rem;
 }

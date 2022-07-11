@@ -1,25 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus } from '../../redux/profile-reducer';
+import { getUserProfile, getStatus, updateStatus, updateProfilePhoto } from '../../redux/profile-reducer';
 import Profile from './Profile'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { withRouter } from '../../hoc/withRouter';
 import { selectProfile, selectStatus } from '../../redux/profile-selectors';
+import { selectUserId } from '../../redux/auth-selectors';
 
 class ProfileContainer extends React.Component {
 	componentDidMount() {
-		const { router, getUserProfile, getStatus } = this.props
-		let userId = router.params.userId || 23667
+		this.updateProfile()
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.router.params.userId !== prevProps.router.params.userId) {
+			this.updateProfile()
+		}
+	}
+
+	updateProfile() {
+		const { getUserProfile, getStatus, router, authUserId } = this.props
+		const userId = router.params.userId || authUserId
 		getUserProfile(userId)
 		getStatus(userId)
 	}
 
 	render() {
-		const { profile, status, updateStatus } = this.props
+		const { profile, status, updateStatus, updateProfilePhoto, router } = this.props
 		return (
 			<div>
-				<Profile profile={profile} status={status} updateStatus={updateStatus} />
+				<Profile
+					profile={profile}
+					status={status}
+					updateStatus={updateStatus}
+					isOwner={!router.params.userId}
+					updateProfilePhoto={updateProfilePhoto}
+				/>
 			</div>
 		)
 	}
@@ -27,11 +44,12 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
 	profile: selectProfile(state),
-	status: selectStatus(state)
+	status: selectStatus(state),
+	authUserId: selectUserId(state)
 })
 
 export default compose(
-	connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+	connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, updateProfilePhoto }),
 	withRouter,
 	withAuthRedirect
 )(ProfileContainer)

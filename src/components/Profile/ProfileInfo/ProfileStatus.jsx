@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import s from './ProfileStatus.module.css'
+// import s from './ProfileStatus.module.css'
 
-const ProfileStatus = (props) => {
+const ProfileStatus = ({ status, updateStatus, isOwner }) => {
 	let [editMode, setEditMode] = useState(false)
-	let [status, setStatus] = useState(props.status)
+	let [statusState, setStatus] = useState(status)
 
 	useEffect(() => {
-		setStatus(props.status)
-	}, [props.status])
+		setStatus(status)
+	}, [status])
 
 	const activateEditMode = () => {
-		setEditMode(true)
+		isOwner && setEditMode(true)
 	}
 
 	const deactivateEditMode = () => {
 		setEditMode(false)
-		props.updateStatus(status)
+		updateStatus(statusState)
 	}
 
 	const onStatusChange = (e) => {
@@ -27,10 +27,10 @@ const ProfileStatus = (props) => {
 		<div>
 			{!editMode
 				? <div>
-					<span onClick={activateEditMode}>{props.status || 'Set status...'}</span>
+					<span onClick={activateEditMode}>{status || 'Set status...'}</span>
 				</div>
 				: <div>
-					<input autoFocus={true} type="text" value={status} onBlur={deactivateEditMode} onChange={onStatusChange} />
+					<input autoFocus={true} type="text" value={statusState} onBlur={deactivateEditMode} onChange={onStatusChange} />
 				</div>
 			}
 		</div>

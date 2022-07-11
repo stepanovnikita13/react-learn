@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import GlobalSvgSelector from '../../assets/icons/global/globalSvgSelector';
 import s from './Navbar.module.css'
 
 const Navbar = () => (
@@ -7,41 +8,19 @@ const Navbar = () => (
 			<li className={s.item}>
 				<NavLink
 					to='/profile'
-					className={navData => navData.isActive ? s.active : ''}
+					className={({ isActive }) => isActive ? s.active : ''}
 				>
+					<GlobalSvgSelector type="home" />
 					Profile
 				</NavLink>
 			</li>
 			<li className={s.item}>
 				<NavLink
 					to='/dialogs'
-					className={navData => navData.isActive ? s.active : ''}
+					className={({ isActive }) => isActive ? s.active : ''}
 				>
+					<GlobalSvgSelector type="message" />
 					Messages
-				</NavLink>
-			</li>
-			<li className={s.item}>
-				<NavLink
-					to='/music'
-					className={navData => navData.isActive ? s.active : ''}
-				>
-					Music
-				</NavLink>
-			</li>
-			<li className={s.item}>
-				<NavLink
-					to='/news'
-					className={navData => navData.isActive ? s.active : ''}
-				>
-					News
-				</NavLink>
-			</li>
-			<li className={s.item}>
-				<NavLink
-					to='/settings'
-					className={navData => navData.isActive ? s.active : ''}
-				>
-					Settings
 				</NavLink>
 			</li>
 			<li className={s.item}>
@@ -49,7 +28,17 @@ const Navbar = () => (
 					to='/users'
 					className={navData => navData.isActive ? s.active : ''}
 				>
+					<GlobalSvgSelector type="two-user" />
 					Users
+				</NavLink>
+			</li>
+			<li className={s.item}>
+				<NavLink
+					to='/settings'
+					className={({ isActive }) => isActive ? s.active : ''}
+				>
+					<GlobalSvgSelector type="setting" />
+					Settings
 				</NavLink>
 			</li>
 		</ul>

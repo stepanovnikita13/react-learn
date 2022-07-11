@@ -8,22 +8,30 @@
 }
 
 .descrBlock {
+	display: flex;
+	flex-flow: row nowrap;
 	padding: 0;
 }
 
 .avatar {
-	width: 110px;
-	margin: -30px 0 0 15px;
+	display: inline-block;
+	width: 180px;
+	margin-left: 25px;
+	margin-bottom: -80px;
+	transform: translateY(-80px);
 	border: 6px solid var(--white);
 }
 
 .descr {
 	display: inline-block;
+	vertical-align: top;
 }
 
 .fullName {
 	font-size: 1.2em;
 	font-weight: bold;
 	display: inline-block;
-	margin: 10px;
+	padding: 10px;
 }
+
+.status {}

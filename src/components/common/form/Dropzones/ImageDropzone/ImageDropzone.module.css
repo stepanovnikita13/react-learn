@@ -1,0 +1,76 @@
+.wrapper {
+	position: relative;
+	width: 400px;
+	height: 220px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 6px;
+}
+
+.border {
+	position: absolute;
+	width: calc(100% - 20px);
+	height: calc(100% - 20px);
+	background: linear-gradient(90deg, var(--primary_alpha40) 50%, transparent 50%),
+		linear-gradient(90deg, var(--primary_alpha40) 50%, transparent 50%),
+		linear-gradient(0deg, var(--primary_alpha40) 50%, transparent 50%),
+		linear-gradient(0deg, var(--primary_alpha40) 50%, transparent 50%);
+
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+	background-size: 18px 2px, 18px 2px, 2px 18px, 2px 18px;
+	background-position: 0px 0px, 126px 100%, 0px 126px, 100% 0px;
+
+	animation: 4s linear infinite paused border-animation-spin;
+	transition: width .15s linear, height .15s linear;
+}
+
+.border.active {
+	width: calc(100% - 27px);
+	height: calc(100% - 27px);
+	animation-play-state: running;
+}
+
+@keyframes border-animation-spin {
+	0% {
+		background-position: 0px 0px, 126px 100%, 0px 126px, 100% 0px;
+	}
+
+	100% {
+		background-position: 126px 0px, 0px 100%, 0px 0px, 100% 126px;
+	}
+}
+
+.content {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.icon {
+	width: 80px;
+	height: 80px;
+}
+
+.icon>* {
+	stroke: var(--primary_alpha40);
+}
+
+.link {
+	display: block;
+	font-family: 'OpenSans-Bold';
+	color: var(--primary);
+	cursor: pointer;
+}
+
+.notice {
+	color: var(--primary_alpha40);
+	font-family: 'OpenSans-Italic';
+	font-size: .8em;
+}
