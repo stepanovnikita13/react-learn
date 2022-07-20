@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import Auth from "./Auth";
 import { logout } from '../../../redux/auth-reducer'
 
-class AuthContainer extends React.Component {
-	render() {
-		return <Auth {...this.props} />
-	}
+const AuthContainer = props => {
+	return <Auth {...props} />
 }
 
 let mapStateToProps = state => ({

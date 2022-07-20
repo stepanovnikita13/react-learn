@@ -7,7 +7,7 @@ const MyPosts = (props) => {
 	let postList = props.postsData.map(p => <Post msg={p.text} likesCount={p.likesCount} key={p.id} />).reverse()
 
 	return (
-		<div className={s.postsBlock} >
+		<div className={s.container} >
 			<h3>My posts</h3>
 			<AddPostForm addPost={props.addPost} />
 			<div className={s.postList}>

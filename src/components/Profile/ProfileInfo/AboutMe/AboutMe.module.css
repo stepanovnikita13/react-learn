@@ -1,0 +1,15 @@
+.aboutList>li:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.contactList {
+	padding: 5px 0;
+}
+
+.contactList>li {
+	display: inline-block;
+}
+
+.contactList>li:not(:last-child) {
+	margin-right: 5px;
+}

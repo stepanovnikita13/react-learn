@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from "formik"
+import GlobalSvgSelector from "../../../assets/icons/global/globalSvgSelector"
 import s from './AddMessageForm.module.css'
 
 const AddMessageForm = (props) => {
@@ -23,7 +24,13 @@ const AddMessageForm = (props) => {
 					placeholder="Enter Your message"
 					className={s.input}
 				/>
-				<button type="submit" disabled={isSubmitting || values.message === ''} className={s.sendBtn}>Send</button>
+				<button
+					type="submit"
+					disabled={isSubmitting || values.message === ''}
+					className={s.sendBtn}
+				>
+					<GlobalSvgSelector type='send' className={(isSubmitting || values.message === '') ? s.disabled : null} />
+				</button>
 			</Form>
 		)}
 	</Formik>

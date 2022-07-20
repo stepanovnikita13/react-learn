@@ -1,9 +1,15 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { initializeApp } from './redux/app-reducer'
+
+import { selectInitialized, selectTheme } from './redux/app-selectors'
+import { initializeApp, toggleTheme } from './redux/app-reducer'
 
 import './App.css';
+import { ThemeProvider } from 'styled-jss'
+import getTheme from './styles/themes'
+import globalStyleSheet from './styles/globalStyleSheet'
+import styled from './styledJss'
 
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
@@ -11,56 +17,64 @@ import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import LoginContainer from './components/Login/LoginContainer'
-
 import Preloader from './components/common/Preloader'
+import Container from './components/common/global/Container'
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 
-class App extends React.Component {
-	componentDidMount() {
-		this.props.initializeApp()
-	}
+const S = {}
+S.Wrapper = styled('div')({
+	display: 'flex',
+	flexFlow: 'column',
+	justifyContent: 'space-between',
+	minHeight: '100vh',
+})
 
-	render() {
-		if (!this.props.initialized) return <Preloader />
+const App = ({ initializeApp, initialized, theme, toggleTheme }) => {
+	useEffect(() => {
+		initializeApp()
+		globalStyleSheet.update(getTheme(theme))
+	}, [initializeApp, theme])
 
-		return (
-			<div id='app' className='wrapper'>
-				<Header />
+	if (!initialized) return <Preloader />
+
+	return (
+		<ThemeProvider theme={getTheme(theme)}>
+			<S.Wrapper id='app'>
+				<Header toggleTheme={toggleTheme} theme={theme} />
 				<div className='main_wrap' id='main_wrap'>
 					<div className='main'>
-						<div className='container main__grid'>
-							<Navbar />
-							<div className='content'>
-								<Suspense fallback={<Preloader />}>
-									<Routes>
-										<Route path='/' element={<Navigate to={this.props.isAuth ? 'profile' : 'login'} replace={true} />} />
-										<Route path='login' element={<LoginContainer />} />
-										<Route path='profile' element={<ProfileContainer />} />
-										<Route path='profile/:userId' element={<ProfileContainer />} />
-										<Route path='dialogs/*' element={<DialogsContainer />} />
-										<Route path={'users/'} element={<UsersContainer />} />
-										<Route path='settings/*' element={<Settings />} />
-									</Routes>
-								</Suspense>
-							</div>
-						</div>
+						<Navbar />
+						<Container>
+							<Suspense fallback={<Preloader />}>
+								<Routes>
+									<Route exact path='/' element={<Navigate to='profile' replace={true} />} />
+									<Route path='login' element={<LoginContainer />} />
+									<Route path='profile/' element={<ProfileContainer />} >
+										<Route path=':userId' element={<ProfileContainer />} />
+									</Route>
+									<Route path='dialogs/*' element={<DialogsContainer />} />
+									<Route path={'users/'} element={<UsersContainer />} />
+									<Route path='settings/*' element={<Settings />} />
+									<Route path='*' element={<div>404</div>} />
+								</Routes>
+							</Suspense>
+						</Container>
 					</div>
 				</div>
 				<footer>
-					<div className='container'>
+					<Container>
 						<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>
-					</div>
+					</Container>
 				</footer>
-			</div>
-		)
-	}
-
+			</S.Wrapper>
+		</ThemeProvider>
+	)
 }
 
 const mapStateToProps = state => ({
-	isAuth: state.auth.isAuth,
-	initialized: state.app.initialized
+	initialized: selectInitialized(state),
+	theme: selectTheme(state)
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default connect(mapStateToProps, { initializeApp, toggleTheme })(App)

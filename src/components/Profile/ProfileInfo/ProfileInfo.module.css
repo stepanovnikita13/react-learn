@@ -1,37 +1,22 @@
-.profileInfo {}
-
-.profileWp img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	border-radius: var(--borderRadiusLarge);
+.container {
+	flex: 1 1 280px;
 }
 
-.descrBlock {
+.heading {
 	display: flex;
-	flex-flow: row nowrap;
-	padding: 0;
+	justify-content: space-between;
+	align-items: flex-start
 }
 
-.avatar {
-	display: inline-block;
-	width: 180px;
-	margin-left: 25px;
-	margin-bottom: -80px;
-	transform: translateY(-80px);
-	border: 6px solid var(--white);
+.btnEdit {
+	line-height: 0;
+	background-color: transparent;
 }
 
-.descr {
-	display: inline-block;
-	vertical-align: top;
+.btnEdit>svg>* {
+	stroke: var(--iconDisabled);
 }
 
-.fullName {
-	font-size: 1.2em;
-	font-weight: bold;
-	display: inline-block;
-	padding: 10px;
+.btnEdit:hover>svg>* {
+	stroke: var(--primary);
 }
-
-.status {}

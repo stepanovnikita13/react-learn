@@ -1,5 +1,5 @@
-.postsBlock {
-	width: 60%;
+.container {
+	flex: 2 0 400px;
 }
 
 .postList {

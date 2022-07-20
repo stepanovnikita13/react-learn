@@ -27,7 +27,7 @@ const ProfileStatus = ({ status, updateStatus, isOwner }) => {
 		<div>
 			{!editMode
 				? <div>
-					<span onClick={activateEditMode}>{status || 'Set status...'}</span>
+					<span onClick={activateEditMode}>{status || (isOwner && 'Set status...')}</span>
 				</div>
 				: <div>
 					<input autoFocus={true} type="text" value={statusState} onBlur={deactivateEditMode} onChange={onStatusChange} />

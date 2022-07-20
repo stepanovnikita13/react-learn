@@ -5,8 +5,8 @@ import s from "./Login.module.css"
 const Login = ({ isAuth, ...props }) => {
 	if (isAuth) return <Navigate to="/profile" replace={true} />
 	return (
-		<div>
-			<h1 className={s.heading}>Login into<br />your account</h1>
+		<div className={s.container}>
+
 			<LoginForm {...props} />
 		</div>
 	)

@@ -15,12 +15,36 @@
 	--black_alpha70: rgba(0, 0, 0, .7);
 	--primary_alpha40: rgba(102, 103, 171, .4);
 	--btnDisabled: #484978;
+	--iconDisabled: #A6A7B9;
 
+	--max-width: 1200px;
 	--headerHeight: 50px;
-
 	--borderRadius: 6px;
 	--borderRadiusLarge: 12px;
 
 	--zIndexHeader: 50;
 	--zIndexModal: 999;
+	--zIndexPreloader: 1000;
+
+	/* Headings */
+	--ratio: 1.2;
+	--base: 1;
+	--base-em: calc(var(--base) * 1em);
+	--base-px: calc(var(--base) * 16px);
+
+	--ms0: 1;
+	--ms1: var(--ratio);
+	--ms2: var(--ratio) * var(--ms1);
+	--ms3: var(--ratio) * var(--ms2);
+	--ms4: var(--ratio) * var(--ms3);
+	--ms5: var(--ratio) * var(--ms4);
+	--ms6: var(--ratio) * var(--ms5);
+	--ms7: var(--ratio) * var(--ms6);
+
+	--fs-h1: calc(var(--base-em) * var(--ms4));
+	--fs-h2: calc(var(--base-em) * var(--ms3));
+	--fs-h3: calc(var(--base-em) * var(--ms2));
+	--fs-h4: calc(var(--base-em) * var(--ms1));
+	--fs-h5: calc(var(--base-em) * var(--ms0));
+	--fs-h6: calc(var(--base-em) / var(--ms1));
 }

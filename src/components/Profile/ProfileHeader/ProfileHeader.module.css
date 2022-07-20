@@ -1,0 +1,39 @@
+.container {
+	flex: 1 1 100%;
+}
+
+.profileWp img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: var(--borderRadiusLarge);
+}
+
+.descrBlock {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 0;
+}
+
+.avatar {
+	display: inline-block;
+	width: 180px;
+	margin-left: 25px;
+	margin-bottom: -80px;
+	transform: translateY(-80px);
+	border: 6px solid var(--white);
+}
+
+.descr {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.fullName {
+	font-size: 1.2em;
+	font-weight: bold;
+	display: inline-block;
+	padding: 10px;
+}
+
+.status {}

@@ -10,4 +10,5 @@
 	height: 110px;
 	margin-top: -55px;
 	margin-left: -55px;
+	z-index: var(--zIndexPreloader);
 }

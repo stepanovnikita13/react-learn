@@ -12,17 +12,19 @@ const Users = (props) => {
 	/>)
 
 	return (
-		<div className={s.users}>
-			<div className={s.list}>
-				{usersList}
+		<div className='content--center'>
+			<div className={s.users}>
+				<div className={s.list}>
+					{usersList}
+				</div>
+				<Pagination
+					currentPage={props.currentPage}
+					onPageChanged={props.onPageChanged}
+					pageSize={props.pageSize}
+					totalUsersCount={props.totalUsersCount}
+					viewPages={10}
+				/>
 			</div>
-			<Pagination
-				currentPage={props.currentPage}
-				onPageChanged={props.onPageChanged}
-				pageSize={props.pageSize}
-				totalUsersCount={props.totalUsersCount}
-				viewPages={10}
-			/>
 		</div>
 	)
 }

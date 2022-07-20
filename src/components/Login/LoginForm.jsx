@@ -27,6 +27,7 @@ const LoginForm = ({ login, error, captchaUrl }) => {
 
 	return (
 		<div>
+			<h1 className={s.heading}>Login into<br />your account</h1>
 			<Formik
 				initialValues={{ email: '', password: '', rememberMe: false, captcha: '' }}
 				onSubmit={loginSubmit}
@@ -54,7 +55,6 @@ const LoginForm = ({ login, error, captchaUrl }) => {
 						</>
 						}
 						<Button type="submit" disabled={isSubmitting || !!Object.keys(errors).length} className={s.button} inProgress={isSubmitting}>Submit</Button>
-						{/* <button type="submit" disabled={isSubmitting} className={`${s.button} ${s.submitButton}`} >Submit</button> */}
 					</Form>
 				)}
 			</Formik>

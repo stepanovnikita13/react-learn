@@ -35,7 +35,6 @@ body {
 	width: 100%;
 	font-size: 100%;
 	line-height: normal;
-	font-size: 14px;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
@@ -53,6 +52,7 @@ input::-ms-clear {
 
 button {
 	cursor: pointer;
+	line-height: 0;
 }
 
 button::-moz-focus-inner {

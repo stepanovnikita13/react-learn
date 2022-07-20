@@ -46,10 +46,10 @@ const profile = (state = initialState, action) => {
 	}
 }
 
-const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 export const addPost = text => ({ type: ADD_POST, text })
-export const setStatus = status => ({ type: SET_STATUS, status })
-export const setProfilePhoto = photos => ({ type: SET_PROFILE_PHOTO, payload: photos })
+const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
+const setStatus = status => ({ type: SET_STATUS, status })
+const setProfilePhoto = photos => ({ type: SET_PROFILE_PHOTO, payload: photos })
 
 export const getUserProfile = userId => async dispatch => {
 	const data = await profileAPI.getProfile(userId)
@@ -68,11 +68,19 @@ export const updateStatus = status => async dispatch => {
 	}
 }
 
-export const updateProfilePhoto = file => async (dispatch) => {
+export const updateProfilePhoto = file => async dispatch => {
 	const data = await profileAPI.updateProfilePhoto(file)
 	console.log(data);
 	if (data.resultCode === 0) {
 		dispatch(setProfilePhoto(data.data))
+	}
+}
+
+export const updateProfile = profile => async (dispatch, getState) => {
+	const userId = getState().auth.userId
+	const data = await profileAPI.updateProfile(profile)
+	if (data.resultCode === 0) {
+		dispatch(getUserProfile(userId))
 	}
 }
 
