@@ -10,6 +10,7 @@ const ms3 = RATIO * ms2
 const ms4 = RATIO * ms3
 
 const font = {
+	BASE,
 	basePx,
 	baseEm,
 	heading: {
@@ -24,6 +25,11 @@ const font = {
 		lineHeightH2: BASE * ms1,
 	},
 	lineHeight: BASE * ms2,
+	family: {
+		italic: 'OpenSans-Italic',
+		regular: 'OpenSans-Regular',
+		bold: 'OpenSans-Bold',
+	}
 }
 //Sizes
 const BORDER_RADIUS = 6
@@ -31,8 +37,12 @@ const sizes = {
 	maxWidth: 1200,
 	minWidth: 728,
 	headerHeight: 50,
+	navbarWidth: Math.sqrt(BASE) * 155,
+
 	borderRadius: BORDER_RADIUS + 'px',
-	borderRadiusLarge: BORDER_RADIUS * 2 + 'px'
+	borderRadiusLarge: BORDER_RADIUS * 2 + 'px',
+
+
 }
 
 const zIndex = {

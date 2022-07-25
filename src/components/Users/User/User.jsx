@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Button } from '../../common/form/Button/Button';
-import { Avatar } from '../../common/user/Avatar';
-import s from './User.module.css'
+import S from './User.styled';
 
 const User = ({ user, isAuth, followInProgressUsers, follow }) => {
 	const onHandleClick = () => {
@@ -10,17 +8,17 @@ const User = ({ user, isAuth, followInProgressUsers, follow }) => {
 	const isDisabled = followInProgressUsers.some(id => id === user.id)
 
 	return (
-		<div className={s.item}>
+		<S.Container>
 			<NavLink to={'/profile/' + user.id}>
-				<Avatar url={user.photos.small} className={s.avatar} />
+				<S.Avatar url={user.photos.large} />
 			</NavLink>
-			<div className={s.info}>
+			<S.Info>
 				<span>{user.name}</span>
-			</div>
-			<Button onClick={onHandleClick} className={s.followBtn} disabled={isDisabled} inProgress={isDisabled}>
+			</S.Info>
+			<S.Button onClick={onHandleClick} disabled={isDisabled} inProgress={isDisabled}>
 				{user.followed ? 'unfollow' : 'follow'}
-			</Button>
-		</div>
+			</S.Button>
+		</S.Container>
 	)
 }
 

@@ -1,5 +1,9 @@
 export const required = value => {
-	return !value ? "This field is required!" : false
+	return (!value || !value.trim().length > 0) ? "This field is required!" : false
+}
+
+export const notNull = value => {
+	return (!value || !value.trim().length > 0) ? "This field is empty!" : false
 }
 
 export const maxLength = maxLength => value => {

@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik"
-import GlobalSvgSelector from "../../../assets/icons/global/globalSvgSelector"
-import s from './AddMessageForm.module.css'
+import { notNull } from "../../../utilits/validators/validators"
+import { Textarea } from "../../common/form/Textarea/Textarea"
 
 const AddMessageForm = (props) => {
 	const onSubmit = (values, { setSubmitting, resetForm }) => {
@@ -17,20 +17,8 @@ const AddMessageForm = (props) => {
 			values,
 			isSubmitting
 		}) => (
-			<Form className={s.chatInput}>
-				<Field
-					type="textarea"
-					name="message"
-					placeholder="Enter Your message"
-					className={s.input}
-				/>
-				<button
-					type="submit"
-					disabled={isSubmitting || values.message === ''}
-					className={s.sendBtn}
-				>
-					<GlobalSvgSelector type='send' className={(isSubmitting || values.message === '') ? s.disabled : null} />
-				</button>
+			<Form>
+				<Field component={Textarea} name='message' placeholder="Enter Your message" validate={notNull} />
 			</Form>
 		)}
 	</Formik>

@@ -1,5 +1,8 @@
 import { Field, Form, Formik } from "formik"
 import { useEffect, useRef } from "react"
+import { required } from "../../../../utilits/validators/validators"
+import { InputLbl } from "../../../common/form/Input/Input"
+import { TextareaLbl } from "../../../common/form/Textarea/Textarea"
 
 const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 	const formRef = useRef()
@@ -15,7 +18,8 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 
 	useEffect(() => {
 		bindRef(formRef)
-	})
+		console.log(formRef);
+	}, [bindRef])
 
 	return (
 		<Formik
@@ -34,46 +38,45 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 				return (
 					<Form>
 						<div>
-							<label htmlFor="fullName">Full Name</label><br />
 							<Field
-								id='fullName'
+								component={InputLbl}
+								label='full name'
 								name='fullName'
-								value={values.fullName}
-								placeholder='Type Your fullname'
+								validate={required}
 							/>
 						</div>
 						<div>
-							<label htmlFor="aboutMe">About me</label><br />
 							<Field
-								id='aboutMe'
+								component={TextareaLbl}
+								label='about me'
 								name='aboutMe'
-								component='textarea'
-								value={values.aboutMe}
-								placeholder='Write a little about yourself'
+								validate={required}
 							/>
 						</div>
 						<div>
 							<label>
 								Looking for a job
-								<Field id='lookingForAJob' name='lookingForAJob' type='checkbox' />
+								<Field name='lookingForAJob' type='checkbox' />
 							</label>
 						</div>
 						<div>
-							<label htmlFor="lookingForAJobDescription">My skills</label><br />
 							<Field
-								id='lookingForAJobDescription'
+								component={TextareaLbl}
 								name='lookingForAJobDescription'
-								component='textarea'
-								value={values.lookingForAJobDescription}
-								placeholder='Describe your professional skills'
+								label='my skills'
+								validate={required}
 							/>
 						</div>
 						<div>
 							{Object.keys(contacts).map(key => {
 								return (
-									<div key={key}>
-										<label htmlFor={key}>{key}</label>
-										<Field id={key} name={`contacts.${key}`} placeholder={`${key} link`} />
+									<div key={key} >
+										<Field
+											component={InputLbl}
+											label={key}
+											name={`contacts.${key}`}
+											validate={required}
+										/>
 									</div>
 								)
 							})}

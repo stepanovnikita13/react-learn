@@ -1,15 +1,15 @@
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import s from './Profile.module.css'
 import Preloader from '../common/Preloader';
 import ProfileHeader from './ProfileHeader/ProfileHeader';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import S from './Profile.styled';
 
 const Profile = props => {
 	if (!props.profile) {
 		return <><Preloader /></>
 	}
 	return (
-		<div className={s.wrapper}>
+		<S.Wrapper>
 			<ProfileHeader profile={props.profile}
 				status={props.status}
 				updateStatus={props.updateStatus}
@@ -20,8 +20,8 @@ const Profile = props => {
 				isOwner={props.isOwner}
 				updateProfile={props.updateProfile}
 			/>
-			{props.isOwner && <MyPostsContainer />}
-		</div>
+			<MyPostsContainer isOwner={props.isOwner} profilePhoto={props.profile.photos.small} />
+		</S.Wrapper>
 	)
 }
 

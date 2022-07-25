@@ -1,12 +1,3 @@
 @import url('./css/null.css');
 @import url('./css/vars.css');
 @import url('./css/fonts.css');
-
-.content--center {
-	display: flex;
-	justify-content: center;
-}
-
-.error {
-	color: var(--error) !important
-}

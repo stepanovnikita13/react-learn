@@ -16,7 +16,7 @@ export const jss = createJss()
 jss.use(camelCase(), global(), extend(), nested(), expand(), ruleValueFunction(), defaultUnit(options))
 
 
-const Styled = createStyled(jss)
+export const Styled = createStyled(jss)
 
 const styled = Styled()
 

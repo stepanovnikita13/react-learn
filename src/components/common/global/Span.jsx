@@ -1,6 +1,8 @@
 import withStyles from 'react-jss'
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
+import styled from '../../../styledJss'
 
+const span = styled('span')
 const styles = {
 	span: {
 		display: 'flex',
@@ -9,7 +11,7 @@ const styles = {
 	}
 }
 
-const Span = ({ classes, icon, ...props }) => {
+export let Span = ({ classes, icon, ...props }) => {
 	return (
 		<span className={classes.span}>
 			{props.float === 'right' && props.children}
@@ -18,5 +20,8 @@ const Span = ({ classes, icon, ...props }) => {
 		</span>
 	)
 }
+Span = withStyles(styles)(Span)
 
-export default withStyles(styles)(Span)
+export const Error = span(({ theme }) => ({
+	color: theme.COLORS.error
+}))

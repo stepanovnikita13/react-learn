@@ -1,22 +1,38 @@
-import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import AddMessageForm from "./AddMessageForm/AddMessageForm"
+import S from './Dialogs.styled'
+import { useEffect, useRef } from 'react'
 
 const Dialogs = (props) => {
 	let dialogList = props.dialogs.map(d => <DialogItem name={`${d.firstName} ${d.lastName}`} key={d.id} id={d.id} avatar={d.avatar} />)
-	let msgList = props.messages.map(m => <Message text={m.text} key={m.id} />)
+	let msgList = props.messages.map(m => <Message text={m.text} key={m.id} />).reverse()
+	const messagesEndRef = useRef(null)
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [props.messages]);
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' })
+	}
 
 	return (
-		<div className={s.dialogs}>
-			<div className={s.list}>
+		<S.Container>
+			<S.Dialogs>
 				{dialogList}
-			</div>
-			<div className={s.chat}>
-				{msgList}
+			</S.Dialogs>
+			<S.Chat>
+				<S.ChatWrapper>
+					<S.MagicBox />
+					<S.MessagesBlock>
+						<div ref={messagesEndRef} />
+						{msgList}
+					</S.MessagesBlock>
+				</S.ChatWrapper>
 				<AddMessageForm sendMessage={props.sendMessage} />
-			</div>
-		</div>
+			</S.Chat>
+		</S.Container>
 	)
 }
 

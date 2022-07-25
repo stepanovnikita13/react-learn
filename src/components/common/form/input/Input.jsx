@@ -1,33 +1,45 @@
-import s from "./Input.module.css"
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
 import React from "react"
+import { Error } from '../../global/Span'
+import S from "./Input.styled"
+import _ from 'lodash'
 
-let Input = ({ field, form: { touched, errors }, ...props }) => {
-	let isAnimateError = !!props.errormessage === !props.errorfield || field.name === props.errorfield
-	let isError = (touched[field.name] && errors[field.name]) || isAnimateError
+const Input = ({ field, form: { touched, errors }, ...props }) => {
+	let isServerError = !!props.errormessage === !props.errorfield || field.name === props.errorfield
+	let isError = !!(_.get(touched, field.name) && _.get(errors, field.name)) || isServerError
 
 	return (
-		<div>
-			<div className={[s.container, isError ? s.error : null, isAnimateError ? s.animate : null].join(' ')}>
-				<div className={`${s.icon} ${s.inputIcon}`}>
+		<>
+			<S.Container isError={isError}>
+				<S.IconFieldType>
 					<GlobalSvgSelector type={props.type} />
-				</div>
+				</S.IconFieldType>
 				{isError &&
-					<div className={`${s.icon} ${s.infoIcon}`}>
+					<S.IconErrorInfo>
 						<GlobalSvgSelector type='info' />
-					</div>
+					</S.IconErrorInfo>
 				}
-				<input
+				<S.Input
 					{...field}
 					{...props}
-					className={s.input}
 				/>
-			</div>
-			{isError && <div className="error">{errors[field.name]}</div>}
-		</div>
+			</S.Container>
+			{isError && <Error>{errors[field.name]}</Error>}
+		</>
 	)
 }
 
-Input = React.memo(Input)
+const InputLbl = ({ field, form: { touched, errors }, label, ...props }) => {
+	let isError = !!(_.get(touched, field.name) && _.get(errors, field.name))
+	return (
+		<>
+			<S.Lbl.Fieldset isError={isError}>
+				<S.Lbl.Legend >{label}</S.Lbl.Legend>
+				<S.Lbl.Input {...props} {...field} />
+			</S.Lbl.Fieldset>
+			{isError && <S.Lbl.Error>{errors[field.name]}</S.Lbl.Error>}
+		</>
+	)
+}
 
-export { Input }
+export { Input, InputLbl }

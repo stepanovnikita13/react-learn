@@ -1,6 +1,6 @@
 import Pagination from "./Pagination/Pagination";
 import User from "./User/User";
-import s from './Users.module.css'
+import S from "./Users.styled";
 
 const Users = (props) => {
 	let usersList = props.users.map(u => <User
@@ -12,11 +12,11 @@ const Users = (props) => {
 	/>)
 
 	return (
-		<div className='content--center'>
-			<div className={s.users}>
-				<div className={s.list}>
+		<S.Container>
+			<S.Wrapper>
+				<S.Users>
 					{usersList}
-				</div>
+				</S.Users>
 				<Pagination
 					currentPage={props.currentPage}
 					onPageChanged={props.onPageChanged}
@@ -24,8 +24,8 @@ const Users = (props) => {
 					totalUsersCount={props.totalUsersCount}
 					viewPages={10}
 				/>
-			</div>
-		</div>
+			</S.Wrapper>
+		</S.Container>
 	)
 }
 

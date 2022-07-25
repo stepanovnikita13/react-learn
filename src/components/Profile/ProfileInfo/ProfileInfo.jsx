@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector';
+import { useCallback, useState } from 'react';
+import { ButtonIconFade } from '../../common/form/Buttons/Buttons';
 import AboutMe from './AboutMe/AboutMe';
 import AboutMeForm from './AboutMeForm/AboutMeForm';
-import s from './ProfileInfo.module.css'
+import S from './ProfileInfo.styled';
 
 const ProfileInfo = ({ isOwner, profile, updateProfile }) => {
 	const [editMode, setEditMode] = useState(false)
@@ -14,38 +14,44 @@ const ProfileInfo = ({ isOwner, profile, updateProfile }) => {
 	}
 
 	const handlerMouseEnter = () => {
-		setIsMouseEnter(true)
+		isOwner && setIsMouseEnter(true)
 	}
 	const handlerMouseLeave = () => {
-		setIsMouseEnter(false)
+		isOwner && setIsMouseEnter(false)
 	}
 
 	const handleSubmitForm = () => {
-		if (ref) ref.current.handleSubmit()
-		toggleEditMode()
+		if (ref) {
+			ref.current.handleSubmit()
+			if (ref.current.isValid) toggleEditMode()
+		}
 	}
 
-	const bindRef = ref => {
+	const bindRef = useCallback(ref => {
 		setRef(ref)
-	}
-
+	}, [])
 
 	return (
-		<div className={s.container} onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}>
-			<div className={s.heading}>
+		<S.Container onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}>
+			<S.Heading>
 				<h1>My profile</h1>
-				{(isOwner && isMouseEnter) && (
-					!editMode
-						? <button className={s.btnEdit} onClick={toggleEditMode}>
-							<GlobalSvgSelector type='edit' />
-						</button>
-						: <button type='submit' className={s.btnEdit} onClick={handleSubmitForm}>
-							<GlobalSvgSelector type='check' />
-						</button>)
+				{isMouseEnter && !editMode && <ButtonIconFade icon='edit' onClick={toggleEditMode} title='Edit' />}
+				{editMode && <div>
+					<ButtonIconFade
+						icon='check'
+						color='success'
+						type='submit'
+						onClick={handleSubmitForm}
+						title='Apply change'
+					/>
+					<ButtonIconFade icon='close' color='error' onClick={toggleEditMode} title='Cancel' />
+				</div>
 				}
-			</div>
-			{!editMode ? <AboutMe profile={profile} /> : <AboutMeForm profile={profile} bindRef={bindRef} updateProfile={updateProfile} />}
-		</div>
+			</S.Heading>
+			{!editMode
+				? <AboutMe profile={profile} /> :
+				<AboutMeForm profile={profile} bindRef={bindRef} updateProfile={updateProfile} />}
+		</S.Container>
 	)
 }
 

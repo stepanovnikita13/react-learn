@@ -1,12 +1,17 @@
 import { NavLink } from 'react-router-dom';
+import { ButtonIconFade } from '../../common/form/Buttons/Buttons';
+import S from './Auth.styled';
 
 const Auth = props => {
 	return (
-		<div>
+		<S.Container>
 			{props.isAuth
-				? <div>{props.login}<button onClick={props.logout}>Logout</button></div>
-				: <NavLink to={'/login'}>Login</NavLink>}
-		</div>
+				? <>
+					{props.login}
+					<ButtonIconFade onClick={props.logout} icon='off' title='Logout' />
+				</>
+				: <NavLink to={'/login'}>login</NavLink>}
+		</S.Container>
 	)
 }
 

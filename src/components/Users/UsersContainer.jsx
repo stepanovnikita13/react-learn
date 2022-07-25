@@ -6,33 +6,33 @@ import { selectIsAuth } from "../../redux/auth-selectors"
 import Users from "./Users"
 import { ErrorBoundary } from "../../utilits/ErrorBoundary"
 import Preloader from "../common/Preloader"
+import { useEffect } from "react"
 
-class UsersContainer extends React.Component {
-	componentDidMount() {
-		this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+const UsersContainer = (props) => {
+	const { requestUsers, currentPage, pageSize } = props
+	const onPageChanged = pageNumber => {
+		requestUsers(pageNumber, pageSize)
 	}
 
-	onPageChanged = pageNumber => {
-		this.props.requestUsers(pageNumber, this.props.pageSize)
-	}
+	useEffect(() => {
+		requestUsers(currentPage, pageSize)
+	}, [requestUsers, currentPage, pageSize])
 
-	render() {
-		return <>
-			{this.props.isFetching && <Preloader />}
-			<ErrorBoundary>
-				<Users
-					users={this.props.users}
-					isAuth={this.props.isAuth}
-					follow={this.props.follow}
-					followInProgressUsers={this.props.followInProgressUsers}
-					currentPage={this.props.currentPage}
-					onPageChanged={this.onPageChanged}
-					totalUsersCount={this.props.totalUsersCount}
-					pageSize={this.props.pageSize}
-				/>
-			</ErrorBoundary>
-		</>
-	}
+	return <>
+		{props.isFetching && <Preloader />}
+		<ErrorBoundary>
+			<Users
+				users={props.users}
+				isAuth={props.isAuth}
+				follow={props.follow}
+				followInProgressUsers={props.followInProgressUsers}
+				currentPage={currentPage}
+				onPageChanged={onPageChanged}
+				totalUsersCount={props.totalUsersCount}
+				pageSize={pageSize}
+			/>
+		</ErrorBoundary>
+	</>
 }
 
 let mapStateToProps = state => ({

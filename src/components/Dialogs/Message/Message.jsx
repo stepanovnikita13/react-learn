@@ -1,7 +1,7 @@
-import s from './Message.module.css'
+import S from './Message.styled';
 
-const Message = (props) => (
-	<div className={s.item}>{props.text}</div>
+const Message = ({ text }) => (
+	<S.Message>{text}</S.Message>
 )
 
 export default Message;
