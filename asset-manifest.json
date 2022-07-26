@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/react-learn/static/css/main.5738e48b.css",
+    "main.js": "/react-learn/static/js/main.771851d8.js",
+    "static/js/975.17ed4dee.chunk.js": "/react-learn/static/js/975.17ed4dee.chunk.js",
+    "static/js/787.28cb0dcd.chunk.js": "/react-learn/static/js/787.28cb0dcd.chunk.js",
+    "static/media/OpenSans-Italic.svg": "/react-learn/static/media/OpenSans-Italic.5d149c17e901c403a9f5.svg",
+    "static/media/OpenSans-Regular.svg": "/react-learn/static/media/OpenSans-Regular.4d496fe464d698559752.svg",
+    "static/media/OpenSans-Bold.svg": "/react-learn/static/media/OpenSans-Bold.8c5615a158854c710a14.svg",
+    "static/media/login-background.png": "/react-learn/static/media/login-background.c06f99ecc545ca45aa5f.png",
+    "static/media/OpenSans-Italic.woff": "/react-learn/static/media/OpenSans-Italic.a4a444ff62482ee85153.woff",
+    "static/media/OpenSans-Regular.woff": "/react-learn/static/media/OpenSans-Regular.34f2e2f69e4fd7916053.woff",
+    "static/media/OpenSans-Bold.woff": "/react-learn/static/media/OpenSans-Bold.2a145d470ddec15c4b55.woff",
+    "static/media/OpenSans-Italic.eot": "/react-learn/static/media/OpenSans-Italic.ce8a14c7b1a5a9321ded.eot",
+    "static/media/OpenSans-Regular.eot": "/react-learn/static/media/OpenSans-Regular.c6460eca89e0d97eab1a.eot",
+    "static/media/OpenSans-Bold.eot": "/react-learn/static/media/OpenSans-Bold.544a827d43df91150553.eot",
+    "static/media/logo-s.png": "/react-learn/static/media/logo-s.3dc87a27e33187cfed76.png",
+    "index.html": "/react-learn/index.html",
+    "main.5738e48b.css.map": "/react-learn/static/css/main.5738e48b.css.map",
+    "main.771851d8.js.map": "/react-learn/static/js/main.771851d8.js.map",
+    "975.17ed4dee.chunk.js.map": "/react-learn/static/js/975.17ed4dee.chunk.js.map",
+    "787.28cb0dcd.chunk.js.map": "/react-learn/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5738e48b.css",
+    "static/js/main.771851d8.js"
+  ]
+}
