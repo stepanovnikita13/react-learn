@@ -1,7 +1,7 @@
 import S from "./Textarea.styled"
 import _ from 'lodash'
 
-const Textarea = ({ field, form: { touched, errors, isSubmitting, isValid, dirty, handleSubmit }, ...props }) => {
+const SendTextarea = ({ field, form: { isSubmitting, isValid, dirty, handleSubmit }, ...props }) => {
 	const handleKeyPress = e => {
 		if (e.charCode === 13 && !e.shiftKey) {
 			e.preventDefault()
@@ -10,24 +10,32 @@ const Textarea = ({ field, form: { touched, errors, isSubmitting, isValid, dirty
 	}
 
 	return (
-		<S.Container>
-			<S.Textarea {...field} {...props} onKeyPress={handleKeyPress} />
-			<S.Button icon='send' type='submit' disabled={!isValid || !dirty || isSubmitting} title='Send' />
-		</S.Container>
+		<S.SendContainer>
+			<S.SendTextarea {...field} {...props} onKeyPress={handleKeyPress} />
+			<S.SendButton icon='send' type='submit' disabled={!isValid || !dirty || isSubmitting} title='Send' />
+		</S.SendContainer>
 	)
 }
 
-const TextareaLbl = ({ field, form: { touched, errors }, label, ...props }) => {
-	let isError = !!(_.get(touched, field.name) && _.get(errors, field.name))
+const Textarea = ({ label, style, ...props }) => {
+	const { field, form } = props
+	let isError
+	let errorText = null
+	if (form) {
+		const { touched = null, errors = null } = form
+		errorText = errors[field.name]
+		isError = !!(_.get(touched, field.name) && _.get(errors, field.name))
+	}
+
 	return (
 		<>
-			<S.Lbl.Fieldset isError={isError}>
-				<S.Lbl.Legend >{label}</S.Lbl.Legend>
-				<S.Lbl.Textarea {...props} {...field} />
-			</S.Lbl.Fieldset>
-			{isError && <S.Lbl.Error>{errors[field.name]}</S.Lbl.Error>}
+			<S.Fieldset isError={isError} style={style}>
+				{label && <S.Legend >{label}</S.Legend>}
+				<S.Textarea {...props} {...field} />
+			</S.Fieldset>
+			{isError && <S.Error>{errorText}</S.Error>}
 		</>
 	)
 }
 
-export { Textarea, TextareaLbl }
+export { Textarea, SendTextarea }

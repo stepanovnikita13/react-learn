@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik"
 import { useEffect, useRef } from "react"
 import { required } from "../../../../utilits/validators/validators"
 import { InputLbl } from "../../../common/form/Input/Input"
-import { TextareaLbl } from "../../../common/form/Textarea/Textarea"
+import { Textarea } from "../../../common/form/Textarea/Textarea"
 
 const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 	const formRef = useRef()
@@ -47,7 +47,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 						</div>
 						<div>
 							<Field
-								component={TextareaLbl}
+								component={Textarea}
 								label='about me'
 								name='aboutMe'
 								validate={required}
@@ -61,7 +61,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 						</div>
 						<div>
 							<Field
-								component={TextareaLbl}
+								component={Textarea}
 								name='lookingForAJobDescription'
 								label='my skills'
 								validate={required}

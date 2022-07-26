@@ -5,7 +5,11 @@ import { Avatar } from "../../common/user/Avatar"
 const S = {}
 
 S.Container = styled('div')(({ theme }) => ({
+	display: 'flex',
+	flexFlow: 'column nowrap',
+	justifyContent: 'space-between',
 	width: 170,
+	height: 260,
 	backgroundColor: theme.colors.backgroundContainer,
 	borderRadius: theme.sizes.borderRadiusLarge,
 	padding: 10
@@ -23,7 +27,9 @@ S.Info = styled('div')({
 })
 
 S.Button = styled(Button)({
-	width: '100%'
+	'&&': {
+		width: '100%'
+	}
 })
 
 export default S

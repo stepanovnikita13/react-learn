@@ -16,9 +16,7 @@ S.Wrapper = styled('div')({
 S.Users = styled('div')({
 	display: 'grid',
 	gridTemplateColumns: 'repeat(3, 1fr)',
-	gridGap: '15px 15px',
-	justifyContent: 'space-between',
-	width: 'max-content'
+	gridGap: '15px 15px'
 })
 
 export default S

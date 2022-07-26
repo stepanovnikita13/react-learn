@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik"
 import { notNull } from "../../../utilits/validators/validators"
-import { Textarea } from "../../common/form/Textarea/Textarea"
+import { SendTextarea } from "../../common/form/Textarea/Textarea"
 
 const AddMessageForm = (props) => {
 	const onSubmit = (values, { setSubmitting, resetForm }) => {
@@ -18,7 +18,7 @@ const AddMessageForm = (props) => {
 			isSubmitting
 		}) => (
 			<Form>
-				<Field component={Textarea} name='message' placeholder="Enter Your message" validate={notNull} />
+				<Field component={SendTextarea} name='message' placeholder="Enter Your message" validate={notNull} />
 			</Form>
 		)}
 	</Formik>

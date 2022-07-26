@@ -9,6 +9,7 @@ export const COLORS = {
 	primary350: '#A6A7B9',
 	primary200: '#B3B3D5', //disabled icon
 	primary100: '#DFDFF7', //avatar and input border
+	primary70: '#EBEBF2',
 	primary50: '#F2F2FA',
 	secondary: '#ABAA67',
 	white: '#FFF',
@@ -20,8 +21,6 @@ export const COLORS = {
 	gray600: '#555',
 	gray200: '#C9C9C9',
 	gray100: '#ECECEC',
-	background: '#EBEBF2',
-	background_dark: '#1E1E24',
 	background_container: '#26262A',
 
 	//error: '#C1666B',

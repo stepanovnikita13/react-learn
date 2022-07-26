@@ -1,6 +1,6 @@
 const Settings = () => (
 	<div>
-		Settings
+		in developing
 	</div>
 )
 

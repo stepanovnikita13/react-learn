@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { Textarea } from '../../../common/form/Textarea/Textarea'
 // import s from './ProfileStatus.module.css'
 
 const ProfileStatus = ({ status, updateStatus, isOwner }) => {
@@ -24,16 +25,20 @@ const ProfileStatus = ({ status, updateStatus, isOwner }) => {
 	}
 
 	return (
-		<div>
+		<>
 			{!editMode
 				? <div>
 					<span onClick={activateEditMode}>{status || (isOwner && 'Set status...')}</span>
 				</div>
-				: <div>
-					<input autoFocus={true} type="text" value={statusState} onBlur={deactivateEditMode} onChange={onStatusChange} />
-				</div>
+				: <Textarea
+					autoFocus={true}
+					value={statusState}
+					onBlur={deactivateEditMode}
+					onChange={onStatusChange}
+					style={{ width: '100%' }}
+				/>
 			}
-		</div>
+		</>
 	)
 }
 
