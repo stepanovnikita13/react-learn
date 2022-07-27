@@ -1,25 +1,22 @@
-import React from "react"
-import { connect } from 'react-redux';
+import React, { useContext } from "react"
 import { Navigate } from "react-router-dom"
+import { AuthContext } from "./withAuth"
 
-export const withAuthRedirect = Component => {
-	class RedirectComponent extends React.Component {
-		render() {
-			const isOwner = !this.props.router?.params.userId ?? true
-			if (!this.props.isAuth && isOwner) return <Navigate to={'/login'} replace={true} />
-			return <Component {...this.props} />
-		}
+const withAuthRedirect = Component => {
+	const RedirectComponent = (props) => {
+		const authContext = useContext(AuthContext)
+		const isOwner = !props.router?.params.userId ?? true
+		if (!authContext.isAuth && isOwner) return <Navigate to={'/login'} replace={true} />
+		return <Component {...props} />
 	}
 
 	RedirectComponent.displayName = `WithAuthRedirect(${getDisplayName(Component)})`
-
-	let mapStateToProps = (state) => ({
-		isAuth: state.auth.isAuth
-	})
 
 	function getDisplayName(Component) {
 		return Component.displayName || Component.name || 'Component'
 	}
 
-	return connect(mapStateToProps)(RedirectComponent)
+	return RedirectComponent
 }
+
+export default withAuthRedirect

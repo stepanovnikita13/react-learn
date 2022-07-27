@@ -19,21 +19,26 @@ import Preloader from './components/common/Preloader'
 import Container from './components/common/global/Container'
 import S from './App.styled'
 import { compose } from 'redux'
-import { withTheme } from './hoc/withTheme'
+import withTheme from './hoc/withTheme'
+import withAuth from './hoc/withAuth'
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 
-const App = ({ initializeApp, initialized, theme, setTheme }) => {
+const App = ({ initializeApp, initialized, theme, setTheme, isAuth, setIsAuth }) => {
+
 	useEffect(() => {
 		initializeApp()
-		globalStyleSheet.update(getTheme(theme))
-	}, [initializeApp, theme])
+	}, [initializeApp, isAuth])
 
-	/* if (!initialized) return <Preloader /> */
+	useEffect(() => {
+		globalStyleSheet.update(getTheme(theme))
+	}, [theme])
+
+	if (!initialized) return null
 
 	return (
 		<S.Wrapper id='app'>
-			<Header theme={theme} setTheme={setTheme} />
+			<Header theme={theme} setTheme={setTheme} isAuth={isAuth} />
 			<div className='main_wrap' id='main_wrap'>
 				<div className='main'>
 					<Navbar />
@@ -69,5 +74,6 @@ const mapStateToProps = state => ({
 
 export default compose(
 	connect(mapStateToProps, { initializeApp }),
-	withTheme
+	withTheme,
+	withAuth
 )(App)

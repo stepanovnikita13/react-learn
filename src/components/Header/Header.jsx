@@ -4,7 +4,7 @@ import { ThemeSwitcher } from '../common/form/Buttons/Buttons';
 import Container from '../common/global/Container';
 import S from './Header.styled';
 
-const Header = ({ setTheme, theme }) => {
+const Header = ({ setTheme, theme, isAuth }) => {
 	const handlerClick = () => {
 		const value = theme === 'light' ? 'dark' : 'light'
 		setTheme(value)
@@ -19,7 +19,7 @@ const Header = ({ setTheme, theme }) => {
 					</S.LogoLink>
 					<S.Push></S.Push>
 					<ThemeSwitcher onClick={handlerClick} theme={theme} title='Switch color scheme' />
-					<AuthContainer />
+					<AuthContainer isAuth={isAuth} />
 				</S.Inner>
 			</Container>
 		</S.Wrapper>

@@ -7,7 +7,7 @@ import { withRouter } from '../../hoc/withRouter';
 import { selectProfile, selectStatus } from '../../redux/profile-selectors';
 import { selectUserId } from '../../redux/auth-selectors';
 import { useEffect, useCallback, useMemo } from 'react';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 const ProfileContainer = props => {
 	const { getUserProfile, getStatus, router, authUserId, profile,
@@ -18,8 +18,10 @@ const ProfileContainer = props => {
 	const getStatusMemo = useCallback((userId) => getStatus(userId), [getStatus])
 
 	useEffect(() => {
-		getUserProfileMemo(userId)
-		getStatusMemo(userId)
+		if (userId) {
+			getUserProfileMemo(userId)
+			getStatusMemo(userId)
+		}
 		return () => {
 		}
 	}, [getUserProfileMemo, getStatusMemo, userId])

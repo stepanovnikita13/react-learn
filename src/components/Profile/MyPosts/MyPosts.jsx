@@ -1,4 +1,4 @@
-import AddPostForm from './AddPostForm/AddPostForm';
+import AddPostForm from './AddPostForm/AddPostForm.jsx';
 import S from './MyPosts.styled';
 import Post from './Post/Post';
 

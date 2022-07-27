@@ -13,6 +13,7 @@ let initialState = {
 	],
 	profile: null,
 	status: null,
+	errors: null,
 }
 
 const profile = (state = initialState, action) => {
@@ -27,7 +28,7 @@ const profile = (state = initialState, action) => {
 				...state,
 				postsData: [...state.postsData, newPost],
 				currentPostText: ''
-			};
+			}
 		}
 
 		case SET_USER_PROFILE: {
@@ -78,10 +79,15 @@ export const updateProfilePhoto = file => async dispatch => {
 
 export const updateProfile = profile => async (dispatch, getState) => {
 	const userId = getState().auth.userId
-	const data = await profileAPI.updateProfile(profile)
-	if (data.resultCode === 0) {
-		dispatch(getUserProfile(userId))
+	try {
+		const data = await profileAPI.updateProfile(profile)
+		console.log(data);
+		if (data.resultCode === 0) {
+			dispatch(getUserProfile(userId))
+		}
+	} catch (error) {
+		console.log(error)
 	}
 }
 
-export default profile;
+export default profile

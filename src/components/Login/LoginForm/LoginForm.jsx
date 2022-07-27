@@ -3,9 +3,10 @@ import { required } from "../../../utilits/validators/validators"
 import { Input } from "../../common/form/Input/Input"
 import S from "./LoginForm.styled"
 
-const LoginForm = ({ login, error, captchaUrl }) => {
-	const loginSubmit = async (values, { setSubmitting }) => {
-		await login(values.email, values.password, values.rememberMe, values.captcha)
+const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
+
+	const loginSubmit = async ({ email, password, rememberMe, captcha }, { setSubmitting }) => {
+		await login(email, password, rememberMe, captcha, setIsAuth)
 		setSubmitting(false);
 	}
 

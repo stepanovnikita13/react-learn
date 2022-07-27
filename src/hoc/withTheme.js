@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-jss';
 import useLocalStorage from '../hooks/useLocalStorage';
 import getTheme from '../styles/themes';
 
-export const withTheme = (Component) => {
+const withTheme = (Component) => {
 	function WithTheme(props) {
 		const [theme, setTheme] = useLocalStorage('theme', 'light')
 		return (
@@ -18,3 +18,5 @@ export const withTheme = (Component) => {
 		return Component.displayName || Component.name || 'Component'
 	}
 }
+
+export default withTheme

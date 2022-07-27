@@ -18,7 +18,6 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 
 	useEffect(() => {
 		bindRef(formRef)
-		console.log(formRef);
 	}, [bindRef])
 
 	return (
