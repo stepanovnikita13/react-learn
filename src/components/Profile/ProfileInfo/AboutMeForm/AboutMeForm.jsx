@@ -4,16 +4,17 @@ import { required } from "../../../../utilits/validators/validators"
 import { InputLbl } from "../../../common/form/Input/Input"
 import { Textarea } from "../../../common/form/Textarea/Textarea"
 
-const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
+const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 	const formRef = useRef()
 
-	const handleSubmit = async (values, { setSubmitting }) => {
-		await updateProfile(values)
+	const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+		const data = await updateProfile(values)
+		setErrors(data)
 		setSubmitting(false)
 	}
 	const { aboutMe, lookingForAJob, lookingForAJobDescription, fullName, userId } = profile
 	const contacts = Object.fromEntries(
-		Object.entries(profile.contacts).map(([key, value]) => [key, value ?? ''])
+		Object.entries(profile.contacts).map(([key, value]) => [key.toLowerCase(), value ?? ''])
 	)
 
 	useEffect(() => {
@@ -30,6 +31,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile }) => {
 				lookingForAJobDescription: lookingForAJobDescription ?? '',
 				contacts
 			}}
+			initialErrors={formErrors}
 			onSubmit={handleSubmit}
 			innerRef={formRef}
 		>

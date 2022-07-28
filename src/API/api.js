@@ -47,7 +47,6 @@ export const profileAPI = {
 		let formData = new FormData()
 		formData.append('image', file)
 		const res = await instance.put('/profile/photo', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-		console.log(formData.getAll('image'));
 		return res.data
 	},
 

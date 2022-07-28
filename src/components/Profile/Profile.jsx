@@ -5,22 +5,25 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import S from './Profile.styled';
 
 const Profile = props => {
-	if (!props.profile) {
-		return <><Preloader /></>
+	const { profile, status, updateStatus, updateProfilePhoto,
+		updateProfile, isOwner, errors } = props
+	if (!profile) {
+		return <Preloader />
 	}
 	return (
 		<S.Wrapper>
-			<ProfileHeader profile={props.profile}
-				status={props.status}
-				updateStatus={props.updateStatus}
-				isOwner={props.isOwner}
-				updateProfilePhoto={props.updateProfilePhoto}
+			<ProfileHeader profile={profile}
+				status={status}
+				updateStatus={updateStatus}
+				isOwner={isOwner}
+				updateProfilePhoto={updateProfilePhoto}
 			/>
-			<ProfileInfo profile={props.profile}
-				isOwner={props.isOwner}
-				updateProfile={props.updateProfile}
+			<ProfileInfo profile={profile}
+				isOwner={isOwner}
+				updateProfile={updateProfile}
+				errors={errors}
 			/>
-			<MyPostsContainer isOwner={props.isOwner} profilePhoto={props.profile.photos.small} />
+			<MyPostsContainer isOwner={isOwner} profilePhoto={profile.photos.small} />
 		</S.Wrapper>
 	)
 }

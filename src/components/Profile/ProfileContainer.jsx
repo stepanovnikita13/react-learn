@@ -4,14 +4,13 @@ import { getUserProfile, getStatus, updateStatus, updateProfilePhoto, updateProf
 import Profile from './Profile'
 import { compose } from 'redux';
 import { withRouter } from '../../hoc/withRouter';
-import { selectProfile, selectStatus } from '../../redux/profile-selectors';
+import { selectErrors, selectProfile, selectStatus } from '../../redux/profile-selectors';
 import { selectUserId } from '../../redux/auth-selectors';
 import { useEffect, useCallback, useMemo } from 'react';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 const ProfileContainer = props => {
-	const { getUserProfile, getStatus, router, authUserId, profile,
-		status, updateStatus, updateProfilePhoto, updateProfile } = props
+	const { getUserProfile, getStatus, router, authUserId, ...rest } = props
 
 	let userId = useMemo(() => +router.params.userId || authUserId, [router, authUserId])
 	const getUserProfileMemo = useCallback((userId) => getUserProfile(userId), [getUserProfile])
@@ -29,12 +28,8 @@ const ProfileContainer = props => {
 	return (
 		<div>
 			<Profile
-				profile={profile}
-				status={status}
-				updateStatus={updateStatus}
+				{...rest}
 				isOwner={!router.params.userId}
-				updateProfilePhoto={updateProfilePhoto}
-				updateProfile={updateProfile}
 			/>
 		</div>
 	)
@@ -43,7 +38,8 @@ const ProfileContainer = props => {
 let mapStateToProps = (state) => ({
 	profile: selectProfile(state),
 	status: selectStatus(state),
-	authUserId: selectUserId(state)
+	authUserId: selectUserId(state),
+	errors: selectErrors(state)
 })
 
 export default compose(

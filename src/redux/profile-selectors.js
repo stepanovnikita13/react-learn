@@ -5,3 +5,7 @@ export const selectProfile = state => {
 export const selectStatus = state => {
 	return state.profile.status
 }
+
+export const selectErrors = state => {
+	return state.profile.errors
+}

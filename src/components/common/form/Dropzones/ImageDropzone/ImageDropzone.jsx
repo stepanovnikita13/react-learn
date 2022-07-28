@@ -16,10 +16,10 @@ const ImageDropzone = ({ setDragActive, setImage }) => {
 		maxFiles: 1,
 		multiple: false,
 		onDrop,
-		accept: {
+		/* accept: {
 			'image/jpeg': [],
 			'image/png': []
-		}
+		} */
 	})
 
 	useEffect(() => {

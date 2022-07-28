@@ -37,7 +37,7 @@ const InputLbl = ({ field, form: { touched, errors }, label, ...props }) => {
 				<S.Lbl.Legend >{label}</S.Lbl.Legend>
 				<S.Lbl.Input {...props} {...field} />
 			</S.Lbl.Fieldset>
-			{isError && <S.Lbl.Error>{errors[field.name]}</S.Lbl.Error>}
+			{isError && <S.Lbl.Error>{_.get(errors, field.name)}</S.Lbl.Error>}
 		</>
 	)
 }

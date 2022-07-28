@@ -4,7 +4,7 @@ import { toggleFollowProgress, requestUsers, follow } from "../../redux/users-re
 import { selectUsers, selectPageSize, selectTotalUsersCount, selectCurrentPage, selectIsFetching, selectFollowInProgressUsers } from "../../redux/user-selectors"
 import { selectIsAuth } from "../../redux/auth-selectors"
 import Users from "./Users"
-import { ErrorBoundary } from "../../utilits/ErrorBoundary"
+import { ErrorBoundary } from "../common/ErrorBoundary"
 import Preloader from "../common/Preloader"
 import { useEffect } from "react"
 

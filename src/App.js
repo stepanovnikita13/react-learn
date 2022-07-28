@@ -25,7 +25,6 @@ import withAuth from './hoc/withAuth'
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 
 const App = ({ initializeApp, initialized, theme, setTheme, isAuth, setIsAuth }) => {
-
 	useEffect(() => {
 		initializeApp()
 	}, [initializeApp, isAuth])
