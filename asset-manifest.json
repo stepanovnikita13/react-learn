@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-learn/static/css/main.5738e48b.css",
-    "main.js": "/react-learn/static/js/main.1159f845.js",
-    "static/js/975.17ed4dee.chunk.js": "/react-learn/static/js/975.17ed4dee.chunk.js",
+    "main.js": "/react-learn/static/js/main.c5af3299.js",
+    "static/js/975.8311dc6d.chunk.js": "/react-learn/static/js/975.8311dc6d.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/react-learn/static/js/787.28cb0dcd.chunk.js",
     "static/media/OpenSans-Italic.svg": "/react-learn/static/media/OpenSans-Italic.5d149c17e901c403a9f5.svg",
     "static/media/OpenSans-Regular.svg": "/react-learn/static/media/OpenSans-Regular.4d496fe464d698559752.svg",
@@ -17,12 +17,12 @@
     "static/media/logo-s.png": "/react-learn/static/media/logo-s.3dc87a27e33187cfed76.png",
     "index.html": "/react-learn/index.html",
     "main.5738e48b.css.map": "/react-learn/static/css/main.5738e48b.css.map",
-    "main.1159f845.js.map": "/react-learn/static/js/main.1159f845.js.map",
-    "975.17ed4dee.chunk.js.map": "/react-learn/static/js/975.17ed4dee.chunk.js.map",
+    "main.c5af3299.js.map": "/react-learn/static/js/main.c5af3299.js.map",
+    "975.8311dc6d.chunk.js.map": "/react-learn/static/js/975.8311dc6d.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/react-learn/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5738e48b.css",
-    "static/js/main.1159f845.js"
+    "static/js/main.c5af3299.js"
   ]
 }
