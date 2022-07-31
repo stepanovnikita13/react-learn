@@ -8,7 +8,6 @@ S.Wrapper = styled('div')(({ theme }) => ({
 	left: 0,
 	right: 0,
 	height: theme.sizes.headerHeight,
-	padding: [10, 20],
 	zIndex: theme.zIndex.header,
 	backgroundColor: theme.colors.header
 }))
@@ -18,6 +17,7 @@ S.Inner = styled('div')({
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	columnGap: 15,
+	padding: [10, 0],
 	height: '100%'
 })
 

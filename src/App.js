@@ -38,26 +38,24 @@ const App = ({ initializeApp, initialized, theme, setTheme, isAuth, setIsAuth })
 	return (
 		<S.Wrapper id='app'>
 			<Header theme={theme} setTheme={setTheme} isAuth={isAuth} />
-			<div className='main_wrap' id='main_wrap'>
-				<div className='main'>
-					<Navbar />
-					<Container>
-						<Suspense fallback={<Preloader />}>
-							<Routes>
-								<Route exact path='/' element={<Navigate to='profile' replace={true} />} />
-								<Route path='login' element={<LoginContainer />} />
-								<Route path='profile/' element={<ProfileContainer />} >
-									<Route path=':userId' element={<ProfileContainer />} />
-								</Route>
-								<Route path='dialogs/*' element={<DialogsContainer />} />
-								<Route path={'users/'} element={<UsersContainer />} />
-								<Route path='settings/*' element={<Settings />} />
-								<Route path='*' element={<div>404</div>} />
-							</Routes>
-						</Suspense>
-					</Container>
-				</div>
-			</div>
+			<S.Main>
+				<Navbar />
+				<Container>
+					<Suspense fallback={<Preloader />}>
+						<Routes>
+							<Route exact path='/' element={<Navigate to='profile' replace={true} />} />
+							<Route path='login' element={<LoginContainer />} />
+							<Route path='profile/' element={<ProfileContainer />} >
+								<Route path=':userId' element={<ProfileContainer />} />
+							</Route>
+							<Route path='dialogs/*' element={<DialogsContainer />} />
+							<Route path={'users/'} element={<UsersContainer />} />
+							<Route path='settings/*' element={<Settings />} />
+							<Route path='*' element={<div>404</div>} />
+						</Routes>
+					</Suspense>
+				</Container>
+			</S.Main>
 			<footer>
 				<Container>
 					<a href='https://ru.freepik.com/vectors/people'>People вектор создан(а) kubanek - ru.freepik.com</a>

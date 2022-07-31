@@ -41,8 +41,6 @@ const sizes = {
 
 	borderRadius: BORDER_RADIUS + 'px',
 	borderRadiusLarge: BORDER_RADIUS * 2 + 'px',
-
-
 }
 
 const zIndex = {

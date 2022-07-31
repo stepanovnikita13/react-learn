@@ -7,5 +7,9 @@ S.Wrapper = styled('div')({
 	justifyContent: 'space-between',
 	minHeight: '100vh',
 })
+S.Main = styled('div')(({ theme }) => ({
+	marginTop: theme.sizes.headerHeight,
+
+}))
 
 export default S
