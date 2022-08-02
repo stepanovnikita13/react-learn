@@ -1,26 +1,32 @@
 import { useCallback, useState } from "react"
 
-function useLocalStorage(key, initialValue) {
-	const [storedValue, setStoredValue] = useState(() => {
-		try {
-			const item = window.localStorage.getItem(key)
-			return item ? JSON.parse(item) : initialValue
-		} catch (error) {
-			console.log(error)
-			return initialValue
-		}
-	})
-	const setValue = useCallback((value) => {
-		try {
-			const valueToStore = value instanceof Function ? value(storedValue) : value
-			setStoredValue(valueToStore)
-			window.localStorage.setItem(key, JSON.stringify(valueToStore))
-		} catch (error) {
-			console.log(error)
-		}
-	}, [key, storedValue])
+function getUseStorage(storageType) {
+	function useStorage(key, initialValue) {
+		const storage = storageType === 'local' ? window.localStorage : window.sessionStorage
+		const [storedValue, setStoredValue] = useState(() => {
+			try {
+				const item = storage.getItem(key)
+				return item ? JSON.parse(item) : initialValue
+			} catch (error) {
+				console.log(error)
+				return initialValue
+			}
+		})
+		const setValue = useCallback((value) => {
+			try {
+				const valueToStore = value instanceof Function ? value(storedValue) : value
+				setStoredValue(valueToStore)
+				storage.setItem(key, JSON.stringify(valueToStore))
+			} catch (error) {
+				console.log(error)
+			}
+		}, [key, storedValue, storage])
 
-	return [storedValue, setValue];
+		return [storedValue, setValue];
+	}
+
+	return useStorage
 }
 
-export default useLocalStorage
+export const useLocalStorage = getUseStorage('local')
+export const useSessionStorage = getUseStorage('session')

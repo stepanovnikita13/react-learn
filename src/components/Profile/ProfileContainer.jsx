@@ -8,6 +8,7 @@ import { selectErrors, selectProfile, selectStatus } from '../../redux/profile-s
 import { selectUserId } from '../../redux/auth-selectors';
 import { useEffect, useCallback, useMemo } from 'react';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { ErrorBoundary } from '../common/ErrorBoundary';
 
 const ProfileContainer = props => {
 	const { getUserProfile, getStatus, router, authUserId, ...rest } = props
@@ -27,10 +28,12 @@ const ProfileContainer = props => {
 
 	return (
 		<div>
-			<Profile
-				{...rest}
-				isOwner={!router.params.userId}
-			/>
+			<ErrorBoundary>
+				<Profile
+					{...rest}
+					isOwner={!router.params.userId}
+				/>
+			</ErrorBoundary>
 		</div>
 	)
 }

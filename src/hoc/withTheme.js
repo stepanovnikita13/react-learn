@@ -1,5 +1,5 @@
-import { ThemeProvider } from 'styled-jss';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { ThemeProvider } from 'react-jss';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import getTheme from '../styles/themes';
 
 const withTheme = (Component) => {
@@ -7,7 +7,7 @@ const withTheme = (Component) => {
 		const [theme, setTheme] = useLocalStorage('theme', 'light')
 		return (
 			<ThemeProvider theme={getTheme(theme)}>
-				<Component {...props} theme={theme} setTheme={setTheme} />
+				<Component {...props} currentTheme={theme} setTheme={setTheme} />
 			</ThemeProvider>
 		)
 	}

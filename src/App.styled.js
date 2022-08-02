@@ -1,15 +1,16 @@
-import styled from './styledJss'
+import { createUseStyles } from "react-jss";
 
-const S = {}
-S.Wrapper = styled('div')({
-	display: 'flex',
-	flexFlow: 'column',
-	justifyContent: 'space-between',
-	minHeight: '100vh',
+const useStyles = createUseStyles({
+	wrapper: {
+		display: 'flex',
+		flexFlow: 'column',
+		justifyContent: 'space-between',
+		minHeight: '100vh',
+		overflowX: 'hidden'
+	},
+	main: {
+		marginTop: ({ theme }) => theme.sizes.headerHeight,
+	}
 })
-S.Main = styled('div')(({ theme }) => ({
-	marginTop: theme.sizes.headerHeight,
 
-}))
-
-export default S
+export default useStyles

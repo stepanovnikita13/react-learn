@@ -1,31 +1,36 @@
-import styled from '../../styledJss'
+import { device } from '../../styles/device'
 
-const S = {}
-S.Sidebar = styled('nav')(({ theme }) => ({
-	position: 'fixed',
-	boxShadow: '3px 3px 7px 0px rgb(0 0 0 / 20%)',
-	zIndex: theme.zIndex.navbar,
-	padding: 13,
-	backgroundColor: theme.colors.sidebar,
-	borderTopRightRadius: theme.sizes.borderRadiusLarge,
-	borderBottomRightRadius: theme.sizes.borderRadiusLarge,
-	marginTop: 40,
-	height: 'min-content',
-	fontSize: 1.2,
-	transition: 'width .2s ease',
-	overflow: 'hidden',
-	width: 50,
-	'&.active': {
-		width: theme.sizes.navbarWidth
+import { createUseStyles } from 'react-jss'
+
+const useStyles = createUseStyles(theme => ({
+	sidebar: ({ isActive }) => ({
+		position: 'fixed',
+		width: '100%',
+		top: 0,
+		left: 0,
+		zIndex: theme.zIndex.navbar,
+		[`@media ${device.laptopS}`]: {
+			top: 90,
+			boxShadow: '3px 3px 7px 0px rgb(0 0 0 / 20%)',
+			padding: 13,
+			backgroundColor: theme.colors.sidebar,
+			borderTopRightRadius: theme.sizes.borderRadiusLarge,
+			borderBottomRightRadius: theme.sizes.borderRadiusLarge,
+			height: 'min-content',
+			fontSize: 1.2,
+			transition: 'width .2s ease',
+			overflow: 'hidden',
+			width: isActive ? theme.sizes.navbarWidth : 50,
+		}
+	}),
+	item: {
+		display: 'flex',
+		alignItems: 'center',
+		height: '1.5em',
+		'& a.active': {
+			color: theme.colors.primary
+		}
 	}
 }))
 
-S.Item = styled('li')(({ theme }) => ({
-	display: 'flex',
-	alignItems: 'center',
-	height: '1.5em',
-	'& a.active': {
-		color: theme.colors.primary
-	}
-}))
-export default S
+export default useStyles

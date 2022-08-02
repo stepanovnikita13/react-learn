@@ -1,27 +1,40 @@
-import withStyles from 'react-jss'
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
-import styled from '../../../styledJss'
+import { createUseStyles, useTheme } from 'react-jss'
 
-const span = styled('span')
-const styles = {
+const useStyles = createUseStyles({
 	span: {
 		display: 'flex',
 		alignItems: 'center',
-		columnGap: props => props?.spacing || 0,
+		columnGap: (props) => props.spacing || 0,
+	},
+	error: {
+		color: ({ theme }) => theme.colors.error
 	}
-}
+})
 
-export let Span = ({ classes, icon, ...props }) => {
+export const Span = ({ icon, className, children, ...props }) => {
+	const theme = useTheme()
+	const classes = useStyles({ ...props, theme })
+
 	return (
-		<span className={classes.span}>
-			{props.float === 'right' && props.children}
-			{icon && <GlobalSvgSelector type={icon} className={props.className} />}
-			{(props.float === 'left' || !props.float) && props.children}
+		<span className={classes.span + ' ' + className} {...props}>
+			{props.float === 'right' && children}
+			{icon && <GlobalSvgSelector type={icon} />}
+			{(props.float === 'left' || !props.float) && children}
 		</span>
 	)
 }
-Span = withStyles(styles)(Span)
+Span.defaultProps = {
+	spacing: 0
+}
 
-export const Error = span(({ theme }) => ({
-	color: theme.COLORS.error
-}))
+export const Error = ({ children, className, ...props }) => {
+	const theme = useTheme()
+	const classes = useStyles({ ...props, theme })
+
+	return (
+		<Span className={classes.error + ' ' + className} {...props}>
+			{children}
+		</Span>
+	)
+}

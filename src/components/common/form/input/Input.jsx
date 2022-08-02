@@ -1,29 +1,31 @@
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
 import React from "react"
 import { Error } from '../../global/Span'
-import S from "./Input.styled"
+import useStyles from "./Input.styled"
 import _ from 'lodash'
 
 const Input = ({ field, form: { touched, errors }, ...props }) => {
 	let isServerError = !!props.errormessage === !props.errorfield || field.name === props.errorfield
 	let isError = !!(_.get(touched, field.name) && _.get(errors, field.name)) || isServerError
+	const classes = useStyles({ isError })
 
 	return (
 		<>
-			<S.Container isError={isError}>
-				<S.IconFieldType>
+			<div className={classes.container}>
+				<div className={classes.icon + ' ' + classes.iconFieldType}>
 					<GlobalSvgSelector type={props.type} />
-				</S.IconFieldType>
+				</div>
 				{isError &&
-					<S.IconErrorInfo>
+					<div className={classes.icon + ' ' + classes.iconErrorInfo}>
 						<GlobalSvgSelector type='info' />
-					</S.IconErrorInfo>
+					</div>
 				}
-				<S.Input
+				<input
+					className={classes.input}
 					{...field}
 					{...props}
 				/>
-			</S.Container>
+			</div>
 			{isError && <Error>{errors[field.name]}</Error>}
 		</>
 	)
@@ -31,13 +33,14 @@ const Input = ({ field, form: { touched, errors }, ...props }) => {
 
 const InputLbl = ({ field, form: { touched, errors }, label, ...props }) => {
 	let isError = !!(_.get(touched, field.name) && _.get(errors, field.name))
+	const classes = useStyles({ isError })
 	return (
 		<>
-			<S.Lbl.Fieldset isError={isError}>
-				<S.Lbl.Legend >{label}</S.Lbl.Legend>
-				<S.Lbl.Input {...props} {...field} />
-			</S.Lbl.Fieldset>
-			{isError && <S.Lbl.Error>{_.get(errors, field.name)}</S.Lbl.Error>}
+			<fieldset className={classes.fieldset} isError={isError}>
+				<legend className={classes.legend} >{label}</legend>
+				<input className={classes.InputLbl} {...props} {...field} />
+			</fieldset>
+			{isError && <Error style={{ fontSize: .8 }}>{_.get(errors, field.name)}</Error>}
 		</>
 	)
 }

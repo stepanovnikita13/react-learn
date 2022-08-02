@@ -1,20 +1,32 @@
-import styled from "../../styledJss"
+import { device } from "../../styles/device"
+import { createUseStyles } from 'react-jss'
 
-const S = {}
-S.Container = styled('div')({
-	display: 'flex',
-	justifyContent: 'space-around',
-	paddingTop: 50
-})
-
-S.Picture = styled('div')({
-	width: '60%',
-	'& img': {
-		width: '100%'
+const useStyles = createUseStyles({
+	container: {
+		display: 'flex',
+		justifyContent: 'space-around',
+		paddingTop: 50
+	},
+	picture: {
+		display: 'none',
+		width: '60%',
+		'& img': {
+			width: '100%'
+		},
+		[`@media ${device.tabletS}`]: {
+			display: 'block'
+		},
+		[`@media ${device.laptopM}`]: {
+			width: '55%'
+		},
+	},
+	centered: {
+		alignSelf: 'center',
+		width: '100%',
+		[`@media ${device.tabletS}`]: {
+			width: 300
+		}
 	}
 })
-S.Centered = styled('div')({
-	alignSelf: 'center'
-})
 
-export default S
+export default useStyles

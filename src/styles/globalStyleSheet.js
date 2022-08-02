@@ -1,4 +1,5 @@
 import { jss } from "../styledJss"
+import { device } from "./device";
 
 const globalStyleSheet = jss.createStyleSheet({
 	heading: {
@@ -68,25 +69,24 @@ const globalStyleSheet = jss.createStyleSheet({
 		'input, textarea': {
 			color: t => t.colors.font
 		},
-		'@keyframes errorPulse': {
-			from: {
-				borderColor: t => t.colors.border
+
+		'.container': {
+			width: '100%',
+			padding: [0, 10],
+			height: '100%',
+			margin: [0, 'auto'],
+			[`@media ${device.tabletS}`]: {
+				padding: [0, 20]
 			},
-			to: {
-				borderColor: t => t.COLORS.error
+			[`@media ${device.laptopS}`]: {
+				maxWidth: t => t.sizes.maxWidth,
+				minWidth: t => t.sizes.minWidth,
+				padding: 0
+			},
+			[`@media ${device.desktop}`]: {
+				//padding: [0, 20]
 			}
 		},
-		'@keyframes themeSwitch': {
-			from: {
-				transform: 'scale(1)'
-			},
-			'50%': {
-				transform: 'scale(0)'
-			},
-			to: {
-				transform: 'scale(1)'
-			}
-		}
 	}
 }, { link: true }).attach();
 

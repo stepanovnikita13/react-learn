@@ -1,10 +1,14 @@
 import { Field, Form, Formik } from "formik"
+import { useTheme } from "react-jss"
+import { NavLink } from "react-router-dom"
 import { required } from "../../../utilits/validators/validators"
+import { Button } from "../../common/form/Buttons/Buttons"
 import { Input } from "../../common/form/Input/Input"
-import S from "./LoginForm.styled"
+import useStyles from "./LoginForm.styled"
 
 const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
-
+	const theme = useTheme()
+	const classes = useStyles({ theme })
 	const loginSubmit = async ({ email, password, rememberMe, captcha }, { setSubmitting }) => {
 		await login(email, password, rememberMe, captcha, setIsAuth)
 		setSubmitting(false);
@@ -36,17 +40,17 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 					errors
 				}) => (
 					<Form>
-						<S.Wrapper>
-							<S.Error>{error.message}</S.Error>
+						<div className={classes.wrapper}>
+							<div className={classes.error}>{error.message}</div>
 							{createField("email", "user", "Type Your Email")}
 							{createField("password", "password", "Type Your Password")}
 
-							<S.Row>
+							<div className={classes.row}>
 								<label>
 									<Field type="checkbox" name="rememberMe" />Remember me
 								</label>
 								<a href="/login" className="">Forgot your Password?</a>
-							</S.Row>
+							</div>
 							{captchaUrl && <>
 								<img src={captchaUrl} alt="captcha" />
 								<div>
@@ -54,18 +58,24 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 								</div>
 							</>
 							}
-							<S.Button type="submit" disabled={isSubmitting || !!Object.keys(errors).length} inProgress={isSubmitting}>Submit</S.Button>
-						</S.Wrapper>
+							<Button
+								style={{ width: '100%' }}
+								type="submit"
+								disabled={isSubmitting || !!Object.keys(errors).length}
+							>
+								Submit
+							</Button>
+						</div>
 					</Form>
 				)}
 			</Formik>
 			Dont have account
-			<S.RegisterLink to={"/register"}>Register</S.RegisterLink>
-			<S.SocialLogin>
+			<NavLink to={"/register"} className={classes.registerLink}>Register</NavLink>
+			<div className={classes.socialLogin} >
 				<p>Or, Sign in with your social account</p>
-				<S.GoogleButton>Sign in with Google</S.GoogleButton>
-				<S.FacebookButton>Sign in with Facebook</S.FacebookButton>
-			</S.SocialLogin>
+				<Button className={classes.googleButton}>Sign in with Google</Button>
+				<Button className={classes.facebookButton}>Sign in with Facebook</Button>
+			</div>
 		</div>
 	)
 }

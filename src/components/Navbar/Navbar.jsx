@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Burger } from '../common/form/Buttons/Buttons';
 import { Span } from '../common/global/Span'
-import S from './Navbar.styled';
+import useStyles from './Navbar.styled';
 
 const navbarItems = [
 	{ name: 'Profile', url: '/profile', icon: 'home' },
@@ -11,36 +12,40 @@ const navbarItems = [
 ]
 
 const Navbar = () => {
-	const [mouseIsOver, setMouseIsOver] = useState(false)
+	const [isActive, setIsActive] = useState(false)
+	const classes = useStyles({ isActive })
 
 	function handlerOnMouseEnter() {
-		setMouseIsOver(true)
+		setIsActive(true)
 	}
 
 	function handlerOnMouseLeave() {
-		setMouseIsOver(false)
+		setIsActive(false)
 	}
 
 	const navbarList = navbarItems.map((item, i) => (
-		<S.Item key={i}>
+		<li className={classes.item} key={i}>
 			<NavLink
 				to={item.url}
 				className={({ isActive }) => isActive ? 'active' : ''}
 			>
 				<Span icon={item.icon} spacing='14px'>{item.name}</Span>
 			</NavLink>
-		</S.Item>
+		</li>
 	))
 	return (
-		<S.Sidebar
-			onMouseEnter={handlerOnMouseEnter}
-			onMouseLeave={handlerOnMouseLeave}
-			className={`${mouseIsOver ? 'active' : ''}`}
-		>
-			<ul>
-				{navbarList}
-			</ul>
-		</S.Sidebar>
+		<>
+			<nav
+				className={classes.sidebar}
+				onMouseEnter={handlerOnMouseEnter}
+				onMouseLeave={handlerOnMouseLeave}
+			>
+				<Burger />
+				<ul>
+					{navbarList}
+				</ul>
+			</nav>
+		</>
 	)
 }
 

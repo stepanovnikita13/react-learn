@@ -5,6 +5,7 @@ S.Wrapper = styled('div')(({ theme }) => ({
 	display: 'flex',
 	flexFlow: 'row wrap',
 	paddingTop: 10,
+	margin: [0, -10, 0, -10],
 	'&>div': {
 		padding: 15,
 		backgroundColor: theme.colors.backgroundContainer,

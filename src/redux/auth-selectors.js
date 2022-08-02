@@ -1,4 +1,4 @@
-export const selectIsAuth = state => state.auth.isAuth
+export const selectIsAuthInServer = state => state.auth.isAuthInServer
 
 export const selectErrorMessage = state => state.auth.errorMessage
 

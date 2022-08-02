@@ -5,6 +5,7 @@ const SET_ERROR = 'auth/SET_ERROR'
 const SET_CAPTCHA_URL = 'auth/SET_CAPTCHA_URL'
 
 let initialState = {
+	isAuthInServer: undefined,
 	userId: null,
 	email: null,
 	login: null,
@@ -29,7 +30,7 @@ const auth = (state = initialState, action) => {
 	}
 }
 
-const setUserData = (email, userId, login) => ({ type: SET_USER_DATA, payload: { userId, email, login } })
+const setUserData = (email, userId, login, isAuthInServer) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuthInServer } })
 const setError = (errorMessage, errorField = null) => ({ type: SET_ERROR, payload: { errorMessage, errorField } })
 const setCaptchaUrl = captchaUrl => ({ type: SET_CAPTCHA_URL, payload: { captchaUrl } })
 
@@ -37,9 +38,7 @@ export const authUser = () => async dispatch => {
 	const data = await authAPI.authMe()
 	if (data.resultCode === 0) {
 		let { email, id, login } = data.data
-		dispatch(setUserData(email, id, login))
-	} else {
-		dispatch(setUserData(null, null, null))
+		dispatch(setUserData(email, id, login, true))
 	}
 }
 
@@ -53,8 +52,7 @@ export const login = (email, password, rememberMe, captcha, setIsAuth) => async 
 	dispatch(setError(null, null))
 	const data = await authAPI.login(email, password, rememberMe, captcha)
 	if (data.resultCode === 0) {
-		dispatch(authUser())
-		setIsAuth(true)
+		dispatch(authUser(setIsAuth))
 	}
 	else {
 		if (data.resultCode === 10) {
@@ -64,11 +62,10 @@ export const login = (email, password, rememberMe, captcha, setIsAuth) => async 
 	}
 }
 
-export const logout = (setIsAuth) => async dispatch => {
+export const logout = () => async dispatch => {
 	let data = await authAPI.logout()
 	if (data.resultCode === 0) {
-		dispatch(setUserData(null, null, null))
-		setIsAuth(false)
+		dispatch(setUserData(null, null, null, false))
 	}
 }
 

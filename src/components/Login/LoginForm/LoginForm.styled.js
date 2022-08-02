@@ -1,30 +1,12 @@
-import styled from "../../../styledJss"
-import { NavLink } from "react-router-dom"
-import { Button } from "../../common/form/Buttons/Buttons"
 import googleIcon from '../../../assets/icons/google-icon.png'
 import facebookIcon from '../../../assets/icons/facebook-icon.png'
+import { device } from "../../../styles/device"
 
-const S = {}
-S.Wrapper = styled('div')({
-	display: 'flex',
-	flexFlow: 'column nowrap',
-	width: 300,
-	rowGap: 10,
-})
-S.Error = styled('div')(({ theme }) => ({
-	color: theme.COLORS.error
-}))
-S.Row = styled('div')({
-	display: 'flex',
-	justifyContent: 'space-between'
-})
-S.Button = styled(Button)({
-	'&&': {
-		width: '100%'
-	}
-})
-const SocialButton = styled(S.Button)({
+import { createUseStyles } from 'react-jss'
+
+const socialButton = {
 	position: 'relative',
+	width: '100%',
 	'&::before': {
 		content: "''",
 		display: 'block',
@@ -36,37 +18,52 @@ const SocialButton = styled(S.Button)({
 		left: 10,
 		transform: 'translateY(-50%)',
 	}
-})
-S.GoogleButton = styled(SocialButton)({
-	'&&&': {
-		backgroundColor: '#0d66ff',
-	},
-	'&&::before': {
-		backgroundImage: `url(${googleIcon})`
-	}
-})
-S.FacebookButton = styled(SocialButton)({
-	'&&&': {
-		backgroundColor: '#3b5999',
-	},
-	'&&::before': {
-		backgroundImage: `url(${facebookIcon})`
-	}
-})
-S.SocialLogin = styled('div')({
-	display: 'flex',
-	flexFlow: 'column nowrap',
-	rowGap: 10,
-	width: 300,
-	paddingTop: 15,
-	'& p': {
-		textAlign: 'center'
-	}
-})
-S.RegisterLink = styled(NavLink)(({ theme }) => ({
-	fontWeight: 'bold',
-	color: theme.colors.primary,
-	marginLeft: 5
-}))
+}
 
-export default S
+const useStyles = createUseStyles({
+	wrapper: {
+		display: 'flex',
+		flexFlow: 'column nowrap',
+		rowGap: 10,
+		[`@media ${device.tabletS}`]: {
+			width: 300
+		}
+	},
+	error: {
+		color: ({ theme }) => theme.COLORS.error
+	},
+	row: {
+		display: 'flex',
+		justifyContent: 'space-between'
+	},
+	registerLink: {
+		fontWeight: 'bold',
+		color: ({ theme }) => theme.colors.primary,
+		marginLeft: 5
+	},
+	socialLogin: {
+		display: 'flex',
+		flexFlow: 'column nowrap',
+		rowGap: 10,
+		paddingTop: 15,
+		'& p': {
+			textAlign: 'center'
+		}
+	},
+	googleButton: {
+		extend: socialButton,
+		backgroundColor: '#0d66ff',
+		'&::before': {
+			backgroundImage: `url(${googleIcon})`
+		}
+	},
+	facebookButton: {
+		extend: socialButton,
+		backgroundColor: '#3b5999',
+		'&::before': {
+			backgroundImage: `url(${facebookIcon})`
+		}
+	}
+})
+
+export default useStyles

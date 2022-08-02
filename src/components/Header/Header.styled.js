@@ -1,35 +1,29 @@
-import styled from '../../styledJss'
-import { NavLink } from 'react-router-dom'
+import { createUseStyles } from 'react-jss'
 
-const S = {}
-S.Wrapper = styled('div')(({ theme }) => ({
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	right: 0,
-	height: theme.sizes.headerHeight,
-	zIndex: theme.zIndex.header,
-	backgroundColor: theme.colors.header
-}))
-
-S.Inner = styled('div')({
-	display: 'flex',
-	justifyContent: 'space-between',
-	alignItems: 'center',
-	columnGap: 15,
-	padding: [10, 0],
-	height: '100%'
-})
-
-S.Push = styled('div')({
-	marginLeft: 'auto'
-})
-
-S.LogoLink = styled(NavLink)({
-	height: 'inherit',
-	'& img': {
-		height: 'inherit'
+const useStyles = createUseStyles({
+	wrapper: ({ theme }) => ({
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		right: 0,
+		height: theme.sizes.headerHeight,
+		zIndex: theme.zIndex.header,
+		backgroundColor: theme.colors.header
+	}),
+	inner: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		columnGap: 15,
+		padding: [10, 0],
+		height: '100%'
+	},
+	logoLink: {
+		height: 'inherit',
+		'& img': {
+			height: 'inherit'
+		}
 	}
 })
 
-export default S
+export default useStyles

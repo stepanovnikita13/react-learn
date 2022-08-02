@@ -7,7 +7,8 @@ const commonColors = {
 	buttonDisabled: COLORS.primary700,
 	avatarMenuBackground: COLORS.gray_alpha50,
 	black: COLORS.black,
-	white: COLORS.white
+	white: COLORS.white,
+	error: COLORS.red500
 }
 
 const themes = {

@@ -1,29 +1,34 @@
 import logo from '../../logo-s.png'
 import AuthContainer from './Auth/AuthContainer';
 import { ThemeSwitcher } from '../common/form/Buttons/Buttons';
-import Container from '../common/global/Container';
-import S from './Header.styled';
+//import S from './Header.styled';
+import { withRouter } from '../../hoc/withRouter';
+import { useTheme } from 'react-jss';
+import useStyles from './Header.styled';
+import { NavLink } from 'react-router-dom';
 
-const Header = ({ setTheme, theme, isAuth }) => {
+const Header = ({ setTheme, currentTheme, isAuth, ...props }) => {
+	const theme = useTheme()
+	const classes = useStyles({ theme })
 	const handlerClick = () => {
-		const value = theme === 'light' ? 'dark' : 'light'
+		const value = currentTheme === 'light' ? 'dark' : 'light'
 		setTheme(value)
 	}
 
 	return (
-		<S.Wrapper>
-			<Container>
-				<S.Inner>
-					<S.LogoLink to='/profile'>
+		<div className={classes.wrapper}>
+			<div className='container'>
+				<div className={classes.inner}>
+					<NavLink className={classes.logoLink} to='/profile'>
 						<img src={logo} alt="logo" />
-					</S.LogoLink>
-					<S.Push></S.Push>
-					<ThemeSwitcher onClick={handlerClick} theme={theme} title='Switch color scheme' />
-					<AuthContainer isAuth={isAuth} />
-				</S.Inner>
-			</Container>
-		</S.Wrapper>
+					</NavLink>
+					<div style={{ marginLeft: 'auto' }}></div>
+					<ThemeSwitcher onClick={handlerClick} currentTheme={currentTheme} title='Switch color scheme' />
+					<AuthContainer isAuth={isAuth} path={props.router.location.pathname} />
+				</div>
+			</div>
+		</div>
 	)
 }
 
-export default Header
+export default withRouter(Header)

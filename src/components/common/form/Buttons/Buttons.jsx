@@ -1,41 +1,53 @@
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
-import S from "./Buttons.styled"
+import useStyles from "./Buttons.styled"
 
-export const Button = props => (
-	<S.Button {...props} >
-		{props.children}
-	</S.Button >
-)
+export const Button = ({ children, className, ...props }) => {
+	const classes = useStyles()
+	return (
+		<button className={classes.button + ' ' + className} {...props} >
+			{children}
+		</button >
+	)
+}
 
-export const ButtonIconFade = ({ icon, ...props }) => (
-	<S.IconFade {...props} >
-		<GlobalSvgSelector type={icon} />
-	</S.IconFade>
-)
+export const ButtonIconFade = ({ icon, className, ...props }) => {
+	const classes = useStyles(props)
+	return (
+		<button className={classes.iconFade + ' ' + className} {...props} >
+			<GlobalSvgSelector type={icon} />
+		</button>
+	)
+}
 
-export const ThemeSwitcher = ({ theme, onClick, ...props }) => {
-	const [isAnimate, setIsAnimate] = useState(false)
+export const ThemeSwitcher = ({ currentTheme, onClick, ...props }) => {
+	const [isActive, setisActive] = useState(false)
+	const classes = useStyles({ isActive })
 
 	useEffect(() => {
-		if (isAnimate) {
-			const timer = setTimeout(() => setIsAnimate(false), 200)
+		if (isActive) {
+			const timer = setTimeout(() => setisActive(false), 200)
 			return () => {
 				clearTimeout(timer)
 			}
 		}
-	}, [isAnimate])
+	}, [isActive])
 
 	const handleClick = () => {
-		setIsAnimate(true)
+		setisActive(true)
 		onClick()
 	}
 	return (
-		<S.ThemeSwitcher onClick={handleClick} isAnimate={isAnimate} {...props}>
-			<S.Ellipse>
-				<GlobalSvgSelector type={theme === 'dark' ? 'moon' : 'sun'} />
-			</S.Ellipse>
-		</S.ThemeSwitcher>
+		<button className={classes.themeSwitcher} onClick={handleClick} {...props}>
+			<div className={classes.ellipse}>
+				<GlobalSvgSelector type={currentTheme === 'dark' ? 'moon' : 'sun'} />
+			</div>
+		</button>
+	)
+}
+
+export const Burger = props => {
+	return (
+		<GlobalSvgSelector type='menu' />
 	)
 }

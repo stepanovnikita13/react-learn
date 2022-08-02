@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { toggleFollowProgress, requestUsers, follow } from "../../redux/users-reducer"
 import { selectUsers, selectPageSize, selectTotalUsersCount, selectCurrentPage, selectIsFetching, selectFollowInProgressUsers } from "../../redux/user-selectors"
-import { selectIsAuth } from "../../redux/auth-selectors"
+import { selectIsAuthInServer } from "../../redux/auth-selectors"
 import Users from "./Users"
 import { ErrorBoundary } from "../common/ErrorBoundary"
 import Preloader from "../common/Preloader"
@@ -42,7 +42,7 @@ let mapStateToProps = state => ({
 	currentPage: selectCurrentPage(state),
 	isFetching: selectIsFetching(state),
 	followInProgressUsers: selectFollowInProgressUsers(state),
-	isAuth: selectIsAuth(state)
+	isAuth: selectIsAuthInServer(state)
 })
 
 let mapDispatchToProps = {

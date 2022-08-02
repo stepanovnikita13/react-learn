@@ -64,6 +64,15 @@ const GlobalSvgSelector = ({ type, className, ...props }) => {
 			)
 		}
 
+		case 'arrow-left-1': {
+			return (
+				<svg className={className} width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M14.5 17L9.5 12L14.5 7" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+				</svg>
+
+			)
+		}
+
 		case 'trash': {
 			return (
 				<svg className={className} width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -189,6 +198,15 @@ const GlobalSvgSelector = ({ type, className, ...props }) => {
 				<svg className={className} width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M18.364 5.36374C19.6226 6.64472 20.4798 8.27679 20.8271 10.0536C21.1743 11.8303 20.9961 13.672 20.3149 15.3457C19.6337 17.0194 18.4802 18.4499 17.0001 19.4563C15.5201 20.4628 13.78 21 12 21C10.22 21 8.47992 20.4628 6.99988 19.4563C5.51984 18.4499 4.36628 17.0194 3.68509 15.3457C3.0039 13.672 2.82567 11.8303 3.17293 10.0536C3.5202 8.2768 4.37736 6.64474 5.63603 5.36375M12 3V7.72749" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
 				</svg>
+			)
+		}
+
+		case 'menu': {
+			return (
+				<svg className={className} width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7.28307 19L20 19M19.9996 12L4 12M20 5L12.9719 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+				</svg>
+
 			)
 		}
 
