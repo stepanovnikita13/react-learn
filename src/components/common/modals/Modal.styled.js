@@ -1,17 +1,18 @@
-import styled from "../../../styledJss"
+import { createUseStyles } from 'react-jss'
 
-const S = {}
-S.Modal = styled('div')(({ theme }) => ({
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	width: '100%',
-	height: '100%',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	backgroundColor: theme.colors.backgroundAroundModal,
-	zIndex: theme.zIndex.modal
-}))
+const useStyles = createUseStyles({
+	modal: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		width: '100%',
+		height: '100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: ({ theme }) => theme.colors.backgroundAroundModal,
+		zIndex: ({ theme }) => theme.zIndex.modal
+	}
+})
 
-export default S
+export default useStyles

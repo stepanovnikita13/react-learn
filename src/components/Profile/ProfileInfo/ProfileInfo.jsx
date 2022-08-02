@@ -3,9 +3,10 @@ import { useCallback, useState } from 'react';
 import { ButtonIconFade } from '../../common/form/Buttons/Buttons';
 import AboutMe from './AboutMe/AboutMe';
 import AboutMeForm from './AboutMeForm/AboutMeForm';
-import S from './ProfileInfo.styled';
+import useStyles from './ProfileInfo.styled';
 
 const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
+	const classes = useStyles()
 	const [editMode, setEditMode] = useState(false)
 	const [isMouseEnter, setIsMouseEnter] = useState(false)
 	const [ref, setRef] = useState(null)
@@ -38,8 +39,8 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 	}, [])
 
 	return (
-		<S.Container onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}>
-			<S.Heading>
+		<div className={classes.container} onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}>
+			<div className={classes.heading}>
 				<h1>My profile</h1>
 				{isMouseEnter && !editMode && <ButtonIconFade icon='edit' onClick={toggleEditMode} title='Edit' />}
 				{editMode && <div>
@@ -53,11 +54,11 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 					<ButtonIconFade icon='close' color='error' onClick={toggleEditMode} title='Cancel' />
 				</div>
 				}
-			</S.Heading>
+			</div>
 			{!editMode
 				? <AboutMe profile={profile} /> :
 				<AboutMeForm profile={profile} bindRef={bindRef} updateProfile={updateProfile} formErrors={errors} />}
-		</S.Container>
+		</div>
 	)
 }
 

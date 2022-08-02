@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme) => ({
 			stroke: theme.colors.iconFade,
 		},
 		'&:hover>svg>*': {
-			stroke: props?.color ? theme.COLORS[props.color] : theme.colors.primary
+			stroke: props?.color ? theme.colors[props.color] : theme.colors.primary
 		}
 	}),
 
@@ -35,17 +35,7 @@ const useStyles = createUseStyles((theme) => ({
 			animation: isActive && '.2s ease $themeSwitch'
 		}
 	}),
-	'@keyframes themeSwitch': {
-		from: {
-			transform: 'scale(1)'
-		},
-		'50%': {
-			transform: 'scale(0)'
-		},
-		to: {
-			transform: 'scale(1)'
-		}
-	},
+
 	ellipse: {
 		display: 'flex',
 		alignItems: 'center',
@@ -60,7 +50,25 @@ const useStyles = createUseStyles((theme) => ({
 		boxShadow: '0 1px 3px 0px rgba(0, 0, 0, 0.3)',
 		transform: `translateX(${theme.themeType === 'light' ? 0 : '17px'})`,
 		transition: 'transform .2s ease'
-	}
+	},
+
+	burger: isActive => ({
+		'& svg': {
+			animation: isActive && '.2s ease $themeSwitch'
+		}
+	}),
+
+	'@keyframes themeSwitch': {
+		from: {
+			transform: 'scale(1)'
+		},
+		'50%': {
+			transform: 'scale(0)'
+		},
+		to: {
+			transform: 'scale(1)'
+		}
+	},
 }))
 
 export default useStyles

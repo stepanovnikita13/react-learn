@@ -7,7 +7,7 @@ const useStyles = createUseStyles((theme) => ({
 		position: 'relative',
 		backgroundColor: theme.colors.backgroundInput,
 		borderRadius: theme.sizes.borderRadius,
-		'& svg>': {
+		'& svg>*': {
 			'&:not(.fill), &.stroke': { stroke: isError && theme.colors.error, },
 			'&.fill': { fill: isError && theme.colors.error }
 		},

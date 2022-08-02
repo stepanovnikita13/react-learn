@@ -1,22 +1,20 @@
-import styled from "../../styledJss"
+import { createUseStyles } from 'react-jss'
 
-const S = {}
-
-S.Container = styled('div')({
-	display: 'flex',
-	justifyContent: 'center',
-	padding: 20
+const useStyles = createUseStyles({
+	container: {
+		display: 'flex',
+		justifyContent: 'center',
+		padding: 20
+	},
+	wrapper: {
+		display: 'flex',
+		flexFlow: 'column'
+	},
+	users: {
+		display: 'grid',
+		gridTemplateColumns: 'repeat(3, 1fr)',
+		gridGap: '15px 15px'
+	}
 })
 
-S.Wrapper = styled('div')({
-	display: 'flex',
-	flexFlow: 'column'
-})
-
-S.Users = styled('div')({
-	display: 'grid',
-	gridTemplateColumns: 'repeat(3, 1fr)',
-	gridGap: '15px 15px'
-})
-
-export default S
+export default useStyles

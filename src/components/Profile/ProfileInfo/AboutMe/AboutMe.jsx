@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import SocialIcon from '../../../../assets/icons/SocialIcon';
-import S from './AboutMe.styled';
+import useStyles from './AboutMe.styled';
 
 const AboutMe = ({ profile }) => {
+	const classes = useStyles()
 	const { lookingForAJob, lookingForAJobDescription, contacts } = profile
 	const contactItems = useMemo(() => {
 		const items = Object.keys(contacts).filter(key => contacts[key]).map(key => {
@@ -12,7 +13,7 @@ const AboutMe = ({ profile }) => {
 	}, [contacts])
 
 	return (
-		<S.AboutList>
+		<ul className={classes.aboutList}>
 			<li>
 				Looking for a job: {lookingForAJob ? 'Yes' : 'No'}
 				{lookingForAJob && <div>{lookingForAJobDescription}</div>}
@@ -20,10 +21,10 @@ const AboutMe = ({ profile }) => {
 			{contactItems &&
 				<li>
 					<span>My contacts: </span>
-					<S.ContactList>{contactItems}</S.ContactList>
+					<ul className={classes.contactList}>{contactItems}</ul>
 				</li>
 			}
-		</S.AboutList>
+		</ul>
 	)
 }
 

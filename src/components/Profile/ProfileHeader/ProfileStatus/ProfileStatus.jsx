@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Textarea } from '../../../common/form/Textarea/Textarea'
-// import s from './ProfileStatus.module.css'
 
 const ProfileStatus = ({ status, updateStatus, isOwner }) => {
 	let [editMode, setEditMode] = useState(false)

@@ -1,15 +1,14 @@
-import styled from "../../../styledJss"
+import { createUseStyles } from 'react-jss'
 
-const S = {}
-
-S.Container = styled('div')({
-	flex: [1, 1, '280px']
+const useStyles = createUseStyles({
+	container: {
+		flex: [1, 1, '280px']
+	},
+	heading: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start'
+	}
 })
 
-S.Heading = styled('div')({
-	display: 'flex',
-	justifyContent: 'space-between',
-	alignItems: 'flex-start'
-})
-
-export default S
+export default useStyles

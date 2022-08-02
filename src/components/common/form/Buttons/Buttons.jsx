@@ -22,7 +22,7 @@ export const ButtonIconFade = ({ icon, className, ...props }) => {
 
 export const ThemeSwitcher = ({ currentTheme, onClick, ...props }) => {
 	const [isActive, setisActive] = useState(false)
-	const classes = useStyles({ isActive })
+	const classes = useStyles(isActive)
 
 	useEffect(() => {
 		if (isActive) {
@@ -46,8 +46,27 @@ export const ThemeSwitcher = ({ currentTheme, onClick, ...props }) => {
 	)
 }
 
-export const Burger = props => {
+export const Burger = ({ isOpen, onClick, className, ...props }) => {
+	const [isActive, setisActive] = useState(false)
+	const classes = useStyles(isActive)
+	const type = isOpen ? 'arrow-left-1' : 'menu'
+	useEffect(() => {
+		if (isActive) {
+			const timer = setTimeout(() => setisActive(false), 200)
+			return () => {
+				clearTimeout(timer)
+			}
+		}
+	}, [isActive])
+
+	const handleClick = () => {
+		setisActive(true)
+		onClick()
+	}
+
 	return (
-		<GlobalSvgSelector type='menu' />
+		<button className={classes.burger + ' ' + className} onClick={handleClick} {...props}>
+			<GlobalSvgSelector type={type} />
+		</button>
 	)
 }

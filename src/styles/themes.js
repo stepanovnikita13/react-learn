@@ -4,11 +4,13 @@ import { COLORS } from "./colors"
 const commonColors = {
 	primary: COLORS.primary,
 	buttonText: COLORS.white,
+	borderDropZone: COLORS.primary_alpha40,
 	buttonDisabled: COLORS.primary700,
 	avatarMenuBackground: COLORS.gray_alpha50,
 	black: COLORS.black,
 	white: COLORS.white,
-	error: COLORS.red500
+	error: COLORS.error,
+	success: COLORS.success,
 }
 
 const themes = {
@@ -20,7 +22,7 @@ const themes = {
 		backgroundAroundModal: COLORS.black_alpha70,
 		backgroundContainer: COLORS.white,
 		backgroundInput: COLORS.white,
-		backgroundModal: COLORS.background,
+		backgroundModal: COLORS.primary70,
 		backgroundModalLight: COLORS.white,
 		backgroundSwitcher: COLORS.primary50,
 		border: COLORS.primary100,

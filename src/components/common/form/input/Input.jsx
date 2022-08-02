@@ -36,9 +36,9 @@ const InputLbl = ({ field, form: { touched, errors }, label, ...props }) => {
 	const classes = useStyles({ isError })
 	return (
 		<>
-			<fieldset className={classes.fieldset} isError={isError}>
+			<fieldset className={classes.fieldset} >
 				<legend className={classes.legend} >{label}</legend>
-				<input className={classes.InputLbl} {...props} {...field} />
+				<input className={classes.inputLbl} {...props} {...field} />
 			</fieldset>
 			{isError && <Error style={{ fontSize: .8 }}>{_.get(errors, field.name)}</Error>}
 		</>

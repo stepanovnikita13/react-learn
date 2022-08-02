@@ -1,7 +1,9 @@
-import S from './Message.styled';
+import useStyles from './Message.styled';
 
-const Message = ({ text }) => (
-	<S.Message>{text}</S.Message>
-)
-
+const Message = ({ text }) => {
+	const classes = useStyles()
+	return (
+		<div className={classes.message}>{text}</div>
+	)
+}
 export default Message;

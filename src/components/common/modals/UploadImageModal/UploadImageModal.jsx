@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
+import { useTheme } from "react-jss"
 import ImageDropzone from "../../form/Dropzones/ImageDropzone/ImageDropzone"
 import Modal from "../Modal"
-import S from "./UploadImageModal.styled"
+import useStyles from "./UploadImageModal.styled"
 
 const UploadImageModal = ({ hideModal, isModalOpen, updateProfilePhoto }) => {
 	const [isDragEnter, setIsDragEnter] = useState(false)
 	const [imageData, setImageData] = useState(null)
+	const theme = useTheme()
+	const classes = useStyles({ theme, isDragEnter })
 
 	useEffect(() => {
 
@@ -27,14 +30,14 @@ const UploadImageModal = ({ hideModal, isModalOpen, updateProfilePhoto }) => {
 
 	return (
 		<Modal hideModal={hideModal} isModalOpen={isModalOpen}>
-			<S.Container isDragEnter={isDragEnter}>
-				<S.Header>
+			<div className={classes.container} >
+				<div className={classes.header}>
 					Uploading your avatar
 					<button onClick={hideModal}>X</button>
-				</S.Header>
+				</div>
 				<ImageDropzone setDragActive={setDragActive} setImage={setImage} />
 				<button onClick={handlerClick}>upload</button>
-			</S.Container>
+			</div>
 		</Modal >
 	)
 }

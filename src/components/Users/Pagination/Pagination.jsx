@@ -1,6 +1,9 @@
-import s from './Pagination.module.css'
+import { useTheme } from 'react-jss'
+import useStyles from './Pagination.styled'
 
 const Pagination = ({ totalUsersCount, pageSize, currentPage, viewPages, onPageChanged }) => {
+	const theme = useTheme()
+	const classes = useStyles({ theme })
 	const setPages = totalPaginationCount => {
 		let pages = [1]
 		let totalPagesCount = Math.ceil(totalUsersCount / pageSize)
@@ -23,10 +26,10 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, viewPages, onPageC
 	let pages = setPages(viewPages)
 
 	return (
-		<div className={s.pagination}>
+		<div className={classes.pagination}>
 			{
 				pages.map(p => {
-					return <span key={p} className={p === currentPage ? s.selectedPage : ''}
+					return <span key={p} className={p === currentPage ? classes.selectedPage : ''}
 						onClick={() => { onPageChanged(p) }}>{p}</span>
 				})
 			}

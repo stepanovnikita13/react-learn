@@ -14,7 +14,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 		setSubmitting(false);
 	}
 
-	const createField = (name, type, placeholder) => {
+	const createField = (name, type, placeholder, rest) => {
 		return (
 			<Field
 				component={Input}
@@ -24,6 +24,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 				validate={required}
 				errormessage={error.message}
 				errorfield={error.field}
+				{...rest}
 			/>
 		)
 	}
@@ -43,7 +44,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 						<div className={classes.wrapper}>
 							<div className={classes.error}>{error.message}</div>
 							{createField("email", "user", "Type Your Email")}
-							{createField("password", "password", "Type Your Password")}
+							{createField("password", "password", "Type Your Password", { autoComplete: 'current-password' })}
 
 							<div className={classes.row}>
 								<label>

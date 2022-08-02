@@ -1,14 +1,19 @@
+import { useTheme } from "react-jss"
 import { defaultUserImage } from "../../../assets/images/globalImgSelector"
-import S from "./Avatar.styled"
+import useStyles from "./Avatar.styled"
 
-export const Avatar = ({ url, className, children, ...props }) => {
+const Avatar = ({ url, className, children, ...props }) => {
+	const theme = useTheme()
+	const classes = useStyles({ theme })
 	const avatarUrl = url ?? defaultUserImage
 	return (
-		<S.Avatar className={className} {...props}>
+		<div className={classes.avatar + ' ' + className} {...props}>
 			<img src={avatarUrl} alt="" />
-			<S.Children>
+			<div className={classes.children}>
 				{children}
-			</S.Children>
-		</S.Avatar>
+			</div>
+		</div>
 	)
 }
+
+export default Avatar

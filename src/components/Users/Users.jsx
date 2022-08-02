@@ -1,8 +1,9 @@
 import Pagination from "./Pagination/Pagination";
 import User from "./User/User";
-import S from "./Users.styled";
+import useStyles from "./Users.styled";
 
 const Users = (props) => {
+	const classes = useStyles()
 	let usersList = props.users.map(u => <User
 		key={u.id}
 		user={u}
@@ -12,11 +13,11 @@ const Users = (props) => {
 	/>)
 
 	return (
-		<S.Container>
-			<S.Wrapper>
-				<S.Users>
+		<div className={classes.container}>
+			<div className={classes.wrapper}>
+				<div className={classes.users}>
 					{usersList}
-				</S.Users>
+				</div>
 				<Pagination
 					currentPage={props.currentPage}
 					onPageChanged={props.onPageChanged}
@@ -24,8 +25,8 @@ const Users = (props) => {
 					totalUsersCount={props.totalUsersCount}
 					viewPages={10}
 				/>
-			</S.Wrapper>
-		</S.Container>
+			</div>
+		</div>
 	)
 }
 

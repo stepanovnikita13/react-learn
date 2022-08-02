@@ -1,49 +1,37 @@
-import styled from '../../../styledJss'
-import { Avatar } from '../../common/user/Avatar'
+import { createUseStyles } from 'react-jss'
 
-const div = styled('div')
-const S = {}
-S.Container = div({
-	flex: [1, 1, '100%'],
-	display: 'flex',
-	flexFlow: 'row wrap'
-})
-
-S.Wallpapper = div(({ theme }) => ({
-	flex: [1, 1, '100%'],
-	'&>img': {
-		width: '100%',
-		height: 200,
-		objectFit: 'cover',
-		borderRadius: theme.sizes.borderRadiusLarge
-	}
-}))
-
-S.Avatar = styled(Avatar)(({ theme }) => ({
-	width: 180,
-	marginLeft: 25,
-	marginBottom: '-80px',
-	transform: 'translateY(-80px)',
-	'&&': {
+const useStyles = createUseStyles(theme => ({
+	container: {
+		flex: [1, 1, '100%'],
+		display: 'flex',
+		flexFlow: 'row wrap'
+	},
+	wallpapper: {
+		flex: [1, 1, '100%'],
+		'&>img': {
+			width: '100%',
+			height: 200,
+			objectFit: 'cover',
+			borderRadius: theme.sizes.borderRadiusLarge
+		}
+	},
+	avatar: {
+		width: 180,
+		marginLeft: 25,
+		marginBottom: '-80px',
+		transform: 'translateY(-80px)',
 		border: {
 			width: 8,
 			style: 'solid',
 			color: theme.colors.backgroundContainer
 		}
+	},
+	fullName: {
+		fontSize: 1.2,
+		fontWeight: 'bold',
+		display: 'inline-block',
+		padding: 10
 	}
 }))
 
-S.Description = div({
-	flex: 1
-})
-
-S.FullName = styled('span')({
-	fontSize: 1.2,
-	fontWeight: 'bold',
-	display: 'inline-block',
-	padding: 10
-})
-
-
-
-export default S
+export default useStyles

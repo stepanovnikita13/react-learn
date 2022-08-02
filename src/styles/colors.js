@@ -25,7 +25,7 @@ export const COLORS = {
 
 	//error: '#C1666B',
 	//error: '#EA6759',
-	red500: '#EB4646',
+	error: '#EB4646',
 	success: '#8BC28C',
 	warning: '#F88F58',
 

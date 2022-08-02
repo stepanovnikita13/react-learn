@@ -1,23 +1,27 @@
 import { useState } from 'react';
-import { Avatar } from '../../../common/user/Avatar';
-import S from './Post.styled';
+import { useTheme } from 'react-jss';
+import { ButtonIconFade } from '../../../common/form/Buttons/Buttons';
+import Avatar from '../../../common/user/Avatar';
+import useStyles from './Post.styled';
 
 const Post = ({ profilePhoto, likesCount, message }) => {
 	const [isLiked, setIsLiked] = useState(false)
+	const theme = useTheme()
+	const classes = useStyles({ theme, isLiked })
 
 	const handleClick = () => {
 		setIsLiked(!isLiked)
 	}
 
 	return (
-		<S.Post>
+		<div className={classes.post}>
 			<Avatar style={{ width: '50px', height: '50px' }} url={profilePhoto} />
 			{message}
-			<S.LikeContainer>
-				<S.ButtonLike icon='heart' onClick={handleClick} isLiked={isLiked} title='Like' />
+			<div className={classes.likeContainer}>
+				<ButtonIconFade className={classes.buttonLike} icon='heart' onClick={handleClick} title='Like' />
 				<div>{likesCount}</div>
-			</S.LikeContainer>
-		</S.Post>
+			</div>
+		</div>
 	)
 }
 
