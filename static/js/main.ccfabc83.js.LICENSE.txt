@@ -12,6 +12,8 @@
  * Released under the MIT License.
  */
 
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
 /**
  * @license
  * Lodash <https://lodash.com/>
@@ -96,14 +98,6 @@
  *
  * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
  * @website https://github.com/cssinjs/jss
- * @license MIT
- */
-
-/**
- * CSS Vendor prefix detection and property feature testing.
- *
- * @copyright Oleg Slobodskoi 2015
- * @website https://github.com/jsstyles/css-vendor
  * @license MIT
  */
 
