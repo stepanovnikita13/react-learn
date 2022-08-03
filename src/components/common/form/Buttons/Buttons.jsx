@@ -4,8 +4,12 @@ import useStyles from "./Buttons.styled"
 
 export const Button = ({ children, className, ...props }) => {
 	const classes = useStyles()
+	const classNames = [
+		classes.button,
+		className ?? null
+	].join(' ')
 	return (
-		<button className={classes.button + ' ' + className} {...props} >
+		<button className={classNames} {...props} >
 			{children}
 		</button >
 	)
@@ -13,16 +17,24 @@ export const Button = ({ children, className, ...props }) => {
 
 export const ButtonIconFade = ({ icon, className, ...props }) => {
 	const classes = useStyles(props)
+	const classNames = [
+		classes.iconFade,
+		className ?? null
+	].join(' ')
 	return (
-		<button className={classes.iconFade + ' ' + className} {...props} >
+		<button className={classNames} {...props} >
 			<GlobalSvgSelector type={icon} />
 		</button>
 	)
 }
 export const ButtonIcon = ({ icon, className, ...props }) => {
 	const classes = useStyles(props)
+	const classNames = [
+		classes.icon,
+		className ?? null
+	].join(' ')
 	return (
-		<button className={classes.icon + ' ' + className} {...props} >
+		<button className={classNames} {...props} >
 			<GlobalSvgSelector type={icon} />
 		</button>
 	)

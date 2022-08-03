@@ -29,7 +29,11 @@ const Modal = ({ isModalOpen, hideModal, ...props }) => {
 
 	if (isModalOpen) {
 		return ReactDOM.createPortal(
-			<div className={classes.modal}><div ref={wrapperRef}>{props.children}</div></div>,
+			<div className={classes.modal}>
+				<div className={classes.container} ref={wrapperRef}>
+					{props.children}
+				</div>
+			</div>,
 			el
 		)
 	}

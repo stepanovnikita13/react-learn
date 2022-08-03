@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { device } from '../../../styles/device'
 
 const useStyles = createUseStyles({
 	modal: {
@@ -12,6 +13,17 @@ const useStyles = createUseStyles({
 		alignItems: 'center',
 		backgroundColor: ({ theme }) => theme.colors.backgroundAroundModal,
 		zIndex: ({ theme }) => theme.zIndex.modal
+	},
+	container: {
+		width: '100%',
+		margin: [0, 'auto'],
+		padding: [0, 10],
+		[`@media ${device.tabletS}`]: {
+			width: 'auto',
+			margin: 0,
+			padding: 0,
+
+		}
 	}
 })
 

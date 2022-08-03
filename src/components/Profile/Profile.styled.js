@@ -13,6 +13,6 @@ const useStyles = createUseStyles(theme => ({
 			margin: 10,
 		}
 	}
-}))
+}), { name: 'Profile' })
 
 export default useStyles

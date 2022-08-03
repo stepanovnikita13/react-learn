@@ -17,6 +17,7 @@ const useStyles = createUseStyles(theme => ({
 		}
 	},
 	list: {
+		display: ({ isActive }) => isActive ? 'block' : 'none',
 		width: 'max-content',
 		color: theme.COLORS.white,
 		fontSize: '.85em',

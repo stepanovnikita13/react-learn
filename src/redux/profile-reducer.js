@@ -56,7 +56,7 @@ const profile = (state = initialState, action) => {
 export const addPost = text => ({ type: ADD_POST, text })
 const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 const setStatus = status => ({ type: SET_STATUS, status })
-const setProfilePhoto = photos => ({ type: SET_PROFILE_PHOTO, payload: { photos } })
+const setProfilePhoto = photos => ({ type: SET_PROFILE_PHOTO, payload: { ...photos } })
 const setErrors = errors => ({ type: SET_ERRORS, payload: { errors } })
 
 export const getUserProfile = userId => async dispatch => {

@@ -25,7 +25,13 @@ const AvatarMenu = ({ updateProfilePhoto }) => {
 		setisModalOpen(false)
 	}
 
-	const modal = isModalOpen ? (<UploadImageModal hideModal={hideModal} isModalOpen={isModalOpen} updateProfilePhoto={updateProfilePhoto} />) : null
+	const modal = isModalOpen
+		? (<UploadImageModal
+			hideModal={hideModal}
+			isModalOpen={isModalOpen}
+			updateProfilePhoto={updateProfilePhoto}
+		/>)
+		: null
 
 	return (
 		<div className={classes.menu}
