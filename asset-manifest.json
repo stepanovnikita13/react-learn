@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-learn/static/css/main.a19b444d.css",
-    "main.js": "/react-learn/static/js/main.ccfabc83.js",
+    "main.js": "/react-learn/static/js/main.da2fc1e8.js",
     "static/js/975.86e6201b.chunk.js": "/react-learn/static/js/975.86e6201b.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/react-learn/static/js/787.28cb0dcd.chunk.js",
     "static/media/OpenSans-Italic.svg": "/react-learn/static/media/OpenSans-Italic.5d149c17e901c403a9f5.svg",
@@ -14,15 +14,16 @@
     "static/media/OpenSans-Italic.eot": "/react-learn/static/media/OpenSans-Italic.ce8a14c7b1a5a9321ded.eot",
     "static/media/OpenSans-Regular.eot": "/react-learn/static/media/OpenSans-Regular.c6460eca89e0d97eab1a.eot",
     "static/media/OpenSans-Bold.eot": "/react-learn/static/media/OpenSans-Bold.544a827d43df91150553.eot",
+    "static/media/wallpapper.jpg": "/react-learn/static/media/wallpapper.27bc974d30c7ce5135a4.jpg",
     "static/media/logo-s.png": "/react-learn/static/media/logo-s.3dc87a27e33187cfed76.png",
     "index.html": "/react-learn/index.html",
     "main.a19b444d.css.map": "/react-learn/static/css/main.a19b444d.css.map",
-    "main.ccfabc83.js.map": "/react-learn/static/js/main.ccfabc83.js.map",
+    "main.da2fc1e8.js.map": "/react-learn/static/js/main.da2fc1e8.js.map",
     "975.86e6201b.chunk.js.map": "/react-learn/static/js/975.86e6201b.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/react-learn/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a19b444d.css",
-    "static/js/main.ccfabc83.js"
+    "static/js/main.da2fc1e8.js"
   ]
 }
