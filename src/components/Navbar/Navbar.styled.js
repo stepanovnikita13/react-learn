@@ -9,8 +9,12 @@ const useStyles = createUseStyles(theme => ({
 		height: '100%',
 		top: theme.sizes.headerHeight,
 		left: 0,
+		fontSize: 1.6,
 		zIndex: theme.zIndex.navbar,
 		transform: 'translateX(-100%)',
+		[`@media ${device.tabletS}`]: {
+			width: 428
+		},
 		[`@media ${device.laptopS}`]: {
 			transform: 'translateX(0)',
 			top: 90,
@@ -28,10 +32,10 @@ const useStyles = createUseStyles(theme => ({
 	},
 	list: ({ isActive }) => ({
 		backgroundColor: theme.colors.sidebar,
-		transition: 'transform .2s ease-in-out',
+		transition: 'transform .2s ease',
 		transform: isActive && 'translateX(100%)',
 		[`@media ${device.laptopS}`]: {
-			transform: 'translateX(0)',
+			transform: 'unset',
 		}
 	}),
 	item: {
@@ -50,6 +54,18 @@ const useStyles = createUseStyles(theme => ({
 		backgroundColor: theme.colors.backgroundContainer,
 		marginTop: -theme.sizes.headerHeight,
 		transform: 'translateX(100%)'
+	},
+	background: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		width: '100%',
+		height: '100%',
+		backgroundColor: theme.colors.backgroundAroundModal,
+		opacity: ({ isActive }) => isActive ? 1 : 0,
+		transition: 'opacity .2s ease-in-out',
+		zIndex: theme.zIndex.header - 1,
+		pointerEvents: ({ isActive }) => isActive ? 'all' : 'none'
 	}
 }))
 

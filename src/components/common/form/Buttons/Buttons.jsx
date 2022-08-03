@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
 import useStyles from "./Buttons.styled"
 
@@ -15,6 +15,14 @@ export const ButtonIconFade = ({ icon, className, ...props }) => {
 	const classes = useStyles(props)
 	return (
 		<button className={classes.iconFade + ' ' + className} {...props} >
+			<GlobalSvgSelector type={icon} />
+		</button>
+	)
+}
+export const ButtonIcon = ({ icon, className, ...props }) => {
+	const classes = useStyles(props)
+	return (
+		<button className={classes.icon + ' ' + className} {...props} >
 			<GlobalSvgSelector type={icon} />
 		</button>
 	)
@@ -49,10 +57,11 @@ export const ThemeSwitcher = ({ currentTheme, onClick, ...props }) => {
 export const Burger = ({ isOpen, onClick, className, ...props }) => {
 	const [isActive, setisActive] = useState(false)
 	const classes = useStyles(isActive)
-	const type = isOpen ? 'arrow-left-1' : 'menu'
+	const type = useMemo(() => isOpen ? 'arrow-left-1' : 'menu', [isOpen])
 	useEffect(() => {
 		if (isActive) {
 			const timer = setTimeout(() => setisActive(false), 200)
+
 			return () => {
 				clearTimeout(timer)
 			}

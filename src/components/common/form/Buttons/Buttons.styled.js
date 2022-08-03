@@ -22,6 +22,13 @@ const useStyles = createUseStyles((theme) => ({
 			stroke: props?.color ? theme.colors[props.color] : theme.colors.primary
 		}
 	}),
+	icon: props => ({
+		lineHeight: 0,
+		backgroundColor: 'transparent',
+		'&>svg>*': {
+			stroke: props?.color ? theme.colors[props.color] : theme.colors.primary
+		}
+	}),
 
 	themeSwitcher: isActive => ({
 		width: 45,
@@ -54,18 +61,19 @@ const useStyles = createUseStyles((theme) => ({
 
 	burger: isActive => ({
 		'& svg': {
-			animation: isActive && '.2s ease $themeSwitch'
+			transform: 'scale(1)',
+			animation: isActive && '.2s linear $themeSwitch',
 		}
 	}),
 
 	'@keyframes themeSwitch': {
-		from: {
-			transform: 'scale(1)'
+		'0%': {
+			transform: 'scale(.5)'
 		},
-		'50%': {
-			transform: 'scale(0)'
+		'30%': {
+			transform: 'scale(.2)'
 		},
-		to: {
+		'100%': {
 			transform: 'scale(1)'
 		}
 	},

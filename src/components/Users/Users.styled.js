@@ -1,10 +1,13 @@
 import { createUseStyles } from 'react-jss'
+import { device } from '../../styles/device'
 
 const useStyles = createUseStyles({
 	container: {
-		display: 'flex',
-		justifyContent: 'center',
-		padding: 20
+		padding: [20, 0],
+		[`@media ${device.tabletS}`]: {
+			display: 'flex',
+			justifyContent: 'center'
+		}
 	},
 	wrapper: {
 		display: 'flex',
@@ -12,9 +15,12 @@ const useStyles = createUseStyles({
 	},
 	users: {
 		display: 'grid',
-		gridTemplateColumns: 'repeat(3, 1fr)',
-		gridGap: '15px 15px'
-	}
-})
+		gridTemplateColumns: '1fr',
+		gridGap: '15px 15px',
+		[`@media ${device.tabletS}`]: {
+			gridTemplateColumns: 'repeat(3, 1fr)'
+		}
+	},
+}, { name: 'Users' })
 
 export default useStyles

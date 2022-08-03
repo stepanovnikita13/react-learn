@@ -5,6 +5,7 @@ import { Burger } from '../common/form/Buttons/Buttons';
 import { Span } from '../common/global/Span'
 import useStyles from './Navbar.styled'
 import useMedia from '../../hooks/useMedia'
+import { scrollTo } from '../../utilits/functions';
 
 const navbarItems = [
 	{ name: 'Profile', url: '/profile', icon: 'home' },
@@ -13,7 +14,7 @@ const navbarItems = [
 	{ name: 'Settings', url: '/settings', icon: 'setting' }
 ]
 
-const Navbar = () => {
+const Navbar = ({ topRef }) => {
 	const [isActive, setIsActive] = useState(false)
 	const isMobile = useMedia([device.laptopS], [false], true)
 	const classes = useStyles({ isActive })
@@ -36,14 +37,15 @@ const Navbar = () => {
 	}
 
 	function handlerClick() {
-		setIsActive(!isActive)
+		scrollTo(topRef, 'start')
+		setIsActive(false)
 	}
 
 	const navbarList = navbarItems.map((item, i) => (
 		<li className={classes.item} key={i}>
 			<NavLink
 				to={item.url}
-				onClick={() => { setIsActive(false) }}
+				onClick={handlerClick}
 				className={({ isActive }) => isActive ? 'active' : ''}
 			>
 				<Span icon={item.icon} spacing='14px'>{item.name}</Span>
@@ -51,16 +53,19 @@ const Navbar = () => {
 		</li>
 	))
 	return (
-		<nav
-			className={classes.sidebar}
-			onMouseEnter={handlerOnMouseEnter}
-			onMouseLeave={handlerOnMouseLeave}
-		>
-			{isMobile && <Burger className={classes.burger} onClick={handlerClick} isOpen={isActive} />}
-			<ul className={classes.list + ' ' + (isMobile && 'container')}>
-				{navbarList}
-			</ul>
-		</nav>
+		<>
+			{isMobile && <div className={classes.background}></div>}
+			<nav
+				className={classes.sidebar}
+				onMouseEnter={handlerOnMouseEnter}
+				onMouseLeave={handlerOnMouseLeave}
+			>
+				{isMobile && <Burger className={classes.burger} onClick={() => { setIsActive(v => !v) }} isOpen={isActive} />}
+				<ul className={classes.list + ' ' + (isMobile && 'container')}>
+					{navbarList}
+				</ul>
+			</nav>
+		</>
 	)
 }
 

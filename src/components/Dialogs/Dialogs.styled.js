@@ -23,15 +23,13 @@ const useStyles = createUseStyles(theme => ({
 		display: 'flex',
 		position: 'relative',
 		overflow: 'hidden',
-		'&:hover span': {
-			opacity: 0
-		}
 	},
 	messagesBlock: {
 		display: 'flex',
 		width: '100%',
 		flexFlow: 'column-reverse nowrap',
-		overflow: 'auto',
+		overflowY: 'auto',
+		overflowX: 'hidden',
 		'&>*:not(:first-child)': {
 			marginBottom: 10
 		},
@@ -48,16 +46,17 @@ const useStyles = createUseStyles(theme => ({
 			borderRadius: '5px'
 		}
 	},
-	magicBox: {
+	magicBox: ({ scrollBarIsShow }) => ({
 		display: 'block',
 		position: 'absolute',
 		height: '100%',
 		width: 5,
 		top: 0,
 		right: 0,
+		opacity: scrollBarIsShow ? 0 : 1,
 		backgroundColor: theme.colors.background,
 		transition: 'opacity .1s'
-	}
-}))
+	})
+}), { name: 'Dialogs' })
 
 export default useStyles

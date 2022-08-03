@@ -1,28 +1,39 @@
 import { createUseStyles } from 'react-jss'
+import { device } from '../../../styles/device'
 
 const useStyles = createUseStyles({
 	container: {
 		display: 'flex',
-		flexFlow: 'column nowrap',
+		flexFlow: 'row nowrap',
 		justifyContent: 'space-between',
-		width: 170,
-		height: 260,
 		backgroundColor: ({ theme }) => theme.colors.backgroundContainer,
 		borderRadius: ({ theme }) => theme.sizes.borderRadiusLarge,
-		padding: 10
+		padding: 10,
+		[`@media ${device.tabletS}`]: {
+			flexFlow: 'column nowrap',
+			width: 170,
+			height: 260,
+		}
 	},
 	avatar: {
-		width: '85%',
+		width: '40%',
 		height: 'auto',
-		margin: [0, 'auto']
+		margin: [0, 'auto'],
+		[`@media ${device.tabletS}`]: {
+			width: '85%',
+		}
 	},
 	info: {
+		flex: 1,
 		paddingTop: 10,
-		overflow: 'hidden'
+		overflow: 'hidden',
 	},
 	button: {
-		width: '100%'
+		'&>svg': {
+			width: 26,
+			height: 26
+		}
 	}
-})
+}, { name: 'User' })
 
 export default useStyles

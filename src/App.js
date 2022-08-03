@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { compose } from 'redux'
@@ -31,6 +31,7 @@ const App = (props) => {
 	const { initializeApp, initialized, currentTheme, setTheme, isAuthInServer, isAuth, setIsAuth } = props
 	const theme = useTheme()
 	const classes = useStyles({ theme })
+	const topRef = useRef()
 
 	useEffect(() => {
 		if (isAuthInServer === undefined) {
@@ -47,9 +48,9 @@ const App = (props) => {
 	if (!initialized) return null
 
 	return (
-		<div className={classes.wrapper} id='app'>
+		<div className={classes.wrapper} ref={topRef} id='app'>
 			<Header currentTheme={currentTheme} setTheme={setTheme} isAuth={isAuth} />
-			<Navbar />
+			<Navbar topRef={topRef} />
 			<div className={classes.main}>
 				<div className='container'>
 					<Suspense fallback={<Preloader />}>
@@ -60,7 +61,7 @@ const App = (props) => {
 								<Route path=':userId' element={<ProfileContainer isAuth={isAuth} />} />
 							</Route>
 							<Route path='dialogs/*' element={<DialogsContainer isAuth={isAuth} />} />
-							<Route path='users/' element={<UsersContainer />} />
+							<Route path='users/' element={<UsersContainer topRef={topRef} />} />
 							<Route path='settings' element={<Settings />} />
 							<Route path='register' element={<Register />} />
 							<Route path='*' element={<div>404</div>} />

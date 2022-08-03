@@ -1,18 +1,19 @@
 import AddPostForm from './AddPostForm/AddPostForm.jsx';
-import S from './MyPosts.styled';
+import useStyles from './MyPosts.styled';
 import Post from './Post/Post';
 
 const MyPosts = ({ postsData, addPost, isOwner, profilePhoto }) => {
+	const classes = useStyles()
 	let postList = postsData.map(p => <Post profilePhoto={profilePhoto} message={p.text} likesCount={p.likesCount} key={p.id} />).reverse()
 
 	return (
-		<S.Container>
+		<div className={classes.container} >
 			<h3>My posts</h3>
 			{isOwner && <AddPostForm addPost={addPost} />}
-			<S.PostList>
+			<div className={classes.postList} >
 				{postList}
-			</S.PostList>
-		</ S.Container>
+			</div>
+		</ div>
 	)
 }
 

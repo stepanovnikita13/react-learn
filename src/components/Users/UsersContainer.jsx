@@ -9,7 +9,7 @@ import Preloader from "../common/Preloader"
 import { useEffect } from "react"
 
 const UsersContainer = (props) => {
-	const { requestUsers, currentPage, pageSize } = props
+	const { requestUsers, currentPage, pageSize, topRef } = props
 	const onPageChanged = pageNumber => {
 		requestUsers(pageNumber, pageSize)
 	}
@@ -30,6 +30,7 @@ const UsersContainer = (props) => {
 				onPageChanged={onPageChanged}
 				totalUsersCount={props.totalUsersCount}
 				pageSize={pageSize}
+				topRef={topRef}
 			/>
 		</ErrorBoundary>
 	</>
