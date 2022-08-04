@@ -24,7 +24,7 @@ const Users = (props) => {
 
 	const handlerClick = (value) => {
 		onPageChanged(value)
-		scrollTo(topRef, 'end')
+		scrollTo(topRef, 'end', 'auto')
 	}
 
 	return (

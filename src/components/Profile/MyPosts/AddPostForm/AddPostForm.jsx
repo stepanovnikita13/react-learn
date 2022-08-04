@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik"
 import { notNull } from "../../../../utilits/validators/validators";
-import { SendTextarea } from "../../../common/form/Textarea/Textarea";
+import { ButtonIcon } from "../../../common/form/Buttons/Buttons";
+import { Textarea } from "../../../common/form/Textarea/Textarea";
 
 const AddPostForm = ({ addPost }) => {
 	const onSubmit = (values, { setSubmitting, resetForm }) => {
@@ -9,6 +10,7 @@ const AddPostForm = ({ addPost }) => {
 		resetForm()
 	}
 
+	const Button = (props) => <ButtonIcon {...props} icon='send' />
 	return (
 		<Formik
 			initialValues={{ text: '' }}
@@ -21,7 +23,13 @@ const AddPostForm = ({ addPost }) => {
 				isSubmitting
 			}) => (
 				<Form>
-					<Field component={SendTextarea} name='text' placeholder='Enter Your message' validate={notNull} />
+					<Field
+						component={Textarea}
+						SendButton={Button}
+						name='text'
+						placeholder='Enter Your message'
+						validate={notNull}
+						hideError={true} />
 				</Form>
 			)}
 		</Formik>

@@ -12,23 +12,10 @@ const useStyles = createUseStyles((theme) => ({
 			backgroundColor: 'var(--btnDisabled)',
 		}
 	},
-	iconFade: props => ({
+	icon: {
 		lineHeight: 0,
 		backgroundColor: 'transparent',
-		'&>svg>*': {
-			stroke: theme.colors.iconFade,
-		},
-		'&:hover>svg>*': {
-			stroke: props?.color ? theme.colors[props.color] : theme.colors.primary
-		}
-	}),
-	icon: props => ({
-		lineHeight: 0,
-		backgroundColor: 'transparent',
-		'&>svg>*': {
-			stroke: props?.color ? theme.colors[props.color] : theme.colors.primary
-		}
-	}),
+	},
 
 	themeSwitcher: isActive => ({
 		width: 45,

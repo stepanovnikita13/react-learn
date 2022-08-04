@@ -1,3 +1,3 @@
-export const scrollTo = (ref, block) => {
-	ref.current?.scrollIntoView({ behavior: "smooth", block })
+export const scrollTo = (ref, block, behavior = 'smooth') => {
+	ref.current?.scrollIntoView({ behavior, block })
 }

@@ -30,7 +30,7 @@ const User = ({ user, isAuth, followInProgressUsers, follow, topRef }) => {
 					onClick={handlerClick}
 					disabled={isDisabled}
 					title={user.followed ? 'unfollow' : 'folow'}
-					color={isDisabled ? 'iconFade' : user.followed ? 'success' : 'primary'}
+					color={isDisabled ? theme.colors.iconFade : user.followed ? theme.colors.success : theme.colors.primary}
 					className={classes.button}
 				/>
 				{!isMobile && <span>{user.followed ? 'you followed' : 'follow'}</span>}

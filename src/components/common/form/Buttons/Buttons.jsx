@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
+import { useTheme } from "react-jss"
 import GlobalSvgSelector from "../../../../assets/icons/global/globalSvgSelector"
 import useStyles from "./Buttons.styled"
 
@@ -15,27 +16,38 @@ export const Button = ({ children, className, ...props }) => {
 	)
 }
 
-export const ButtonIconFade = ({ icon, className, ...props }) => {
-	const classes = useStyles(props)
-	const classNames = [
-		classes.iconFade,
-		className ?? null
-	].join(' ')
-	return (
-		<button className={classNames} {...props} >
-			<GlobalSvgSelector type={icon} />
-		</button>
-	)
-}
-export const ButtonIcon = ({ icon, className, ...props }) => {
-	const classes = useStyles(props)
+export const ButtonIconFade = ({ icon, className, color, ...props }) => {
+	const [hover, setHover] = useState(false)
+	const theme = useTheme()
+	const classes = useStyles()
 	const classNames = [
 		classes.icon,
 		className ?? null
 	].join(' ')
+
+	return (
+		<button
+			className={classNames}
+			{...props}
+			onMouseEnter={() => { setHover(true) }}
+			onMouseLeave={() => { setHover(false) }}
+			onTouchStart={() => { setHover(true) }}
+			onTouchEnd={() => { setHover(false) }}>
+			<GlobalSvgSelector type={icon} color={hover ? color : theme.colors.iconFade} />
+		</button>
+	)
+}
+export const ButtonIcon = ({ icon, className, color, ...props }) => {
+	const theme = useTheme()
+	const classes = useStyles()
+	const classNames = [
+		classes.icon,
+		className ?? null
+	].join(' ')
+	const { disabled } = props
 	return (
 		<button className={classNames} {...props} >
-			<GlobalSvgSelector type={icon} />
+			<GlobalSvgSelector type={icon} color={disabled ? theme.colors.iconFade : color} />
 		</button>
 	)
 }

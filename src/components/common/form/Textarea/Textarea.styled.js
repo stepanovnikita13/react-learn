@@ -20,12 +20,12 @@ const useStyles = createUseStyles(theme => ({
 		extend: '_textarea',
 		padding: [8, 30, 8, 8],
 		transition: 'border-color .22s ease',
-		borderRadius: theme.sizes.borderRadius,
 		border: {
 			width: 2,
 			style: 'solid',
 			color: theme.colors.border
 		},
+		borderRadius: theme.sizes.borderRadius,
 		'&::placeholder': {
 			color: theme.colors.placeholder
 		},
@@ -33,28 +33,27 @@ const useStyles = createUseStyles(theme => ({
 			borderColor: theme.colors.borderHover
 		}
 	},
-	sendButton: ({ disabled }) => ({
+	sendButton: {
 		position: 'absolute',
 		backgroundColor: 'transparent',
 		right: 8,
 		bottom: 8,
-		'&&>svg>*': {
-			stroke: 'transparent',
-			fill: !disabled ? theme.colors.primary : theme.colors.iconFade
-		},
-		'&&:hover>svg>*': {
-			stroke: 'transparent',
-			fill: disabled && theme.colors.iconFade
-		}
-	}),
-	fieldSet: ({ isError }) => ({
+	},
+	fieldset: ({ isError, selected }) => ({
+		position: 'relative',
 		border: {
 			width: 2,
 			style: 'solid',
-			color: isError ? theme.COLORS.error : theme.colors.border
+			color: isError ? theme.COLORS.error : selected ? theme.colors.borderHover : theme.colors.border
 		},
 		borderRadius: theme.sizes.borderRadius,
-		animation: isError && '.2s cubic-bezier(.64, .19, .51, .67) 2 normal both errorPulse'
+		animation: isError && '.2s cubic-bezier(.64, .19, .51, .67) 2 normal both errorPulse',
+		'&::placeholder': {
+			color: theme.colors.placeholder
+		},
+		'&:hover, &:active, &:focus': {
+			borderColor: theme.colors.borderHover
+		},
 	}),
 	legend: {
 		display: 'block',
