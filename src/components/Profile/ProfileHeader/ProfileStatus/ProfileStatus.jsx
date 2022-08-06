@@ -1,54 +1,78 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTheme } from 'react-jss'
 import { ButtonIconFade } from '../../../common/form/Buttons/Buttons'
-import { Textarea } from '../../../common/form/Textarea/Textarea'
 import useStyles from './ProfileStatus.styled'
 import useOnClickOutside from '../../../../hooks/useOnClickOutside'
+import withField from '../../../../hoc/withField'
+import { TextareaWithSendButton } from '../../../common/form/Textarea/Textarea'
+import { Field, Form, Formik } from 'formik'
+
+const TextareaField = withField(TextareaWithSendButton)
 
 const ProfileStatus = ({ status, updateStatus, isOwner }) => {
 	const [editMode, setEditMode] = useState(false)
-	const [statusState, setStatus] = useState(status)
 	const theme = useTheme()
 	const classes = useStyles(theme)
 	const ref = useRef()
+
+	const onSubmit = (values, { setSubmitting, resetForm }) => {
+		if (values.status !== status) updateStatus(values.status)
+		setSubmitting(false)
+		setEditMode(false)
+		resetForm()
+	}
+
 	useOnClickOutside(ref, () => {
 		setEditMode(false)
-		setStatus(status)
 	})
-
-	useEffect(() => {
-		setStatus(status)
-	}, [status])
 
 	const activateEditMode = () => {
 		isOwner && setEditMode(true)
 	}
 
-	const setAndUpdateStatus = () => {
-		setEditMode(false)
-		if (statusState !== status) updateStatus(statusState)
-	}
-
-	const onStatusChange = (e) => {
-		setStatus(e.currentTarget.value)
-	}
-
-	const Button = (props) => <ButtonIconFade {...props} color={theme.colors.success} icon='check' />
 	return (
 		<>
 			{!editMode
 				? <div className={classes.container}>
 					<span onClick={activateEditMode}>{status || (isOwner && 'Set status...')}</span>
-					<ButtonIconFade onClick={activateEditMode} icon='edit' />
+					{isOwner && <ButtonIconFade onClick={activateEditMode} icon='edit' />}
 				</div>
 				: <div ref={ref}>
-					<Textarea
-						SendButton={Button}
-						autoFocus={true}
-						value={statusState}
-						handleClick={setAndUpdateStatus}
-						onChange={onStatusChange}
-					/>
+					<Formik
+						initialValues={{ status }}
+						onSubmit={onSubmit}
+					>
+						{({
+							isSubmitting,
+							handleSubmit
+						}) => {
+							const handlerKeyPress = e => {
+								if (e.charCode === 13 && !e.shiftKey) {
+									e.preventDefault()
+									handleSubmit()
+								}
+							}
+							return (
+								<Form>
+									<Field
+										component={TextareaField}
+										autoFocus={true}
+										name='status'
+										onKeyPress={handlerKeyPress}
+									>
+										<ButtonIconFade
+											icon='check'
+											type='submit'
+											disabled={isSubmitting}
+											color={theme.colors.success}
+										/>
+									</Field>
+
+								</Form>
+							)
+						}}
+					</Formik>
+
 				</div>
 			}
 		</>

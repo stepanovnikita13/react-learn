@@ -34,13 +34,14 @@ const Users = (props) => {
 				<div className={classes.users}>
 					{usersList}
 				</div>
-				<Pagination
+				{totalUsersCount > 0 && <Pagination
 					currentPage={currentPage}
 					handlerClick={handlerClick}
 					pageSize={pageSize}
 					totalUsersCount={totalUsersCount}
 					viewPagesCount={viewPagesCount}
-				/>
+				/>}
+
 			</div>
 		</div>
 	)

@@ -1,8 +1,11 @@
 import { Field, Form, Formik } from "formik"
 import { useTheme } from "react-jss"
+import withField from "../../../hoc/withField"
 import { notNull } from "../../../utilits/validators/validators"
 import { ButtonIcon } from "../../common/form/Buttons/Buttons"
-import { Textarea } from "../../common/form/Textarea/Textarea"
+import { TextareaWithSendButton } from "../../common/form/Textarea/Textarea"
+
+const TextareaField = withField(TextareaWithSendButton)
 
 const AddMessageForm = (props) => {
 	const theme = useTheme()
@@ -19,20 +22,31 @@ const AddMessageForm = (props) => {
 		onSubmit={onSubmit}
 	>
 		{({
-			values,
+			dirty,
+			handleSubmit,
+			isValid,
 			isSubmitting
-		}) => (
-			<Form>
-				<Field
-					style={{ backgroundColor: theme.colors.backgroundContainer }}
-					component={Textarea}
-					SendButton={Button}
-					name='message'
-					placeholder="Enter Your message"
-					validate={notNull}
-					hideError={true} />
-			</Form>
-		)}
+		}) => {
+			const handlerKeyPress = e => {
+				if (e.charCode === 13 && !e.shiftKey) {
+					e.preventDefault()
+					handleSubmit()
+				}
+			}
+			return (
+				<Form>
+					<Field
+						component={TextareaField}
+						name='message'
+						placeholder='Enter Your message'
+						onKeyPress={handlerKeyPress}
+						validate={notNull}
+						disabled={!isValid || isSubmitting || !dirty}
+						style={{ backgroundColor: theme.colors.backgroundContainer }}
+					/>
+				</Form>
+			)
+		}}
 	</Formik>
 }
 

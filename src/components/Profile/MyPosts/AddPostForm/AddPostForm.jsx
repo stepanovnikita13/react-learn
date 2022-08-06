@@ -1,7 +1,9 @@
 import { Field, Form, Formik } from "formik"
+import withField from "../../../../hoc/withField";
 import { notNull } from "../../../../utilits/validators/validators";
-import { ButtonIcon } from "../../../common/form/Buttons/Buttons";
-import { Textarea } from "../../../common/form/Textarea/Textarea";
+import { TextareaWithSendButton } from "../../../common/form/Textarea/Textarea";
+
+const TextareaWithSendButtonField = withField(TextareaWithSendButton)
 
 const AddPostForm = ({ addPost }) => {
 	const onSubmit = (values, { setSubmitting, resetForm }) => {
@@ -10,28 +12,36 @@ const AddPostForm = ({ addPost }) => {
 		resetForm()
 	}
 
-	const Button = (props) => <ButtonIcon {...props} icon='send' />
 	return (
 		<Formik
 			initialValues={{ text: '' }}
 			onSubmit={onSubmit}
 		>
 			{({
-				values,
-				errors,
-				touched,
-				isSubmitting
-			}) => (
-				<Form>
-					<Field
-						component={Textarea}
-						SendButton={Button}
-						name='text'
-						placeholder='Enter Your message'
-						validate={notNull}
-						hideError={true} />
-				</Form>
-			)}
+				dirty,
+				isSubmitting,
+				isValid,
+				handleSubmit
+			}) => {
+				const handlerKeyPress = e => {
+					if (e.charCode === 13 && !e.shiftKey) {
+						e.preventDefault()
+						handleSubmit()
+					}
+				}
+				return (
+					<Form>
+						<Field
+							component={TextareaWithSendButtonField}
+							name='text'
+							placeholder='Type post text'
+							onKeyPress={handlerKeyPress}
+							validate={notNull}
+							disabled={!isValid || isSubmitting || !dirty}
+						/>
+					</Form>
+				)
+			}}
 		</Formik>
 	)
 }

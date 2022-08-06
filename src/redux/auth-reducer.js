@@ -40,6 +40,9 @@ export const authUser = () => async dispatch => {
 		let { email, id, login } = data.data
 		dispatch(setUserData(email, id, login, true))
 	}
+	else {
+		dispatch(setUserData(null, null, null, false))
+	}
 }
 
 export const getCaptchaUrl = () => async dispatch => {

@@ -2,7 +2,8 @@ import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles({
 	post: {
-		padding: [10, 0]
+		padding: [10, 0],
+		overflowWrap: 'break-word'
 	},
 	likeContainer: {
 		display: 'flex',

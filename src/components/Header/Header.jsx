@@ -2,7 +2,7 @@ import logo from '../../logo-s.png'
 import AuthContainer from './Auth/AuthContainer';
 import { ThemeSwitcher } from '../common/form/Buttons/Buttons';
 //import S from './Header.styled';
-import { withRouter } from '../../hoc/withRouter';
+import withRouter from '../../hoc/withRouter';
 import { useTheme } from 'react-jss';
 import useStyles from './Header.styled';
 import { NavLink } from 'react-router-dom';

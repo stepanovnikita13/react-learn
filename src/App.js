@@ -45,7 +45,7 @@ const App = (props) => {
 		globalStyleSheet.update(getTheme(currentTheme))
 	}, [currentTheme])
 
-	if (!initialized) return null
+	if (!initialized || isAuthInServer === undefined) return null
 
 	return (
 		<div className={classes.wrapper} ref={topRef} id='app'>
@@ -87,4 +87,4 @@ export default compose(
 	connect(mapStateToProps, { initializeApp }),
 	withTheme,
 	withAuth
-)(React.memo(App))
+)(App)

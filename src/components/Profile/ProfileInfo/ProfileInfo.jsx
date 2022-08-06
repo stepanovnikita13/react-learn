@@ -13,8 +13,8 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 	const classes = useStyles()
 	const [editMode, setEditMode] = useState(false)
 	const [isActive, setIsActive] = useState(false)
-	const isMobile = useMedia([device.laptopS], [false], true)
 	const [ref, setRef] = useState(null)
+	const isMobile = useMedia([device.laptopS], [false], true)
 
 	useEffect(() => {
 		if (!errors) {
@@ -24,7 +24,6 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 
 	useEffect(() => {
 		setIsActive(isMobile)
-		console.log('use');
 	}, [setIsActive, isMobile])
 
 	const toggleEditMode = () => {
@@ -49,7 +48,7 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 		<div className={classes.container} onMouseEnter={handlerMouseEvent} onMouseLeave={handlerMouseEvent}>
 			<div className={classes.heading}>
 				<h1>My profile</h1>
-				{isActive && !editMode && <ButtonIconFade icon='edit' onClick={toggleEditMode} title='Edit' />}
+				{isActive && !editMode && isOwner && <ButtonIconFade icon='edit' onClick={toggleEditMode} title='Edit' />}
 				{editMode && <div>
 					<ButtonIconFade
 						icon='check'
@@ -58,7 +57,12 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 						onClick={handleSubmitForm}
 						title='Apply change'
 					/>
-					<ButtonIconFade icon='close' color={theme.colors.error} onClick={toggleEditMode} title='Cancel' />
+					<ButtonIconFade
+						icon='close'
+						color={theme.colors.error}
+						onClick={toggleEditMode}
+						title='Cancel'
+					/>
 				</div>
 				}
 			</div>

@@ -4,6 +4,7 @@ import { device } from '../../../styles/device'
 const useStyles = createUseStyles({
 	container: {
 		flex: 'auto',
+		overflow: 'auto',
 		[`@media ${device.tabletS}`]: {
 			flex: [2, 0, '400px'],
 		}

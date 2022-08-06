@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getUserProfile, getStatus, updateStatus, updateProfilePhoto, updateProfile } from '../../redux/profile-reducer';
 import Profile from './Profile'
 import { compose } from 'redux';
-import { withRouter } from '../../hoc/withRouter';
+import withRouter from '../../hoc/withRouter';
 import { selectErrors, selectProfile, selectStatus } from '../../redux/profile-selectors';
 import { selectUserId } from '../../redux/auth-selectors';
 import { useEffect, useCallback, useMemo } from 'react';

@@ -1,8 +1,11 @@
-import { Field, Form, Formik } from "formik"
+import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useEffect, useRef } from "react"
+import withField from "../../../../hoc/withField"
 import { required } from "../../../../utilits/validators/validators"
 import { InputLbl } from "../../../common/form/Input/Input"
 import { Textarea } from "../../../common/form/Textarea/Textarea"
+import TextareaFormik from "../../../common/form/Textarea/TextAreaFormik/TextareaFormik"
+
 
 const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 	const formRef = useRef()
@@ -35,7 +38,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 			onSubmit={handleSubmit}
 			innerRef={formRef}
 		>
-			{({ isSubmitting, errors, values, submitForm }) => {
+			{() => {
 				return (
 					<Form>
 						<div>
@@ -47,8 +50,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 							/>
 						</div>
 						<div>
-							<Field
-								component={Textarea}
+							<TextareaFormik
 								label='about me'
 								name='aboutMe'
 								validate={required}
@@ -61,10 +63,9 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 							</label>
 						</div>
 						<div>
-							<Field
-								component={Textarea}
-								name='lookingForAJobDescription'
+							<TextareaFormik
 								label='my skills'
+								name='lookingForAJobDescription'
 								validate={required}
 							/>
 						</div>

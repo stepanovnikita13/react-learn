@@ -31,9 +31,13 @@ Span.defaultProps = {
 export const Error = ({ children, className, ...props }) => {
 	const theme = useTheme()
 	const classes = useStyles({ ...props, theme })
+	const classNames = [
+		classes.error,
+		className
+	].join(' ')
 
 	return (
-		<Span className={classes.error + ' ' + className} {...props}>
+		<Span className={classNames} {...props}>
 			{children}
 		</Span>
 	)

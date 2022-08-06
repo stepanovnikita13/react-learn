@@ -1,59 +1,56 @@
-import _ from 'lodash'
 import { useState } from 'react'
-import { Error } from '../../global/Span'
+import { ButtonIcon } from '../Buttons/Buttons'
 import useStyles from "./Textarea.styled"
 
 
-const Textarea = (props) => {
-	const { label, style, field, form, SendButton, handleClick, className, hideError, ...rest } = props
-	const [selected, setSelected] = useState(false)
-	let isError, disabled, errorText
-	let handleSubmit = () => { }
-	if (form) {
-		const { touched, errors, isSubmitting, isValid, dirty } = form
-		errorText = errors[field.name]
-		isError = !hideError && !!(_.get(touched, field.name) && _.get(errors, field.name))
-		disabled = !isValid || !dirty || isSubmitting
-		handleSubmit = form.handleSubmit
-	}
-	const classes = useStyles({ isError, selected })
-	const textareaClassNames = [
-		classes.textarea,
+export const Textarea = ({ children, label, style, className, ...props }) => {
+	const [isActive, setIsActive] = useState(false)
+
+	const classes = useStyles(isActive)
+	const classNames = [
+		classes.fieldset,
 		className
 	].join(' ')
 
-	const handleKeyPress = e => {
-		if (e.charCode === 13 && !e.shiftKey) {
-			e.preventDefault()
-			handleClick && handleClick()
-			handleSubmit()
-		}
+	const handlerProps = (propsFunc, func) => (e) => {
+		func(e)
+		propsFunc && propsFunc(e)
 	}
+
+	const handlerMouseLeave = (e) => {
+		if (e.target !== document.activeElement)
+			setIsActive(false)
+	}
+
 	return (
 		<>
-			<fieldset className={classes.fieldset} style={style}>
+			<fieldset className={classNames} style={style}>
 				{label && <legend className={classes.legend} >{label}</legend>}
 				<textarea
-					className={textareaClassNames}
-					{...rest}
-					{...field}
-					onKeyPress={handleKeyPress}
-					onFocus={(e) => { setSelected(true) }}
-					onBlur={() => { setSelected(false) }}
-					onMouseEnter={() => { setSelected(true) }}
-					onMouseLeave={(e) => { e.target !== document.activeElement && setSelected(false) }}
+					className={classes.textarea}
+					{...props}
+					onFocus={handlerProps(props.onFocus, () => { setIsActive(true) })}
+					onBlur={handlerProps(props.onBlur, () => { setIsActive(false) })}
+					onMouseEnter={handlerProps(props.onMouseEnter, () => { setIsActive(true) })}
+					onMouseLeave={handlerProps(props.onMouseLeave, handlerMouseLeave)}
 				/>
-				{SendButton && <SendButton
-					className={classes.sendButton}
-					onClick={handleClick}
-					type='submit'
-					disabled={disabled}
-					title='Send'
-				/>}
+				{children}
 			</fieldset>
-			{isError && <Error style={{ fontSize: 8 }}>{errorText}</Error>}
 		</>
 	)
 }
 
-export { Textarea }
+export const TextareaWithSendButton = ({ children, disabled, ...props }) => {
+	const classes = useStyles()
+	return (
+		<Textarea {...props}>
+			<div className={classes.button}>
+				{children ?? <ButtonIcon
+					icon='send'
+					type='submit'
+					disabled={disabled}
+				/>}
+			</div>
+		</Textarea>
+	)
+}
