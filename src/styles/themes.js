@@ -18,6 +18,7 @@ const themes = {
 		header: COLORS.white,
 		sidebar: COLORS.white,
 		font: COLORS.black,
+		fontLabel: COLORS.primary350,
 		background: COLORS.primary70,
 		backgroundAroundModal: COLORS.black_alpha70,
 		backgroundContainer: COLORS.white,

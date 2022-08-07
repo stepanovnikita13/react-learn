@@ -1,19 +1,18 @@
-import { useField } from "formik"
+import { ErrorMessage, useField } from "formik"
 import { Textarea } from "../Textarea"
 import useStyles from "./TextareaFormik.styled"
 import React from "react"
-import { Error } from "../../../global/Span"
 
 const TextareaFormik = ({ className, validate, name, ...props }) => {
 	const [field, meta, helpers] = useField({ name, validate })
 	const { onBlur, ...restField } = field
 	const { touched, error } = meta
-	const isError = touched && !!error
+	const isError = touched && error
 
 	const classes = useStyles({ isError })
 	const classNames = [
-		classes.textarea,
-		className
+		classes.fieldset,
+		className || null
 	].join(' ')
 
 	const handlerBlur = () => {
@@ -28,7 +27,7 @@ const TextareaFormik = ({ className, validate, name, ...props }) => {
 			{...restField}
 			{...props}
 		/>
-		{isError && <Error>{error}</Error>}
+		<ErrorMessage className={classes.error} component="div" name={name} />
 	</>
 
 }

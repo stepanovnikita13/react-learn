@@ -4,7 +4,7 @@ import { device } from "./device";
 const globalStyleSheet = jss.createStyleSheet({
 	heading: {
 		fontFamily: () => 'OpenSans-Bold',
-		marginBottom: t => t.font.heading.marginBottom + 'em',
+		marginBottom: theme => theme.font.heading.marginBottom + 'em',
 	},
 	'@global': {
 		[`input:-webkit-autofill,
@@ -16,60 +16,63 @@ const globalStyleSheet = jss.createStyleSheet({
 		select:-webkit-autofill,
 		select:-webkit-autofill:hover,
 		select:-webkit-autofill:focus`]: {
-			'-webkit-text-fill-color': t => t.colors.font,
+			'-webkit-text-fill-color': theme => theme.colors.font,
 			WebkitBoxShadow: '0 0 0px 1000px transparent inset',
 			transition: 'background-color 5000s ease-in-out 0s',
 		},
 		'*': {
 			transition: 'background-color .1s ease'
 		},
-		body: t => ({
-			color: t.colors.font,
-			backgroundColor: t.colors.background,
-			fontSize: t.font.baseEm,
-			lineHeight: t.font.lineHeight,
+		body: theme => ({
+			color: theme.colors.font,
+			backgroundColor: theme.colors.background,
+			fontSize: theme.font.baseEm,
+			lineHeight: theme.font.lineHeight,
 			fontFamily: ['OpenSans-Regular', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
 				'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
 			WebkitFontSmoothing: 'antialiased',
 			MozOsxFontSmoothing: 'grayscale',
 		}),
-		a: t => ({
-			color: t.colors.font
+		a: theme => ({
+			color: theme.colors.font
 		}),
-		h1: {
+		h1: theme => ({
 			extend: 'heading',
-			fontSize: t => t.font.heading.h1,
-			lineHeight: t => t.font.heading.lineHeightH1
-		},
-		h2: {
+			fontSize: theme.font.heading.h1,
+			lineHeight: theme.font.heading.lineHeightH1
+		}),
+		h2: theme => ({
 			extend: 'heading',
-			fontSize: t => t.font.heading.h2,
-			lineHeight: t => t.font.heading.lineHeightH2
-		},
-		h3: {
+			fontSize: theme.font.heading.h2,
+			lineHeight: theme.font.heading.lineHeightH2
+		}),
+		h3: theme => ({
 			extend: 'heading',
-			fontSize: t => t.font.heading.h3,
-			lineHeight: t => t.font.heading.lineHeightH2
-		},
+			fontSize: theme.font.heading.h3,
+			lineHeight: theme.font.heading.lineHeightH2
+		}),
 		h4: {
 			extend: 'heading',
-			fontSize: t => t.font.heading.h4,
+			fontSize: theme => theme.font.heading.h4,
 		},
 		h5: {
 			extend: 'heading',
-			fontSize: t => t.font.heading.h5,
+			fontSize: theme => theme.font.heading.h5,
 		},
 		h6: {
 			extend: 'heading',
-			fontSize: t => t.font.heading.h6,
+			fontSize: theme => theme.font.heading.h6,
 		},
 		textarea: {
 			resize: 'none'
 		},
 		'input, textarea': {
-			color: t => t.colors.font
+			color: theme => theme.colors.font
 		},
 
+		'.text-error': {
+			color: theme => theme.colors.error
+		},
 		'.container': {
 			width: '100%',
 			padding: [0, 10],
@@ -79,8 +82,8 @@ const globalStyleSheet = jss.createStyleSheet({
 				padding: [0, 20]
 			},
 			[`@media ${device.laptopS}`]: {
-				maxWidth: t => t.sizes.maxWidth,
-				minWidth: t => t.sizes.minWidth,
+				maxWidth: theme => theme.sizes.maxWidth,
+				minWidth: theme => theme.sizes.minWidth,
 				padding: 0
 			},
 			[`@media ${device.desktop}`]: {

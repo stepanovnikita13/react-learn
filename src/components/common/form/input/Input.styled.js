@@ -1,24 +1,53 @@
-import { device } from "../../../../styles/device"
-
 import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles((theme) => ({
-	container: ({ isError }) => ({
+const useStyles = createUseStyles(theme => ({
+	wrapper: {
+		marginTop: ({ label }) => label && 10,
 		position: 'relative',
-		backgroundColor: theme.colors.backgroundInput,
-		borderRadius: theme.sizes.borderRadius,
-		'& svg>*': {
-			'&:not(.fill), &.stroke': { stroke: isError && theme.colors.error, },
-			'&.fill': { fill: isError && theme.colors.error }
-		},
-		'& input, & input:hover, & input:active, & input:focus': {
-			borderColor: isError && theme.colors.error
-		},
-		'& input': {
-			animation: isError && '.2s cubic-bezier(.64, .19, .51, .67) 2 normal both $errorPulse'
-		}
+	},
+	root: {
+		position: 'relative',
+		display: 'flex',
+		alignItems: 'center',
+	},
+	label: ({ isError }) => ({
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		transform: 'translate(17px, calc(-50% + 1px))',
+		fontSize: .75,
+		lineHeight: 1,
+		color: isError ? theme.colors.error : theme.colors.fontLabel,
+		zIndex: 1
 	}),
-
+	input: ({ withIconStart, withIconEnd }) => ({
+		width: '100%',
+		fontSize: theme.font.baseEm,
+		paddingTop: 14,
+		paddingBottom: 14,
+		paddingLeft: withIconStart ? 40 : 12,
+		paddingRight: withIconEnd ? 40 : 12,
+		background: 'none',
+		borderRadius: theme.sizes.borderRadius,
+		color: theme.colors.font,
+	}),
+	outline: ({ isActive, isError, label }) => ({
+		position: 'absolute',
+		inset: 0,
+		top: label ? -11 : 0,
+		border: {
+			width: isError ? 1 : 2,
+			style: 'solid',
+			color: isError
+				? theme.colors.error
+				: isActive
+					? theme.colors.borderHover
+					: theme.colors.border
+		},
+		borderRadius: theme.sizes.borderRadius,
+		pointerEvents: 'none',
+		animation: isError && `.2s cubic-bezier(.64, .19, .51, .67) 2 normal both $errorPulse`,
+	}),
 	'@keyframes errorPulse': {
 		from: {
 			borderColor: theme.colors.border
@@ -27,71 +56,26 @@ const useStyles = createUseStyles((theme) => ({
 			borderColor: theme.colors.error
 		}
 	},
-
-	icon: {
-		position: 'absolute',
-		top: '50%',
-		bottom: 0,
-		transform: 'translateY(-50%)',
-		lineHeight: 0,
-		height: 'min-content'
-	},
-	iconFieldType: {
-		left: 10
-	},
-	iconErrorInfo: {
-		right: 10
-	},
-	input: {
-		width: '100%',
-		border: {
-			width: 2,
-			style: 'solid',
-			color: theme.colors.border
-		},
-		borderRadius: theme.sizes.borderRadius,
-		fontSize: theme.font.baseEm,
-		lineHeight: theme.font.BASE * 3,
-		backgroundColor: 'transparent',
-		color: theme.colors.font,
-		paddingLeft: 40,
-		[`@media ${device.tabletS}`]: {
-			lineHeight: theme.font.BASE * 3
-		},
-		'&::placeholder': {
-			color: theme.colors.placeholder
-		},
-		'&:hover': {
-			borderColor: theme.colors.borderHover
-		},
-		'&:active, &:focus': {
-			borderColor: theme.colors.primary
-		},
-	},
-
-	fieldset: ({ isError }) => ({
-		border: {
-			width: 2,
-			style: 'solid',
-			color: isError ? theme.colors.error : theme.colors.border
-		},
-		borderRadius: theme.sizes.borderRadius,
-		animation: isError && '.2s cubic-bezier(.64, .19, .51, .67) 2 normal both errorPulse'
-	}),
 	legend: {
-		display: 'block',
-		fontSize: .8,
-		fontFamily: theme.font.family.italic,
 		marginLeft: 10,
-		padding: [0, 5],
+		visibility: 'hidden',
+		fontSize: .75,
+		maxWidth: ({ label }) => label ? '100%' : 0,
+		height: ({ label }) => label ? 'auto' : 0,
+		'& span': {
+			padding: [0, 5],
+		}
 	},
-	inputLbl: {
-		display: 'block',
-		width: '100%',
-		fontSize: .9,
-		padding: [5, 10, 10, 10],
-		backgroundColor: 'transparent',
+	iconStart: {
+		position: 'absolute',
+		left: 10,
+		lineHeight: 0
+	},
+	iconEnd: {
+		position: 'absolute',
+		right: 10,
+		lineHeight: 0
 	}
-}))
+}), { name: 'Input' })
 
 export default useStyles

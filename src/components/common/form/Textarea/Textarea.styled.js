@@ -7,7 +7,7 @@ const useStyles = createUseStyles(theme => ({
 		height: theme.font.lineHeight * 4 + 'em',
 		'line-height': .9 * theme.font.lineHeight,
 		font: {
-			size: .9,
+			size: 1,
 		},
 		background: 'transparent',
 		padding: [5, 10, 10, 10],
@@ -20,7 +20,7 @@ const useStyles = createUseStyles(theme => ({
 			color: isActive ? theme.colors.borderHover : theme.colors.border
 		},
 		borderRadius: theme.sizes.borderRadius,
-		//animation: isError && '.2s cubic-bezier(.64, .19, .51, .67) 2 normal both errorPulse',
+		//
 		'&::placeholder': {
 			color: theme.colors.placeholder
 		},
@@ -28,7 +28,6 @@ const useStyles = createUseStyles(theme => ({
 	legend: {
 		display: 'block',
 		fontSize: .8,
-		fontFamily: theme.font.family.italic,
 		marginLeft: 10,
 		padding: [0, 5],
 	},

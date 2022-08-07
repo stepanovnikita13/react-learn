@@ -12,7 +12,7 @@ export const Textarea = ({ children, label, style, className, ...props }) => {
 		className
 	].join(' ')
 
-	const handlerProps = (propsFunc, func) => (e) => {
+	const handlerEvent = (propsFunc, func) => (e) => {
 		func(e)
 		propsFunc && propsFunc(e)
 	}
@@ -29,10 +29,10 @@ export const Textarea = ({ children, label, style, className, ...props }) => {
 				<textarea
 					className={classes.textarea}
 					{...props}
-					onFocus={handlerProps(props.onFocus, () => { setIsActive(true) })}
-					onBlur={handlerProps(props.onBlur, () => { setIsActive(false) })}
-					onMouseEnter={handlerProps(props.onMouseEnter, () => { setIsActive(true) })}
-					onMouseLeave={handlerProps(props.onMouseLeave, handlerMouseLeave)}
+					onFocus={handlerEvent(props.onFocus, () => { setIsActive(true) })}
+					onBlur={handlerEvent(props.onBlur, () => { setIsActive(false) })}
+					onMouseEnter={handlerEvent(props.onMouseEnter, () => { setIsActive(true) })}
+					onMouseLeave={handlerEvent(props.onMouseLeave, handlerMouseLeave)}
 				/>
 				{children}
 			</fieldset>
