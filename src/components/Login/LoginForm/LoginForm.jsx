@@ -1,6 +1,6 @@
 import { Field, Form, Formik, ErrorMessage } from "formik"
 import { useTheme } from "react-jss"
-import { NavLink } from "react-router-dom"
+//import { NavLink } from "react-router-dom"
 import GlobalSvgSelector from "../../../assets/icons/global/globalSvgSelector"
 import withField from "../../../hoc/withField"
 import { required } from "../../../utilits/validators/validators"
@@ -17,21 +17,6 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 		setSubmitting(false);
 	}
 
-	const createField = (name, type, placeholder, isError, rest) => {
-		return (
-			<Field
-				component={inputWithField}
-				name={name}
-				placeholder={placeholder}
-				validate={required}
-				iconStart={
-					<GlobalSvgSelector color={isError && theme.colors.error} type={type} />
-				}
-				isError={isError}
-				{...rest}
-			/>
-		)
-	}
 	return (
 		<div>
 			<h1>Login into<br />your account</h1>
@@ -52,13 +37,13 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 									<Field
 										component={inputWithField}
 										name='email'
-										label='Login'
 										placeholder='Type Your Email'
 										validate={required}
+										autoComplete='email'
 										iconStart={
 											<GlobalSvgSelector color={(errors.email && touched.email) ? theme.colors.error : null} type='user' />
 										}
-										isError={errors.email && touched.email}
+										error
 										style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='email' />
@@ -68,14 +53,13 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 										component={inputWithField}
 										name='password'
 										type='password'
-										label='Password'
 										placeholder='Type Your Password'
 										validate={required}
 										autoComplete='current-password'
 										iconStart={
 											<GlobalSvgSelector color={errors.password && touched.password ? theme.colors.error : null} type='password' />
 										}
-										isError={errors.password && touched.password}
+										error
 										style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='password' />
@@ -87,9 +71,22 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 									<a href="/login" className="">Forgot your Password?</a>
 								</div>
 								{captchaUrl && <>
-									<img src={captchaUrl} alt="captcha" />
+									<div className={classes.captcha}>
+										<img src={captchaUrl} alt="captcha" />
+									</div>
 									<div>
-										{createField("captcha", null, "Enter captcha")}
+										<Field
+											component={inputWithField}
+											name='captcha'
+											placeholder='Enter captcha'
+											validate={required}
+											iconStart={
+												<GlobalSvgSelector color={errors.captcha && touched.captcha ? theme.colors.error : null} type='info' />
+											}
+											error
+											style={{ backgroundColor: theme.colors.backgroundContainer }}
+										/>
+										<ErrorMessage className='text-error' component={'div'} name='password' />
 									</div>
 								</>
 								}
@@ -105,13 +102,13 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 					)
 				}}
 			</Formik>
-			Dont have account
+			{/* Dont have account
 			<NavLink to={"/register"} className={classes.registerLink}>Register</NavLink>
 			<div className={classes.socialLogin} >
 				<p>Or, Sign in with your social account</p>
 				<Button className={classes.googleButton}>Sign in with Google</Button>
 				<Button className={classes.facebookButton}>Sign in with Facebook</Button>
-			</div>
+			</div> */}
 		</div>
 	)
 }

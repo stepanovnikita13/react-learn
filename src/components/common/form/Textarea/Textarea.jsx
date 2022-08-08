@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { ButtonIcon } from '../Buttons/Buttons'
 import useStyles from "./Textarea.styled"
 
 
-export const Textarea = ({ children, label, style, className, ...props }) => {
+export const Textarea = ({ children, label, className, isError, ...props }) => {
 	const [isActive, setIsActive] = useState(false)
-
-	const classes = useStyles(isActive)
+	const classes = useStyles({
+		isError,
+		isActive,
+		label: !!label
+	})
 	const classNames = [
-		classes.fieldset,
-		className
+		classes.wrapper,
+		className || null
 	].join(' ')
 
 	const handlerEvent = (propsFunc, func) => (e) => {
@@ -23,9 +25,9 @@ export const Textarea = ({ children, label, style, className, ...props }) => {
 	}
 
 	return (
-		<>
-			<fieldset className={classNames} style={style}>
-				{label && <legend className={classes.legend} >{label}</legend>}
+		<div className={classNames}>
+			<label className={classes.label} htmlFor={props.name}>{label}</label>
+			<div className={classes.root}>
 				<textarea
 					className={classes.textarea}
 					{...props}
@@ -34,23 +36,13 @@ export const Textarea = ({ children, label, style, className, ...props }) => {
 					onMouseEnter={handlerEvent(props.onMouseEnter, () => { setIsActive(true) })}
 					onMouseLeave={handlerEvent(props.onMouseLeave, handlerMouseLeave)}
 				/>
+				<fieldset className={classes.outline}>
+					<legend className={classes.legend}>
+						<span>{label}</span>
+					</legend>
+				</fieldset>
 				{children}
-			</fieldset>
-		</>
-	)
-}
-
-export const TextareaWithSendButton = ({ children, disabled, ...props }) => {
-	const classes = useStyles()
-	return (
-		<Textarea {...props}>
-			<div className={classes.button}>
-				{children ?? <ButtonIcon
-					icon='send'
-					type='submit'
-					disabled={disabled}
-				/>}
 			</div>
-		</Textarea>
+		</div>
 	)
 }

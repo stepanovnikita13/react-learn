@@ -12,7 +12,7 @@ export const Input = ({ className, label, iconStart, iconEnd, isError, ...props 
 			withIconEnd: !!iconEnd,
 		})
 	const classNames = [
-		classes.root,
+		classes.wrapper,
 		className || null
 	].join(' ')
 
@@ -27,9 +27,9 @@ export const Input = ({ className, label, iconStart, iconEnd, isError, ...props 
 	}
 
 	return (
-		<div className={classes.wrapper}>
+		<div className={classNames}>
 			<label className={classes.label} htmlFor={props.name}>{label}</label>
-			<div className={classNames}>
+			<div className={classes.root}>
 				{iconStart && <div className={classes.iconStart}>
 					{iconStart}
 				</div>}

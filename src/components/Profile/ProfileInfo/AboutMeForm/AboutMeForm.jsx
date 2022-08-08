@@ -3,11 +3,11 @@ import { useEffect, useRef } from "react"
 import withField from "../../../../hoc/withField"
 import { required } from "../../../../utilits/validators/validators"
 import { Input } from "../../../common/form/Input/Input"
-import TextareaFormik from "../../../common/form/Textarea/TextAreaFormik/TextareaFormik"
+import { Textarea } from "../../../common/form/Textarea/Textarea"
 import useStyles from './AboutMeForm.styled'
-import _ from 'lodash'
 
 const inputWithFormik = withField(Input)
+const textareaWithFormik = withField(Textarea)
 
 const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 	const { aboutMe, lookingForAJob, lookingForAJobDescription, fullName, userId } = profile
@@ -22,7 +22,6 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 		setErrors(data)
 		setSubmitting(false)
 	}
-
 
 	useEffect(() => {
 		bindRef(formRef)
@@ -56,16 +55,24 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 									label='Full name'
 									name='fullName'
 									validate={required}
-									isError={errors['fullName'] && touched['fullName']}
+									error
 								/>
 								<ErrorMessage className='text-error' component={'div'} name='fullName' />
 							</div>
 							<div>
-								<TextareaFormik
+								{/* <TextareaFormik
 									label='About me'
 									name='aboutMe'
 									validate={required}
+								/> */}
+								<Field
+									component={textareaWithFormik}
+									label='About me'
+									name='aboutMe'
+									validate={required}
+									error
 								/>
+								<ErrorMessage className='text-error' component={'div'} name='aboutMe' />
 							</div>
 							<div>
 								<label>
@@ -74,11 +81,19 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 								</label>
 							</div>
 							<div>
-								<TextareaFormik
+								{/* <TextareaFormik
 									label='My skills'
 									name='lookingForAJobDescription'
 									validate={required}
+								/> */}
+								<Field
+									component={textareaWithFormik}
+									label='My skills'
+									name='lookingForAJobDescription'
+									validate={required}
+									error
 								/>
+								<ErrorMessage className='text-error' component={'div'} name='aboutMe' />
 							</div>
 							<div>
 								{Object.keys(contacts).map(key => {
@@ -89,7 +104,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 												label={key.charAt(0).toUpperCase() + key.slice(1)}
 												name={`contacts.${key}`}
 												validate={required}
-												isError={_.get(errors, `contacts.${key}`) && _.get(touched, `contacts.${key}`) && dirty}
+												error
 											/>
 											<ErrorMessage className='text-error' component={'div'} name={`contacts.${key}`} />
 										</div>

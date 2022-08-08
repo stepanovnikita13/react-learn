@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik"
 import withField from "../../../../hoc/withField";
 import { notNull } from "../../../../utilits/validators/validators";
-import { TextareaWithSendButton } from "../../../common/form/Textarea/Textarea";
+import { TextareaWithSendButton } from "../../../common/form/Textarea/TextareaWithSendButton";
 
 const TextareaWithSendButtonField = withField(TextareaWithSendButton)
 

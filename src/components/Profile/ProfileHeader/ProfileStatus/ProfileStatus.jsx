@@ -4,7 +4,7 @@ import { ButtonIconFade } from '../../../common/form/Buttons/Buttons'
 import useStyles from './ProfileStatus.styled'
 import useOnClickOutside from '../../../../hooks/useOnClickOutside'
 import withField from '../../../../hoc/withField'
-import { TextareaWithSendButton } from '../../../common/form/Textarea/Textarea'
+import { TextareaWithSendButton } from '../../../common/form/Textarea/TextareaWithSendButton'
 import { Field, Form, Formik } from 'formik'
 
 const TextareaField = withField(TextareaWithSendButton)

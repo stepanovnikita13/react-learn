@@ -41,6 +41,14 @@ const useStyles = createUseStyles({
 		color: ({ theme }) => theme.colors.primary,
 		marginLeft: 5
 	},
+	captcha: {
+		display: 'flex',
+		justifyContent: 'center',
+
+		'&> img': {
+
+		}
+	},
 	socialLogin: {
 		display: 'flex',
 		flexFlow: 'column nowrap',

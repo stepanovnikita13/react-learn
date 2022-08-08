@@ -2,8 +2,7 @@ import { Field, Form, Formik } from "formik"
 import { useTheme } from "react-jss"
 import withField from "../../../hoc/withField"
 import { notNull } from "../../../utilits/validators/validators"
-import { ButtonIcon } from "../../common/form/Buttons/Buttons"
-import { TextareaWithSendButton } from "../../common/form/Textarea/Textarea"
+import { TextareaWithSendButton } from "../../common/form/Textarea/TextareaWithSendButton"
 
 const TextareaField = withField(TextareaWithSendButton)
 
@@ -14,8 +13,6 @@ const AddMessageForm = (props) => {
 		setSubmitting(false)
 		resetForm()
 	}
-
-	const Button = (props) => <ButtonIcon {...props} icon='send' />
 
 	return <Formik
 		initialValues={{ message: '' }}
@@ -38,6 +35,7 @@ const AddMessageForm = (props) => {
 					<Field
 						component={TextareaField}
 						name='message'
+						label='New message'
 						placeholder='Enter Your message'
 						onKeyPress={handlerKeyPress}
 						validate={notNull}

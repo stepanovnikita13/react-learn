@@ -3,7 +3,7 @@ import { device } from "./device";
 
 const globalStyleSheet = jss.createStyleSheet({
 	heading: {
-		fontFamily: () => 'OpenSans-Bold',
+		fontFamily: theme => theme.font.family.bold,
 		marginBottom: theme => theme.font.heading.marginBottom + 'em',
 	},
 	'@global': {
@@ -36,21 +36,21 @@ const globalStyleSheet = jss.createStyleSheet({
 		a: theme => ({
 			color: theme.colors.font
 		}),
-		h1: theme => ({
+		h1: {
 			extend: 'heading',
-			fontSize: theme.font.heading.h1,
-			lineHeight: theme.font.heading.lineHeightH1
-		}),
-		h2: theme => ({
+			fontSize: theme => theme.font.heading.h1,
+			lineHeight: theme => theme.font.heading.lineHeightH1
+		},
+		h2: {
 			extend: 'heading',
-			fontSize: theme.font.heading.h2,
-			lineHeight: theme.font.heading.lineHeightH2
-		}),
-		h3: theme => ({
+			fontSize: theme => theme.font.heading.h2,
+			lineHeight: theme => theme.font.heading.lineHeightH2
+		},
+		h3: {
 			extend: 'heading',
-			fontSize: theme.font.heading.h3,
-			lineHeight: theme.font.heading.lineHeightH2
-		}),
+			fontSize: theme => theme.font.heading.h3,
+			lineHeight: theme => theme.font.heading.lineHeightH2
+		},
 		h4: {
 			extend: 'heading',
 			fontSize: theme => theme.font.heading.h4,

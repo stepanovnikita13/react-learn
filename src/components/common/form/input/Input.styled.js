@@ -30,6 +30,9 @@ const useStyles = createUseStyles(theme => ({
 		background: 'none',
 		borderRadius: theme.sizes.borderRadius,
 		color: theme.colors.font,
+		'&::placeholder': {
+			color: theme.colors.placeholder
+		},
 	}),
 	outline: ({ isActive, isError, label }) => ({
 		position: 'absolute',
