@@ -6,6 +6,7 @@ const commonColors = {
 	buttonText: COLORS.white,
 	borderDropZone: COLORS.primary_alpha40,
 	buttonDisabled: COLORS.primary700,
+	buttonToDialogs: COLORS.primary700_alpha20,
 	avatarMenuBackground: COLORS.gray_alpha50,
 	black: COLORS.black,
 	white: COLORS.white,

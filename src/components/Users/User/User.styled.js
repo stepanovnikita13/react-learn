@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
 		}
 	},
 	avatar: {
-		width: '40%',
+		width: '20%',
 		height: 'auto',
 		margin: [0, 'auto'],
 		[`@media ${device.tabletS}`]: {

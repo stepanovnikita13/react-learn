@@ -1,52 +1,38 @@
 import DialogItem from './DialogItem/DialogItem'
-import Message from './Message/Message'
-import AddMessageForm from "./AddMessageForm/AddMessageForm"
 import useStyles from './Dialogs.styled'
-import { useEffect, useRef, useState } from 'react'
 import { ErrorBoundary } from '../common/ErrorBoundary'
-import { scrollTo } from '../../utilits/functions'
+import Chat from './Chat/Chat'
+import { useState } from 'react'
+import { ButtonIcon } from '../common/form/Buttons/Buttons'
+import useMedia from '../../hooks/useMedia'
+import { device } from '../../styles/device'
 
 const Dialogs = (props) => {
 	const { dialogs, messages, sendMessage } = props
-	const [scrollBarIsShow, setScrollBarIsShow] = useState(false)
-	const classes = useStyles({ scrollBarIsShow })
-	let dialogList = dialogs.map(d => <DialogItem name={`${d.firstName} ${d.lastName}`} key={d.id} id={d.id} avatar={d.avatar} />)
-	let msgList = messages.map(m => <Message text={m.text} key={m.id} />).reverse()
-	const messagesEndRef = useRef(null)
+	const [isHide, setIsHide] = useState(false)
+	const classes = useStyles({ isHide })
+	const isMobile = useMedia([device.tabletS], [false], true)
 
-	useEffect(() => {
-		scrollTo(messagesEndRef, 'end')
-	}, [messages]);
+	const dialogList = dialogs.map(d => {
+		return (
+			<DialogItem
+				key={d.id}
+				id={d.id}
+				name={`${d.firstName} ${d.lastName}`}
+				avatar={d.avatar}
+				onClick={() => isMobile && setIsHide(true)}
+			/>
+		)
+	})
 
-	function showScroll() {
-		setScrollBarIsShow(true)
-	}
-
-	function hideScroll() {
-		setScrollBarIsShow(false)
-	}
 	return (
 		<ErrorBoundary>
 			<div className={classes.container}>
+				{isMobile && <ButtonIcon className={classes.button} onClick={() => setIsHide(false)} icon='message' />}
 				<div className={classes.dialogs}>
 					{dialogList}
 				</div>
-				<div className={classes.chat}>
-					<div
-						className={classes.chatWrapper}
-						onTouchMove={showScroll}
-						onTouchEnd={hideScroll}
-						onMouseEnter={showScroll}
-						onMouseLeave={hideScroll}
-					>
-						<span className={classes.magicBox} />
-						<div className={classes.messagesBlock}>
-							<div ref={messagesEndRef} />
-							{msgList}
-						</div>
-					</div>
-					<AddMessageForm sendMessage={sendMessage} />
-				</div>
+				<Chat messages={messages} sendMessage={sendMessage} />
 			</div>
 		</ErrorBoundary>
 	)

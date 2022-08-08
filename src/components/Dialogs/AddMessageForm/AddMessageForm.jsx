@@ -35,7 +35,6 @@ const AddMessageForm = (props) => {
 					<Field
 						component={TextareaField}
 						name='message'
-						label='New message'
 						placeholder='Enter Your message'
 						onKeyPress={handlerKeyPress}
 						validate={notNull}

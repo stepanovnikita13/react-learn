@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useTheme } from "react-jss"
 import useMedia from "../../../../hooks/useMedia"
 import { device } from "../../../../styles/device"
@@ -31,10 +31,6 @@ const UploadImageModal = ({ hideModal, isModalOpen, updateProfilePhoto }) => {
 			setImageData(e.target.files[0])
 		}
 	}
-
-	useEffect(() => {
-		console.log(imageData)
-	}, [imageData])
 
 	return (
 		<Modal hideModal={hideModal} isModalOpen={isModalOpen}>

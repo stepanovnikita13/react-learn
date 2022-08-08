@@ -35,7 +35,7 @@ const font = {
 const BORDER_RADIUS = 6
 const sizes = {
 	maxWidth: 1200,
-	minWidth: 728,
+	minWidth: 320,
 	headerHeight: 50,
 	navbarWidth: Math.sqrt(BASE) * 155,
 
@@ -45,6 +45,8 @@ const sizes = {
 
 const zIndex = {
 	header: 50,
+	dialogs: 10,
+	buttonToDialogs: 5,
 	navbar: 51,
 	modal: 100,
 	preloader: 150,

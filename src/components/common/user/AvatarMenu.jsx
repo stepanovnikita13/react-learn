@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
 import UploadImageModal from '../modals/UploadImageModal/UploadImageModal'
 import useStyles from './AvatarMenu.styled'
@@ -21,9 +21,9 @@ const AvatarMenu = ({ updateProfilePhoto }) => {
 		setIsActive(false)
 	}
 
-	const hideModal = () => {
+	const hideModal = useCallback(() => {
 		setisModalOpen(false)
-	}
+	}, [setisModalOpen])
 
 	const modal = isModalOpen
 		? (<UploadImageModal

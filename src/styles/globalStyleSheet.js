@@ -75,6 +75,7 @@ const globalStyleSheet = jss.createStyleSheet({
 		},
 		'.container': {
 			width: '100%',
+			minWidth: theme => theme.sizes.minWidth,
 			padding: [0, 10],
 			height: '100%',
 			margin: [0, 'auto'],
@@ -82,12 +83,11 @@ const globalStyleSheet = jss.createStyleSheet({
 				padding: [0, 20]
 			},
 			[`@media ${device.laptopS}`]: {
-				maxWidth: theme => theme.sizes.maxWidth,
-				minWidth: theme => theme.sizes.minWidth,
-				padding: 0
+				padding: [0, 70]
 			},
-			[`@media ${device.desktop}`]: {
-				//padding: [0, 20]
+			[`@media ${device.laptopL}`]: {
+				maxWidth: theme => theme.sizes.maxWidth,
+				padding: 0
 			}
 		},
 	}

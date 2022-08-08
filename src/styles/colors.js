@@ -31,6 +31,7 @@ export const COLORS = {
 
 	black_alpha70: 'rgba(0, 0, 0, .7)',
 	black_alpha40: 'rgba(0, 0, 0, .4)',
+	black_alpha20: 'rgba(0, 0, 0, .4)',
 	gray_alpha50: 'rgba(128, 128, 128, .5)',
 	primary_alpha40: 'rgba(102, 103, 171, .4)',
 	primary700_alpha20: 'rgba(72, 73, 120, .2)',

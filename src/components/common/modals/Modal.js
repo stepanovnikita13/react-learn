@@ -1,36 +1,30 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import * as ReactDOM from 'react-dom';
 import { useTheme } from 'react-jss';
 import useStyles from './Modal.styled';
+import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
 const Modal = ({ isModalOpen, hideModal, ...props }) => {
 	const theme = useTheme()
 	const classes = useStyles({ theme })
+	const ref = useRef()
+	useOnClickOutside(ref, hideModal)
 	const el = useMemo(() => document.createElement('div'), [])
-	const wrapperRef = useRef(null)
-
-
-	const handleClickOutsideCallback = useCallback(e => {
-		if (wrapperRef.current && !wrapperRef.current.contains(e.target)) hideModal()
-	}, [wrapperRef, hideModal])
 
 	useEffect(() => {
 		if (isModalOpen) {
 			const app = document.getElementById('app')
 			app.appendChild(el)
-			document.addEventListener('mousedown', handleClickOutsideCallback, false)
 			return () => {
 				app.removeChild(el)
-				document.removeEventListener('mousedown', handleClickOutsideCallback, false)
 			}
 		}
-
-	}, [isModalOpen, el, handleClickOutsideCallback])
+	}, [isModalOpen, el])
 
 	if (isModalOpen) {
 		return ReactDOM.createPortal(
 			<div className={classes.modal}>
-				<div className={classes.container} ref={wrapperRef}>
+				<div className={classes.container} ref={ref}>
 					{props.children}
 				</div>
 			</div>,
