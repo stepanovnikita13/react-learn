@@ -1,3 +1,8 @@
+# Social network project
+###[Open page](https://stepanovnikita13.github.io/react-learn/)
+login: stepanov.nikita13@gmail.com
+password: Sw82z3com
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
