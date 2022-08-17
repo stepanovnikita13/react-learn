@@ -2,7 +2,7 @@ import Login from "./Login"
 import { useContext } from "react"
 import { AuthContext } from "../../hoc/withAuth"
 import { connect } from 'react-redux'
-import { login } from "../../redux/auth-reducer"
+import { login } from "../../redux/auth-reducer.ts"
 import { selectCaptchaUrl, selectErrorField, selectErrorMessage, selectUserId } from "../../redux/auth-selectors"
 
 const LoginContainer = props => {

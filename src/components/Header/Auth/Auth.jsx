@@ -4,7 +4,7 @@ import { AuthContext } from '../../../hoc/withAuth';
 import { ButtonIconFade } from '../../common/form/Buttons/Buttons';
 import useStyles from './Auth.styled'
 
-const Auth = ({ isAuth, login, logout, path }) => {
+const Auth = ({ isAuth, userId, login, logout, path }) => {
 	const classes = useStyles()
 	const auth = useContext(AuthContext)
 	const link = path === '/login' ? 'register' : 'login'

@@ -18,7 +18,7 @@ const User = ({ user, isAuth, followInProgressUsers, follow, topRef }) => {
 	const isDisabled = followInProgressUsers.some(id => id === user.id)
 	return (
 		<div className={classes.container}>
-			<NavLink onClick={() => scrollTo(topRef, 'end')} className={classes.avatar} to={'/profile/' + user.id}>
+			<NavLink onClick={() => scrollTo(topRef, 'start', 'auto')} className={classes.avatar} to={'/profile/' + user.id}>
 				<Avatar url={user.photos.large} />
 			</NavLink>
 			<div className={classes.info}>

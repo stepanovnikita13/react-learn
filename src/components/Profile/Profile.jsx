@@ -3,11 +3,16 @@ import Preloader from '../common/Preloader';
 import ProfileHeader from './ProfileHeader/ProfileHeader';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import useStyles from './Profile.styled';
+import { useEffect } from 'react';
 
 const Profile = props => {
 	const classes = useStyles()
 	const { profile, status, updateStatus, updateProfilePhoto,
 		updateProfile, isOwner, errors } = props
+
+	useEffect(() => {
+		if (profile) document.title = `Profile | ${profile.fullName}`
+	}, [profile])
 	if (!profile) {
 		return <Preloader />
 	}

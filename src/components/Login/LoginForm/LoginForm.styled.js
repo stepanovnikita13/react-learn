@@ -21,10 +21,26 @@ const socialButton = {
 }
 
 const useStyles = createUseStyles({
+	form: {
+		'@global': {
+			[`input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus,
+		textarea:-webkit-autofill,
+		textarea:-webkit-autofill:hover,
+		textarea:-webkit-autofill:focus,
+		select:-webkit-autofill,
+		select:-webkit-autofill:hover,
+		select:-webkit-autofill:focus`]: ({ theme }) => ({
+					WebkitBoxShadow: `0 0 0px 1000px ${theme.colors.backgroundContainer} inset`,
+					backgroundColor: theme.colors.backgroundContainer
+				})
+		}
+	},
 	wrapper: {
 		display: 'flex',
 		flexFlow: 'column nowrap',
-		rowGap: 10,
+		rowGap: 20,
 		[`@media ${device.tabletS}`]: {
 			width: 300
 		}
@@ -72,6 +88,6 @@ const useStyles = createUseStyles({
 			backgroundImage: `url(${facebookIcon})`
 		}
 	}
-})
+}, { name: 'LoginForm' })
 
 export default useStyles

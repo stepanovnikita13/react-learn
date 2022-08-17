@@ -1,4 +1,4 @@
-import { jss } from "../styledJss"
+import { jss } from "./styledJss"
 import { device } from "./device";
 
 const globalStyleSheet = jss.createStyleSheet({

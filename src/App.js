@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { compose } from 'redux'
 
 import { selectInitialized } from './redux/app-selectors'
-import { initializeApp } from './redux/app-reducer'
+import { initializeApp } from './redux/app-reducer.ts'
 
 import './App.css';
 import getTheme from './styles/themes'
@@ -17,7 +17,6 @@ import UsersContainer from './components/Users/UsersContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import LoginContainer from './components/Login/LoginContainer'
 import Preloader from './components/common/Preloader'
-//import S from './App.styled'
 import withTheme from './hoc/withTheme'
 import withAuth from './hoc/withAuth'
 import { selectIsAuthInServer } from './redux/auth-selectors'

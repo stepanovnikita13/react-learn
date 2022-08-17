@@ -60,11 +60,6 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 								<ErrorMessage className='text-error' component={'div'} name='fullName' />
 							</div>
 							<div>
-								{/* <TextareaFormik
-									label='About me'
-									name='aboutMe'
-									validate={required}
-								/> */}
 								<Field
 									component={textareaWithFormik}
 									label='About me'
@@ -81,11 +76,6 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 								</label>
 							</div>
 							<div>
-								{/* <TextareaFormik
-									label='My skills'
-									name='lookingForAJobDescription'
-									validate={required}
-								/> */}
 								<Field
 									component={textareaWithFormik}
 									label='My skills'

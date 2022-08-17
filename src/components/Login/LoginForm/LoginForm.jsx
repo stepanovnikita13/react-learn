@@ -13,7 +13,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 	const theme = useTheme()
 	const classes = useStyles({ theme })
 	const loginSubmit = async ({ email, password, rememberMe, captcha }, { setSubmitting }) => {
-		await login(email, password, rememberMe, captcha, setIsAuth)
+		await login(email, password, rememberMe, captcha)
 		setSubmitting(false);
 	}
 
@@ -30,7 +30,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 					touched,
 				}) => {
 					return (
-						<Form>
+						<Form className={classes.form}>
 							<div className={classes.wrapper}>
 								<div className={classes.error}>{error.message}</div>
 								<div>
@@ -44,7 +44,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 											<GlobalSvgSelector color={(errors.email && touched.email) ? theme.colors.error : null} type='user' />
 										}
 										error
-										style={{ backgroundColor: theme.colors.backgroundContainer }}
+									//style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='email' />
 								</div>
@@ -60,7 +60,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 											<GlobalSvgSelector color={errors.password && touched.password ? theme.colors.error : null} type='password' />
 										}
 										error
-										style={{ backgroundColor: theme.colors.backgroundContainer }}
+									//style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='password' />
 								</div>

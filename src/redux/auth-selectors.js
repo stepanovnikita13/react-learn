@@ -1,9 +1,0 @@
-export const selectIsAuthInServer = state => state.auth.isAuthInServer
-
-export const selectErrorMessage = state => state.auth.errorMessage
-
-export const selectErrorField = state => state.auth.errorField
-
-export const selectCaptchaUrl = state => state.auth.captchaUrl
-
-export const selectUserId = state => state.auth.userId

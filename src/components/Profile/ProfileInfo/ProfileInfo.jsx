@@ -37,6 +37,7 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 	const handleSubmitForm = () => {
 		if (ref) {
 			ref.current.handleSubmit()
+			setEditMode(value => !value)
 		}
 	}
 

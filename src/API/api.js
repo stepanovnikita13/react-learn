@@ -6,7 +6,7 @@ const instance = axios.create(
 		baseURL: "https://social-network.samuraijs.com/api/1.0/",
 		headers: {
 			"api-key": "e59ed79b-9e27-4eb1-af26-61ab53bf82dc" // Common
-			//"api-key": "34862c57-615d-400d-926d-6344354d4068"
+			//"api-key": "34862c57-615d-400d-926d-6344354d4068" // Secondary
 		}
 	}
 )
@@ -40,7 +40,7 @@ export const profileAPI = {
 	},
 
 	async updateStatus(status) {
-		const res = await instance.put('profile/status', { status: status })
+		const res = await instance.put('profile/status', { status })
 		return res.data
 	},
 
@@ -61,7 +61,7 @@ export const authAPI = {
 		return res.data
 	},
 
-	async login(email, password, rememberMe = false, captcha = null) {
+	async login(email, password, rememberMe = false, captcha) {
 		const res = await instance.post('/auth/login', { email, password, rememberMe, captcha })
 		return res.data
 	},
@@ -73,6 +73,14 @@ export const authAPI = {
 
 	async getCaptchaUrl() {
 		const res = await instance.get('/security/get-captcha-url')
+		return res
+	}
+}
+
+export const dialogsAPI = {
+	async sendMessage(userId, message) {
+		debugger
+		const res = await instance.post(`/dialogs/${userId}/messages`, message)
 		return res
 	}
 }
