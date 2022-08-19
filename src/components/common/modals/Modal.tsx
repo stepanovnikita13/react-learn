@@ -1,22 +1,29 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { ReactNode, useEffect, useMemo, useRef } from 'react'
 import * as ReactDOM from 'react-dom';
 import { useTheme } from 'react-jss';
 import useStyles from './Modal.styled';
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
+import { CustomTheme } from '../../../styles/themes';
 
-const Modal = ({ isModalOpen, hideModal, ...props }) => {
-	const theme = useTheme()
+type Props = {
+	isModalOpen: boolean
+	hideModal: () => void
+	children: ReactNode
+}
+const Modal: React.FC<Props> = ({ isModalOpen, hideModal, children }) => {
+	const theme = useTheme<CustomTheme>()
 	const classes = useStyles({ theme })
-	const ref = useRef()
+	const ref = useRef<HTMLDivElement>(null)
 	useOnClickOutside(ref, hideModal)
 	const el = useMemo(() => document.createElement('div'), [])
+	//const container = 
 
 	useEffect(() => {
 		if (isModalOpen) {
 			const app = document.getElementById('app')
-			app.appendChild(el)
+			app!.appendChild(el)
 			return () => {
-				app.removeChild(el)
+				app!.removeChild(el)
 			}
 		}
 	}, [isModalOpen, el])
@@ -25,9 +32,9 @@ const Modal = ({ isModalOpen, hideModal, ...props }) => {
 		return ReactDOM.createPortal(
 			<div className={classes.modal}>
 				<div className={classes.container} ref={ref}>
-					{props.children}
-				</div>
-			</div>,
+					{children}
+				</ div>
+			</ div>,
 			el
 		)
 	}

@@ -1,15 +1,6 @@
-const SEND_MESSAGE = 'dialogs/SEND_MESSAGE'
+import { DialogsData, MsgDataType } from "../types/types"
+import { InferValueTypes } from "./redux-store"
 
-type MsgDataType = {
-	id: number,
-	text: string
-}
-type DialogsData = {
-	id: number,
-	firstName: string,
-	lastName: string,
-	avatar: string
-}
 let initialState = {
 	msgData: [
 		{ id: 0, text: 'Hi!' },
@@ -26,11 +17,9 @@ let initialState = {
 	] as Array<DialogsData>,
 }
 
-export type InitialStateType = typeof initialState
-
 const dialogs = (state = initialState, action: ActionTypes): InitialStateType => {
 	switch (action.type) {
-		case SEND_MESSAGE: {
+		case "dialogs/SEND_MESSAGE": {
 			let newMessage = {
 				id: state.msgData.length,
 				text: action.payload.message,
@@ -44,8 +33,12 @@ const dialogs = (state = initialState, action: ActionTypes): InitialStateType =>
 		default: return state;
 	}
 }
-type ActionTypes = SendMessageActionType
-type SendMessageActionType = { type: typeof SEND_MESSAGE, payload: { message: string } }
-export const sendMessage = (message: string): SendMessageActionType => ({ type: SEND_MESSAGE, payload: { message } })
 
+export const actions = {
+	sendMessage: (message: string) => ({ type: 'dialogs/SEND_MESSAGE', payload: { message } } as const)
+}
+export const sendMessage = actions.sendMessage
 export default dialogs
+
+type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
+export type InitialStateType = typeof initialState

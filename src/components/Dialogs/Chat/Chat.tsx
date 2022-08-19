@@ -3,15 +3,23 @@ import { scrollTo } from "../../../utilits/functions"
 import AddMessageForm from "../AddMessageForm/AddMessageForm"
 import Message from "./Message/Message"
 import useStyles from './Chat.styled'
+import { MsgDataType } from "../../../types/types"
 
-const Chat = (props) => {
+type Props = {
+	messages: Array<MsgDataType>
+	sendMessage: (message: string) => void
+}
+export type StyleProps = { scrollBarIsShow: boolean }
+const Chat: React.FC<Props> = (props) => {
 	const { messages, sendMessage } = props
 	const [scrollBarIsShow, setScrollBarIsShow] = useState(false)
-	const messagesEndRef = useRef(null)
+	const messagesEndRef = useRef<HTMLDivElement>(null)
 	const classes = useStyles({ scrollBarIsShow })
 	let msgList = messages.map(m => <Message text={m.text} key={m.id} />).reverse()
+
 	useEffect(() => {
-		scrollTo(messagesEndRef, 'end')
+		const isScroll = messagesEndRef.current?.parentElement?.scrollTop! > -200
+		if (isScroll) scrollTo(messagesEndRef, 'end')
 	}, [messages]);
 
 	function showScroll() {
@@ -21,6 +29,7 @@ const Chat = (props) => {
 	function hideScroll() {
 		setScrollBarIsShow(false)
 	}
+
 	return (
 		<div className={classes.chat}>
 			<div

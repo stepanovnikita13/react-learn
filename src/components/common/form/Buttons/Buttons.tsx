@@ -7,6 +7,7 @@ import { useBurgerStyles, useButtonIconStyles, useButtonStyles, useThemeSwitcher
 interface ButtonProps {
 	children?: React.ReactNode,
 	className?: string,
+	[key: string]: any
 }
 
 export const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
@@ -23,9 +24,10 @@ export const Button: React.FC<ButtonProps> = ({ children, className, ...props })
 }
 
 interface ButtonIconFadeProps {
-	icon: GlobalSvgSelectorType,
-	className?: string,
+	icon: GlobalSvgSelectorType
+	className?: string
 	color?: string
+	[key: string]: any
 }
 
 export const ButtonIconFade: React.FC<ButtonIconFadeProps> = ({ icon, className, color, ...props }) => {
@@ -46,7 +48,7 @@ export const ButtonIconFade: React.FC<ButtonIconFadeProps> = ({ icon, className,
 			onTouchStart={() => { setHover(true) }}
 			onTouchEnd={() => { setHover(false) }}
 		>
-			<GlobalSvgSelector type={icon} color={hover ? color : theme.colors.iconFade} />
+			<GlobalSvgSelector type={icon} color={hover && !props.disabled ? color : theme.colors.iconFade} />
 		</button>
 	)
 }

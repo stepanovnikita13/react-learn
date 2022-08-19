@@ -14,7 +14,7 @@ type Props = {
 	currentPage: number,
 	pageSize: number,
 	totalUsersCount: number,
-	topRef: React.Ref<HTMLDivElement>,
+	topRef: React.RefObject<HTMLDivElement>,
 	follow: (isAuth: boolean, isFollowed: boolean, userId: number) => void,
 	onPageChanged: (pageNumber: number) => void,
 }

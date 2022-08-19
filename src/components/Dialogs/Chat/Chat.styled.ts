@@ -1,7 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import { device } from '../../../styles/device'
+import { CustomTheme } from '../../../styles/themes'
+import { StyleProps } from './Chat'
 
-const useStyles = createUseStyles(theme => ({
+type RuleNames = 'chat' | 'chatWrapper' | 'messagesBlock' | 'magicBox'
+const useStyles = createUseStyles<RuleNames, StyleProps, CustomTheme>(theme => ({
 	chat: {
 		display: 'flex',
 		flexFlow: 'column',

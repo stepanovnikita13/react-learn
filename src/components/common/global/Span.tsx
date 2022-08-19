@@ -9,8 +9,9 @@ type SpanProps = {
 	className?: string,
 	float?: 'left' | 'right',
 	spacing?: number,
+	[key: string]: any
 }
-const useSpanStyles = createUseStyles<'span', SpanProps, CustomTheme>({
+const useSpanStyles = createUseStyles<'span', SpanProps>({
 	span: {
 		display: 'flex',
 		alignItems: 'center',
@@ -19,41 +20,31 @@ const useSpanStyles = createUseStyles<'span', SpanProps, CustomTheme>({
 })
 
 export const Span: React.FC<SpanProps> = ({ icon, className, children, ...props }) => {
-	const theme = useTheme<CustomTheme>()
-	const classes = useSpanStyles({ ...props, theme })
+	const classes = useSpanStyles({ ...props })
 
 	return (
 		<span className={classes.span + ' ' + className} {...props}>
 			{props.float === 'right' && children}
 			{icon && <GlobalSvgSelector type={icon} />}
-			{(props.float === 'left' || !props.float) && children}
+			{(props.float === 'left') && children}
 		</span>
 	)
 }
 Span.defaultProps = {
-	spacing: 0
+	spacing: 0,
+	float: 'left'
 }
 
 type ErrorProps = {
 	children?: ReactNode,
 	className?: string,
 }
-const useErrorStyles = createUseStyles<'error', ErrorProps, CustomTheme>({
-	error: {
-		color: ({ theme }) => theme.colors.error
-	}
-})
 
 export const Error: React.FC<ErrorProps> = ({ children, className, ...props }) => {
 	const theme = useTheme<CustomTheme>()
-	const classes = useErrorStyles({ ...props, theme })
-	const classNames = [
-		classes.error,
-		className
-	].join(' ')
 
 	return (
-		<Span className={classNames} {...props}>
+		<Span className={className} {...props} style={{ color: theme.colors.error }}>
 			{children}
 		</Span>
 	)

@@ -6,8 +6,11 @@ import { useState } from 'react'
 import { ButtonIcon } from '../common/form/Buttons/Buttons'
 import useMedia from '../../hooks/useMedia'
 import { device } from '../../styles/device'
+import { DialogsProps } from './DialogsContainer'
 
-const Dialogs = (props) => {
+export type StyleProps = { isHide: boolean }
+
+const Dialogs: React.FC<DialogsProps> = (props) => {
 	const { dialogs, messages, sendMessage } = props
 	const [isHide, setIsHide] = useState(false)
 	const classes = useStyles({ isHide })

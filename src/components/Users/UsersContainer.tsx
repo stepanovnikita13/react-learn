@@ -11,7 +11,7 @@ import { UserType } from "../../types/types"
 import { AppState } from "../../redux/redux-store"
 
 type OwnProps = {
-	topRef: React.Ref<HTMLDivElement>,
+	topRef: React.RefObject<HTMLDivElement>,
 }
 type DispatchProps = {
 	follow: (isAuth: boolean, isFollowed: boolean, userId: number) => void,

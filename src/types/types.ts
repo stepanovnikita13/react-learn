@@ -32,5 +32,17 @@ export type UserType = {
 	photos: PhotosType,
 	followed: boolean
 }
-export type EventInput = React.FormEvent<HTMLInputElement> | undefined
-export type EventTextarea = React.FormEvent<HTMLTextAreaElement> | undefined
+export type MsgDataType = {
+	id: number,
+	text: string
+}
+export type DialogsData = {
+	id: number,
+	firstName: string,
+	lastName: string,
+	avatar: string
+}
+
+type Event<E> = React.FormEvent<E> | undefined
+export type EventInput = Event<HTMLInputElement>
+export type EventTextarea = Event<HTMLTextAreaElement>

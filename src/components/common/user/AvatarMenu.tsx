@@ -1,9 +1,12 @@
-import { useCallback, useState } from 'react'
+import { ReactEventHandler, useCallback, useState } from 'react'
 import GlobalSvgSelector from '../../../assets/icons/global/globalSvgSelector'
 import UploadImageModal from '../modals/UploadImageModal/UploadImageModal'
 import useStyles from './AvatarMenu.styled'
 
-const AvatarMenu = ({ updateProfilePhoto }) => {
+type Props = {
+	updateProfilePhoto: (file: FormData) => Promise<void>
+}
+const AvatarMenu: React.FC<Props> = ({ updateProfilePhoto }) => {
 	const [isActive, setIsActive] = useState(false)
 	const [isModalOpen, setisModalOpen] = useState(false)
 	const classes = useStyles({ isActive })
@@ -16,7 +19,7 @@ const AvatarMenu = ({ updateProfilePhoto }) => {
 		setIsActive(false)
 	}
 
-	const handlerClick = e => {
+	const handlerClick: ReactEventHandler<HTMLLIElement> = e => {
 		setisModalOpen(true)
 		setIsActive(false)
 	}

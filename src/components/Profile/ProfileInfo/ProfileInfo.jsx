@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
 import { useCallback, useState } from 'react';
 import { useTheme } from 'react-jss';
@@ -13,11 +14,12 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 	const classes = useStyles()
 	const [editMode, setEditMode] = useState(false)
 	const [isActive, setIsActive] = useState(false)
+	const [disabled, setDisabled] = useState(false)
 	const [ref, setRef] = useState(null)
 	const isMobile = useMedia([device.laptopS], [false], true)
 
 	useEffect(() => {
-		if (!errors) {
+		if (isEmpty(errors)) {
 			setEditMode(false)
 		}
 	}, [errors])
@@ -26,18 +28,13 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 		setIsActive(isMobile)
 	}, [setIsActive, isMobile])
 
-	const toggleEditMode = () => {
-		setEditMode(value => !value)
+	const handlerMouseEvent = (value) => {
+		isOwner && !isMobile && !editMode && setIsActive(value)
 	}
 
-	const handlerMouseEvent = () => {
-		isOwner && !isMobile && !editMode && setIsActive(value => !value)
-	}
-
-	const handleSubmitForm = () => {
-		if (ref) {
-			ref.current.handleSubmit()
-			setEditMode(value => !value)
+	const handleSubmitForm = async () => {
+		if (ref && !disabled) {
+			await ref.current.handleSubmit()
 		}
 	}
 
@@ -46,22 +43,23 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 	}, [])
 
 	return (
-		<div className={classes.container} onMouseEnter={handlerMouseEvent} onMouseLeave={handlerMouseEvent}>
+		<div className={classes.container} onMouseEnter={() => handlerMouseEvent(true)} onMouseLeave={() => handlerMouseEvent(false)}>
 			<div className={classes.heading}>
 				<h1>My profile</h1>
-				{isActive && !editMode && isOwner && <ButtonIconFade icon='edit' onClick={toggleEditMode} title='Edit' />}
+				{isActive && !editMode && isOwner && <ButtonIconFade icon='edit' onClick={() => { setEditMode(true) }} title='Edit' />}
 				{editMode && <div>
 					<ButtonIconFade
 						icon='check'
 						color={theme.colors.success}
 						type='submit'
 						onClick={handleSubmitForm}
+						disabled={disabled}
 						title='Apply change'
 					/>
 					<ButtonIconFade
 						icon='close'
 						color={theme.colors.error}
-						onClick={toggleEditMode}
+						onClick={() => { setEditMode(false) }}
 						title='Cancel'
 					/>
 				</div>
@@ -69,7 +67,7 @@ const ProfileInfo = ({ isOwner, profile, updateProfile, errors }) => {
 			</div>
 			{!editMode
 				? <AboutMe profile={profile} /> :
-				<AboutMeForm profile={profile} bindRef={bindRef} updateProfile={updateProfile} formErrors={errors} />}
+				<AboutMeForm profile={profile} bindRef={bindRef} updateProfile={updateProfile} formErrors={errors} setDisabled={setDisabled} />}
 		</div>
 	)
 }

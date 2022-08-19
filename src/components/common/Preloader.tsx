@@ -1,7 +1,8 @@
 import GlobalSvgSelector from "../../assets/icons/global/globalSvgSelector"
 import { createUseStyles } from 'react-jss'
+import { CustomTheme } from "../../styles/themes"
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles((theme: CustomTheme) => ({
 	preloader: {
 		position: 'fixed',
 		top: '50%',
@@ -18,7 +19,6 @@ const useStyles = createUseStyles(theme => ({
 const Preloader = () => {
 	const classes = useStyles()
 	return (
-
 		<div className={classes.preloader} >
 			<GlobalSvgSelector type={'preloader'} />
 		</div>

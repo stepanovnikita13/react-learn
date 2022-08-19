@@ -5,11 +5,11 @@ import useStyles from './ImageDropzone.styled'
 
 type ImageDropzoneProps = {
 	setDragActive: (value: boolean) => void,
-	setImage: (file: any) => void,
+	setImage: (file: File) => void,
 }
 
 const ImageDropzone: React.FC<ImageDropzoneProps> = ({ setDragActive, setImage }) => {
-	const onDrop = useCallback((acceptedFiles: any) => {
+	const onDrop = useCallback((acceptedFiles: Array<File>) => {
 		const [file] = acceptedFiles
 		setImage(file)
 	}, [setImage])

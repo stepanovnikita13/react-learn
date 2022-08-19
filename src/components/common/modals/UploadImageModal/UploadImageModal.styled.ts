@@ -1,7 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import { device } from '../../../../styles/device'
+import { CustomTheme } from '../../../../styles/themes'
+import { StyleProps } from './UploadImageModal'
 
-const useStyles = createUseStyles({
+type RuleNames = 'container' | 'header' | 'content' | 'customUploadFile'
+const useStyles = createUseStyles<RuleNames, StyleProps, CustomTheme>({
 	container: {
 		position: 'relative',
 		display: 'flex',

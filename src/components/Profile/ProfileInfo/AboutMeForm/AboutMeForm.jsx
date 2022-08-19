@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from "formik"
+import { ErrorMessage, Field, Form, Formik, useFormikContext } from "formik"
 import { useEffect, useRef } from "react"
 import withField from "../../../../hoc/withField"
 import { required } from "../../../../utilits/validators/validators"
@@ -8,8 +8,14 @@ import useStyles from './AboutMeForm.styled'
 
 const inputWithFormik = withField(Input)
 const textareaWithFormik = withField(Textarea)
+const AutoDisable = ({ setDisabled }) => {
+	const { isValid } = useFormikContext()
+	useEffect(() => {
+		setDisabled(!isValid)
+	}, [isValid, setDisabled])
+}
 
-const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
+const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors, setDisabled }) => {
 	const { aboutMe, lookingForAJob, lookingForAJobDescription, fullName, userId } = profile
 	const formRef = useRef()
 	const contacts = Object.fromEntries(
@@ -102,6 +108,7 @@ const AboutMeForm = ({ profile, bindRef, updateProfile, formErrors }) => {
 								})}
 							</div>
 						</div>
+						<AutoDisable setDisabled={setDisabled} />
 					</Form>
 				)
 			}}

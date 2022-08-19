@@ -1,7 +1,10 @@
 import { createUseStyles } from 'react-jss'
 import { device } from '../../styles/device'
+import { CustomTheme } from '../../styles/themes'
+import { StyleProps } from './Dialogs'
 
-const useStyles = createUseStyles(theme => ({
+type RuleNames = 'container' | 'dialogs' | 'button'
+const useStyles = createUseStyles<RuleNames, StyleProps, CustomTheme>(theme => ({
 	container: {
 		display: 'flex',
 		position: 'relative',

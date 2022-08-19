@@ -1,6 +1,8 @@
 import { createUseStyles } from 'react-jss'
+import { CustomTheme } from '../../../styles/themes'
 
-const useStyles = createUseStyles(theme => ({
+type RuleNames = 'menu' | 'list'
+const useStyles = createUseStyles<RuleNames, { isActive: boolean }, CustomTheme>(theme => ({
 	menu: {
 		width: '100%',
 		height: '100%',

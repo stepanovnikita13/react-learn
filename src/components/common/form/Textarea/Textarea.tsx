@@ -8,10 +8,10 @@ type Props = {
 	className?: string,
 	isError?: boolean,
 	name?: string,
-	onFocus: () => void,
-	onBlur: () => void,
-	onMouseEnter: () => void,
-	onMouseLeave: () => void,
+	onFocus?: () => void,
+	onBlur?: () => void,
+	onMouseEnter?: () => void,
+	onMouseLeave?: () => void,
 }
 export type StyleProps = {
 	isError: boolean,
@@ -30,8 +30,8 @@ export const Textarea: React.FC<Props> = ({ children, label, className, isError,
 		className || null
 	].join(' ')
 
-	const handlerEvent = (propsFunc: (e: EventTextarea) => void,
-		func: (e: EventTextarea) => void) => (e: EventTextarea) => {
+	const handlerEvent = (func: (e: EventTextarea) => void,
+		propsFunc?: (e: EventTextarea) => void,) => (e: EventTextarea) => {
 			func(e)
 			propsFunc && propsFunc(e)
 		}
@@ -48,10 +48,10 @@ export const Textarea: React.FC<Props> = ({ children, label, className, isError,
 				<textarea
 					className={classes.textarea}
 					{...props}
-					onFocus={handlerEvent(props.onFocus, () => { setIsActive(true) })}
-					onBlur={handlerEvent(props.onBlur, () => { setIsActive(false) })}
-					onMouseEnter={handlerEvent(props.onMouseEnter, () => { setIsActive(true) })}
-					onMouseLeave={handlerEvent(props.onMouseLeave, handlerMouseLeave)}
+					onFocus={handlerEvent(() => { setIsActive(true) }, props.onFocus)}
+					onBlur={handlerEvent(() => { setIsActive(false) }, props.onBlur)}
+					onMouseEnter={handlerEvent(() => { setIsActive(true) }, props.onMouseEnter)}
+					onMouseLeave={handlerEvent(handlerMouseLeave, props.onMouseLeave)}
 				/>
 				<fieldset className={classes.outline}>
 					<legend className={classes.legend}>

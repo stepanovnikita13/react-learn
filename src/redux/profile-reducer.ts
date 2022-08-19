@@ -1,18 +1,7 @@
-import { profileAPI } from "../API/api.js"
+import { profileAPI } from "../API/profile-api"
 import _ from 'lodash'
 import { PhotosType, PostsDataType, ProfileType } from "../types/types.js"
-import { ThunkAction } from "redux-thunk"
-import { AppState } from "./redux-store.js"
-
-const ADD_POST = 'profile/ADD_POST'
-const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
-const SET_STATUS = 'profile/SET_STATUS'
-const SET_PROFILE_PHOTO = 'profile/SET_PROFILE_PHOTO'
-const SET_ERRORS = 'SET_ERRORS'
-
-type Errors = {
-	[index: string]: string
-}
+import { InferValueTypes, RootThunkType } from "./redux-store.js"
 
 let initialState = {
 	postsData: [
@@ -22,14 +11,12 @@ let initialState = {
 	] as Array<PostsDataType>,
 	profile: null as ProfileType | null,
 	status: '' as string,
-	errors: null as Errors | null,
+	errors: {} as Errors,
 }
-
-export type InitialStateType = typeof initialState
 
 const profile = (state = initialState, action: ActionTypes): InitialStateType => {
 	switch (action.type) {
-		case ADD_POST: {
+		case "profile/ADD_POST": {
 			let newPost = {
 				id: state.postsData.length,
 				likesCount: 0,
@@ -40,75 +27,66 @@ const profile = (state = initialState, action: ActionTypes): InitialStateType =>
 				postsData: [...state.postsData, newPost],
 			}
 		}
-		case SET_USER_PROFILE: return { ...state, ...action.payload }
-		case SET_STATUS: return { ...state, ...action.payload }
-		case SET_PROFILE_PHOTO: return { ...state, profile: { ...state.profile, photos: action.payload.photos } as ProfileType }
-		case SET_ERRORS: return { ...state, ...action.payload }
+		case "profile/SET_USER_PROFILE": return { ...state, ...action.payload }
+		case "profile/SET_STATUS": return { ...state, ...action.payload }
+		case "profile/SET_PROFILE_PHOTO": return { ...state, profile: { ...state.profile, photos: action.payload.photos } as ProfileType }
+		case "profile/SET_ERRORS": return { ...state, ...action.payload }
 
 		default: return state;
 	}
 }
 
-type ActionTypes = AddPostActionType | SetUserProfileActionType | SetStatusActionType |
-	SetProfilePhotoActionType | SetErrorsActionType
+const actions = {
+	addPost: (text: string) => ({ type: 'profile/ADD_POST', payload: { text } } as const),
+	setUserProfile: (profile: ProfileType) => ({ type: 'profile/SET_USER_PROFILE', payload: { profile } } as const),
+	setStatus: (status: string) => ({ type: 'profile/SET_STATUS', payload: { status } } as const),
+	setProfilePhoto: (photos: PhotosType) => ({ type: 'profile/SET_PROFILE_PHOTO', payload: { photos } } as const),
+	setErrors: (errors: Errors) => ({ type: 'profile/SET_ERRORS', payload: { errors } } as const),
+}
 
-type AddPostActionType = { type: typeof ADD_POST, payload: { text: string } }
-export const addPost = (text: string): AddPostActionType => ({ type: ADD_POST, payload: { text } })
-
-type SetUserProfileActionType = { type: typeof SET_USER_PROFILE, payload: { profile: ProfileType } }
-const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, payload: { profile } })
-
-type SetStatusActionType = { type: typeof SET_STATUS, payload: { status: string } }
-const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, payload: { status } })
-
-type SetProfilePhotoActionType = { type: typeof SET_PROFILE_PHOTO, payload: { photos: PhotosType } }
-const setProfilePhoto = (photos: PhotosType): SetProfilePhotoActionType => ({ type: SET_PROFILE_PHOTO, payload: { photos } })
-
-type SetErrorsActionType = { type: typeof SET_ERRORS, payload: { errors: Errors | null } }
-const setErrors = (errors: Errors | null): SetErrorsActionType => ({ type: SET_ERRORS, payload: { errors } })
-
-type ThunkType = ThunkAction<Promise<void>, AppState, unknown, ActionTypes>
-
+export const addPost = actions.addPost
 export const getUserProfile = (userId: number | null): ThunkType => async dispatch => {
-	const data = await profileAPI.getProfile(userId)
-	dispatch(setUserProfile(data))
+	if (userId) {
+		const data = await profileAPI.getProfile(userId)
+		dispatch(actions.setUserProfile(data))
+	}
 }
 
 export const getStatus = (userId: number): ThunkType => async dispatch => {
 	const data = await profileAPI.getStatus(userId)
-	dispatch(setStatus(data))
+	dispatch(actions.setStatus(data))
 }
 
 export const updateStatus = (status: string): ThunkType => async dispatch => {
 	const data = await profileAPI.updateStatus(status)
 	if (data.resultCode === 0) {
-		dispatch(setStatus(status))
+		dispatch(actions.setStatus(status))
 	}
 }
 
-export const updateProfilePhoto = (file: any): ThunkType => async dispatch => {
+export const updateProfilePhoto = (file: FormData): ThunkType => async dispatch => {
 	const data = await profileAPI.updateProfilePhoto(file)
 	if (data.resultCode === 0) {
-		dispatch(setProfilePhoto(data.data))
+		dispatch(actions.setProfilePhoto(data.data.photos))
 	} else {
 		console.log(data)
 		console.log(file)
 	}
 }
 
-export const updateProfile = (profile: ProfileType): ThunkAction<Promise<any>, AppState, unknown, ActionTypes> => async (dispatch, getState) => {
+export const updateProfile = (profile: ProfileType): RootThunkType<ActionTypes, Promise<Errors | void>> => async (dispatch, getState) => {
 	const userId = getState().auth.userId
 	try {
 		const data = await profileAPI.updateProfile(profile)
 		if (data.resultCode === 0) {
-			dispatch(setErrors(null))
-			if (userId !== 0) {
+			dispatch(actions.setErrors({}))
+			if (userId !== null) {
 				dispatch(getUserProfile(userId))
 			} else {
 				throw new Error("userId can't be null")
 			}
 		} else if (data.resultCode === 1) {
-			dispatch(setErrors(getObjectFromErrors(data.messages)))
+			dispatch(actions.setErrors(getObjectFromErrors(data.messages)))
 			return getObjectFromErrors(data.messages)
 		}
 	} catch (error) {
@@ -116,7 +94,7 @@ export const updateProfile = (profile: ProfileType): ThunkAction<Promise<any>, A
 	}
 }
 
-function getObjectFromErrors(array: Array<string>) {
+function getObjectFromErrors(array: Array<string>): Errors {
 	const errors = {}
 	array.forEach((value: string) => {
 		const splitted = value.split(' (')
@@ -128,3 +106,10 @@ function getObjectFromErrors(array: Array<string>) {
 }
 
 export default profile
+
+export type InitialStateType = typeof initialState
+type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
+type ThunkType = RootThunkType<ActionTypes>
+type Errors = {
+	[index: string]: string
+}

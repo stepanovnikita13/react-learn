@@ -1,7 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import useStyles from './DialogItem.styled'
 
-const DialogItem = (props) => {
+type Props = {
+	id: number
+	avatar: string
+	name: string
+	onClick: () => void
+}
+const DialogItem: React.FC<Props> = (props) => {
 	const { id, avatar, name, onClick } = props
 	const classes = useStyles()
 	return (

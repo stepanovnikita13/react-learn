@@ -44,7 +44,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 											<GlobalSvgSelector color={(errors.email && touched.email) ? theme.colors.error : null} type='user' />
 										}
 										error
-									//style={{ backgroundColor: theme.colors.backgroundContainer }}
+										style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='email' />
 								</div>
@@ -60,7 +60,7 @@ const LoginForm = ({ login, error, captchaUrl, setIsAuth }) => {
 											<GlobalSvgSelector color={errors.password && touched.password ? theme.colors.error : null} type='password' />
 										}
 										error
-									//style={{ backgroundColor: theme.colors.backgroundContainer }}
+										style={{ backgroundColor: theme.colors.backgroundContainer }}
 									/>
 									<ErrorMessage className='text-error' component={'div'} name='password' />
 								</div>

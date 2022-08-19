@@ -1,15 +1,16 @@
 import { createUseStyles } from 'react-jss'
+import { CustomTheme } from '../../../styles/themes'
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme: CustomTheme) => ({
 	avatar: {
 		position: 'relative',
 		height: 'fit-content',
 		borderRadius: '50%',
-		backgroundColor: ({ theme }) => theme.colors.background,
+		backgroundColor: theme.colors.background,
 		border: {
 			size: 8,
 			style: 'solid',
-			color: ({ theme }) => theme.colors.border
+			color: theme.colors.border
 		},
 		overflow: 'hidden',
 		'& img': {
@@ -24,6 +25,6 @@ const useStyles = createUseStyles({
 		width: '100%',
 		height: '100%'
 	}
-})
+}), { name: 'Avatar' })
 
 export default useStyles
