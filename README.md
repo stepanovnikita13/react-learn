@@ -131,8 +131,7 @@ The web application is fully adapted for mobile devices and tablets. On this pro
 
 For lovers of the dark colors, it is possible to change the theme
 
-<img src="images/dark.jpg" height="250" />
-<img src="images/mobile.jpg" height="250" />
+<img src="images/dark.jpg" height="250" hspace='20' /><img src="images/mobile.jpg" height="250" />
 <br />
 <br />
 
