@@ -1,75 +1,147 @@
-# Social network project
-[Open page](https://stepanovnikita13.github.io/react-learn/)\
-login: stepanov.nikita13@gmail.com\
-password: Sw82z3com
+<a name="readme-top"></a>
+<div align='center' >
+  <h2>Social Network</h2>
+  <img src="images/login-background.png" alt="Main page" width="220" style='padding: 20px 0;' />
+  <p>My pet-project powered by course and lessons for learning react.</p>
+  <a href="https://stepanovnikita13.github.io/react-learn">View Demo</a>
+</div>
+<br />
+<br />
+<details>
+  <summary>Table of contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#build-with">Build with</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+   <a href="#usage">Usage</a>
+   <ul>
+    <li><a href="">Login</a></li>
+    <li><a href="">Profile</a></li>
+    <li><a href="">Users</a></li>
+    <li><a href="">Dialogs</a></li>
+    <li><a href="">Feauters</a></li>
+   </ul>
+ </li>
+    <li><a href="#contacts">Contacts</a></li>
+  </ol>
+</details></br>
 
-# Getting Started with Create React App
+# About The Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Build With
 
-## Available Scripts
+<ul>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Typescript</li>
+  <li>Axios</li>
+  <li>Formik</li>
+  <li>JSS</li>
+  <li>React-dropzone</li>
+</ul>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-In the project directory, you can run:
+# Getting Started
 
-### `npm start`
+The project is based on <a href="https://nodejs.org/en/">`node v16.13.2`</a>\
+You must also have installed
+<a href="https://git-scm.com/downloads" target="_blank" ><i>Git</i></a>
+for copy app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- INSTALLATION -->
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can start the project locally. For this:
 
-### `npm test`
+1. Open a terminal in the folder where the copy should be downloaded
+2. Clone the repo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  ```sh
+  git clone https://github.com/stepanovnikita13/react-learn.git
+  ```
 
-### `npm run build`
+3. Install NPM packages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ```sh
+  npm install
+  ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. And run application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ```
+  npm start
+  ```
 
-### `npm run eject`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!-- USAGE -->
+# Usage
+## Login
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In order to start using the application, you must log in to your account. To do this, enter your email and password in the fields, and then click the submit button. If you do not have an account yet, create an account by clicking on the registration link, then repeat the steps again.
+<p>
+You can also sign in to a test account. To do this, enter the following data:</br>
+Email: stepanov.nikita13@gmail.com</br>
+Password: Sw82z3com
+</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img src="images/login.jpg" alt="Main page" width="400" />
+<br />
+<br />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Profile
 
-## Learn More
+After successful authorization, you will be redirected to your profile page. Here you can:
+<ul>
+ <li>Edit personal data with the ability to add links to your other social networks</li>
+ <li>Add status</li>
+ <li>Upload avatar from your device</li>
+ <li>Write posts</li>
+</ul>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="images/profile.jpg" width="400" />
+<br />
+<br />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Users
 
-### Code Splitting
+This page displays a list of all users, you can also subscribe to any of them and go to the user profile page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="images/users.jpg" width="220" />
+<br />
+<br />
 
-### Analyzing the Bundle Size
+## Dialogs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This page is under development, fake behavior implemented for now.
 
-### Making a Progressive Web App
+## Feauters
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The web application is fully adapted for mobile devices and tablets. On this project, it was decided to apply the principles of mobile-first development.
 
-### Advanced Configuration
+For lovers of the dark colors, it is possible to change the theme
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<img src="images/dark.jpg" height="250" />
+<img src="images/mobile.jpg" height="250" />
+<br />
+<br />
 
-### Deployment
+Good luck! :smile:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### `npm run build` fails to minify
+# Contacts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Stepanov Nikita - stepanov.nikita13@gmail.com
+
+GitHub Profile: [https://github.com/stepanovnikita13](https://github.com/stepanovnikita13)

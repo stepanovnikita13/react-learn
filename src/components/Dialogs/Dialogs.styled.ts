@@ -26,7 +26,6 @@ const useStyles = createUseStyles<RuleNames, StyleProps, CustomTheme>(theme => (
 			flex: '0 1 320px'
 		},
 		[`@media ${device.laptopL}`]: {
-			position: 'static',
 			flex: '0 1 400px'
 		},
 	},
